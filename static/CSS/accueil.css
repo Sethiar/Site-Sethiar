@@ -1,0 +1,26 @@
+:root {
+  --font-size-default: 18px;
+  --font-size-tablet: 16px;
+  --font-size-phone: 14px;
+
+  --color-default: white;
+
+  --background-default: black;
+}
+
+/* Style globaux */
+* {
+  font-family: 'Comic Sans MS', cursive;
+  color: var(--color-default);
+  background-color: var(--background-default);
+}
+
+/* Style pour écran ordinateur */
+#logo-container {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#logo-container img  {
+    width: 20%;
+}

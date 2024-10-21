@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='CSS/backend.css') }}">
+
+    {% block head_content %}
+    {% endblock %}
+</head>
+
+<body>
+    <header>
+        {% block header_content %}
+        {% endblock %}
+    </header>
+    <main>
+        {% block main_content %}
+        {% endblock %}
+    </main>
+    <footer>
+        {% block footer_content %}
+        {% endblock %}
+    </footer>
+</body>
+</html>
+

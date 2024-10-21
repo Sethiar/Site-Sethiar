@@ -1,0 +1,52 @@
+{% extends 'base.html.jinja2' %}
+
+{% block head_content %}
+    <meta name="description" content="Site de l'entreprise SethiarWorks d'Arnaud Lefetey.">
+    <title>{% block title %}Bienvenue sur SethiarWorks{% endblock %}</title>
+{% endblock %}
+
+{% block main_content %}
+<div id="logo-container">
+    <img src="{{ url_for('static', filename='Images/images_accueil/logo.jpg') }}" alt="Logo de l'entreprise SethiarWorks.">
+</div>
+<div class="separation-1"></div>
+<div>
+    <h2 id="title">Bienvenue sur le site de l'entreprise <i><b>SethiarWorks</b></i></h2>
+</div>
+<div id="introduction">
+    <p class="intro">
+        Bonjour, vous voici sur le site de l'entreprise SethiarWorks. Je m'appelle Lefetey Arnaud
+        et je suis Concepteur Développeur de solutions digitales.
+    </p>
+    <p class="intro">
+        Je crée des solutions numériques sur mesure, adaptées à vos besoins.
+        Mon objectif est de vous accompagner dans la réalisation de vos projets web tout en perfectionnant continuellement
+        mes compétences à travers les multiples attentes de ma clientèle dans la création et le développement
+        de votre projet.
+    </p>
+    <p class="intro">
+        Répondre à vos besoins est ma priorité. Chaque retour de mes clients me permet d'affiner mon approche afin de
+        vous offrir des solutions toujours plus adaptées.
+    </p>
+    <p class="intro">
+        Chaque client est différent, ce qui fait que chaque projet possède une unicité et une originalité que je
+        chercherai à personnifier au sein d'une réalisation qui marquera non seulement ma manière de coder, mais surtout,
+        qui sera le reflet du besoin de ce que vous, en tant que client, voulez mettre en avant.
+    </p>
+</div>
+<div class="important">
+    <p class="important">
+        <b>Mieux que ce que vous imaginez, nous nous efforcerons de le réaliser.</b>
+    </p>
+</div>
+<div id="register">
+    <p class="registration-sentence">
+        Inscrivez-vous dès maintenant pour obtenir des informations, laisser un commentaire ou planifier un chat vidéo avec moi.
+    </p>
+    <p class="registration-sentence">
+        Ensemble, nous discuterons de vos besoins et je vous proposerai un devis adapté à votre projet.
+    </p>
+    <button><a class="registration" href="{{ url_for('user.user_registration') }}">Inscrivez-vous ici !!!</a></button>
+</div>
+
+{% endblock %}
