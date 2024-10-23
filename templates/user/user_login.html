@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block body_content %}
-    <form method="POST" action="{{ url_for('auth.login_user', next_url=next_url) }}">
+    <form method="POST" action="{{ url_for('auth.login', next_url=next_url) }}">
         <div class="imgcontainer">
             <img src="../static/Images/images_formulaires/connexion1.jpg" alt="Avatar" class="avatar">
         </div>

@@ -67,6 +67,16 @@
                 </ul>
                 {% endif %}
             </div>
+            <div>
+                {{ form_usersaving.date_naissance.label }} {{ form_usersaving.date_naissance() }}
+                {% if form_usersaving.date_naissance.errors %}
+                <ul>
+                    {% for error in form_usersaving.date_naissance.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
             <div class="space"></div>
             <div class="photo">
                 <ul>
