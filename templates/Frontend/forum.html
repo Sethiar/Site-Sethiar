@@ -1,14 +1,14 @@
 {% extends 'base.html.jinja2' %}
 
 {% block head_content %}
-    <meta name="description" content="Forum du blog permettant de discuter, interagir et donner son avis sur le blog.">
+    <meta name="description" content="Forum du site permettant de discuter, interagir et donner son avis sur le site de l'entreprise SethiarWorks.">
     <title>{% block title %}Bienvenue sur le forum du blog{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/forum.css') }}">
-
 {% endblock %}
 
-    {% block header_content %}
-    {% endblock %}
+{% block header_content %}
+    <button><a href="{{ url_for('landing_page') }}">Retour à la page d'accueil</a></button>
+{% endblock %}
 
 {% block main_content %}
 <br>
