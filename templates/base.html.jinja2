@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/accueil.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/header.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/footer.css') }}">
-    <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/animation') }}">"
+    <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/accueil.css') }}">
+    <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/header.css') }}">
+    <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/footer.css') }}">
+    <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/animation.css') }}">
+    <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/comment.css' ) }}">
 
     {% block head_content %}
     {% endblock %}
@@ -19,9 +20,9 @@
     <div id="navbar">
         <nav>
             <ul class="nav-links">
-                <li><a href="">Laisser un commentaire</a></li>
-                <li><a href="">Demande de Chat vidéo</a></li>
-                <li><a href="">Portfolio</a></li>
+                <li><a href="{{ url_for('frontend.forum') }}">Accès au forum</a></li>
+                <li><a href="{{ url_for('chat.chat_request') }}">Demande de Chat vidéo</a></li>
+                <li><a href="www.sethiar-lefetey.fr">Portfolio</a></li>
                 <li><a href="">Voir les projets</a></li>
                 <li><a href="">Voir les produits</a></li>
             </ul>
@@ -32,7 +33,7 @@
             <!-- Afficher d'autres contenus de la page pour les utilisateurs connectés -->
                 {% else %}
                 <p>Pour se connecter.</p>
-                <button><a href="{{ url_for('auth.login_user') }}">Cliquer ici</a></button>
+                <button><a href="{{ url_for('auth.login') }}">Cliquer ici</a></button>
                 {% endif %}
             </div>
             <div class="hamburger">
@@ -91,7 +92,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" defer></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
-    <script src="{{ url_for('static', filename='CSS/javascript/menu_portable.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='javascript/menu_portable.js') }}" defer></script>
 
      {% block footer_content %}
      {% endblock %}
