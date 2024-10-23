@@ -26,7 +26,7 @@ class Admin(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     pseudo = db.Column(db.String(20), nullable=False)
     role = db.Column(db.String(20), nullable=False)
-    email = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(20), nullable=True)
     profil_photo = db.Column(db.LargeBinary, nullable=True)
     password_hash = db.Column(db.LargeBinary(255), nullable=False)
     salt = db.Column(db.LargeBinary(255), nullable=False)
@@ -36,10 +36,10 @@ class Admin(db.Model, UserMixin):
 
     def __repr__(self):
         """
-        Renvoie une chaîne de caractère représentant l'objet Adminitrateur.
+        Renvoie une chaîne de caractère représentant l'objet Administrateur.
 
         :return:
-        str: chaîne de caractère représentant un administrateur.
+            str : chaîne de caractère représentant un administrateur.
         """
         return f"<Admin(id='{self.id}', pseudo='{self.pseudo}', role='{self.role}'>"
 

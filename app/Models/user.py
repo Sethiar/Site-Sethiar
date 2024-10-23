@@ -45,6 +45,15 @@ class User(db.Model, UserMixin):
     date_ban_end = db.Column(db.DateTime, nullable=True)
     count_ban = db.Column(db.Integer, default=0)
 
+    # Relation avec les commentaires sur les sujets du forum.
+    comments_subject = db.relationship('CommentSubject', back_populates='user', cascade='all, delete-orphan')
+
+    # Relation avec les réponses aux commentaires de sujets.
+    replies_subject = db.relationship('ReplySubject', back_populates='user', cascade='all, delete-orphan')
+
+    # Relation avec les likes sur les commentaires de sujets.
+    likes_comment_subject = db.relationship('CommentLikeSubject', back_populates='user', cascade='all, delete-orphan')
+
     # Relation entre la demande de chat et la classe user.
     chat_requests = db.relationship('ChatRequest', back_populates='user', cascade='all, delete-orphan')
 
@@ -90,7 +99,6 @@ class User(db.Model, UserMixin):
         """
         # Vérifie que le pseudo existe et n'est pas vide
         return bool(self.pseudo)
-
 
     def is_anonymous(self):
         """
@@ -156,7 +164,7 @@ class User(db.Model, UserMixin):
         db.session.commit()
 
         # Appel de la fonction d'envoi de mail du bannissement définitif.
-        from app.Mail.routes import definitive_banned
+        from app.mail.routes import definitive_banned
         definitive_banned(self.email)
 
     def is_banned(self):

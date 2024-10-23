@@ -18,6 +18,7 @@ class ReplySubject(db.Model):
         comment_id (int) : Identifiant du commentaire associé à la réponse.
         user_id (int) : Identifiant de l'utilisateur ayant posté la réponse.
     """
+
     __tablename__ = "reply_subject"
     __table_args__ = {"extend_existing": True}
 

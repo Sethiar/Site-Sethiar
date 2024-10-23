@@ -5,6 +5,7 @@ Classe permettant de créer l'objet "sujet" du forum.
 from . import db
 
 
+# Modèle de la classe représentant les sujets du forum.
 class SubjectForum(db.Model):
     """
     Modèle de données représentant un sujet pour le forum.
