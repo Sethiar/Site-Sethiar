@@ -1,4 +1,4 @@
-"""Ce script crée un administrateur pour le blog.
+"""Ce script crée un administrateur pour le site de l'entreprise SethiarWorks.
 
 Il utilise bcrypt pour hacher le mot de passe et stocker de manière sécurisée les identifiants de
 l'administrateur dans la base de données.
@@ -24,11 +24,11 @@ sys.path.append(parent_dir)
 
 
 # Importer la fonction conn() depuis db_tititechnique.py
-from database_config.db_tititechnique import conn
+from database_config.db_sethiarworks import conn
 
 # Si vous voulez changer votre identifiant et votre mot de passe, c'est ici.
-pseudo = "Tititechnique"
-password = "bloggeminips626"
+pseudo = "Nosiris"
+password = "Monolithe8"
 role = "Admin"
 
 # Génération d'un sel aléatoire pour le hachage du mot de passe.
