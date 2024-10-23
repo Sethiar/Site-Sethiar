@@ -43,7 +43,7 @@ class UserRecording(FlaskForm):
     password2 = PasswordField(
         "Confirmer password",
         validators=[DataRequired(), EqualTo('password', message="Les mots de passe doivent correspondre")],
-        render_kw={"placeholder":"Confirmation du mot de passe."}
+        render_kw={"placeholder": "Confirmation du mot de passe."}
     )
     date_naissance = DateField(
         "Date de naissance",
@@ -52,11 +52,12 @@ class UserRecording(FlaskForm):
     profil_photo = FileField("Photo de profil souhaitée :",
                              validators=[FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'], "Images seulement !!")]
                              )
+    csrf_token = HiddenField()
     submit = SubmitField(
         "Souscrire aux conditions générales du site."
     )
 
-    # Fonction vérifiant la bonne créations du formulaires.
+    # Fonction vérifiant la bonne créations du formulaire.
 
     # Fonction qui vérifie si le pseudo existe déjà.
     def validate_pseudo(self, pseudo):
@@ -71,11 +72,11 @@ class UserRecording(FlaskForm):
         """
         user = User.query.filter_by(pseudo=pseudo.data).first()
         if user:
-            raise ValidationError('Ce pseudo est déjà utilisée. Veuillez en choisir un autre.')
+            raise ValidationError('Ce pseudo est déjà utilisé. Veuillez en choisir un autre.')
 
     def validate_email(self, email):
         """
-        Valide l'email choisi si il n'existe pas déjà dans la table de données User.
+        Valide l'email choisi s'il n'existe pas déjà dans la table de données User.
 
         Args :
             email (EmailField): EMail à vérifier.
@@ -85,7 +86,7 @@ class UserRecording(FlaskForm):
         """
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
-            raise ValidationError('Cet email est déjà utilisée. Veuillez en choisir une autre.')
+            raise ValidationError('Cet email est déjà utilisé. Veuillez en choisir une autre.')
 
     def __repr__(self):
         return f"UserRecording(pseudo='{self.pseudo}', email='{self.email.data}'," \
