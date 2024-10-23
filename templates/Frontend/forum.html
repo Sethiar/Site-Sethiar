@@ -1,0 +1,83 @@
+{% extends 'base.html.jinja2' %}
+
+{% block head_content %}
+    <meta name="description" content="Forum du blog permettant de discuter, interagir et donner son avis sur le blog.">
+    <title>{% block title %}Bienvenue sur le forum du blog{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/forum.css') }}">
+
+{% endblock %}
+
+    {% block header_content %}
+    {% endblock %}
+
+{% block main_content %}
+<br>
+<h1>Forum de discussion</h1>
+
+<section id="categories">
+    <div id="forum-pic">
+        <div id="forum-pic-left">
+            <img src="{{ url_for('static', filename='Images/images_forum/forum4.jpg') }}" alt="Forum Image Left">
+        </div>
+        <div id="forum-pic-center">
+            <img src="{{ url_for('static', filename='Images/images_accueil/forum1.jpg') }}" alt="Forum Image Center">
+        </div>
+        <div id="forum-pic-right">
+            <img src="{{ url_for('static', filename='Images/images_forum/forum5.jpg') }}" alt="Forum Image Right">
+        </div>
+    </div>
+
+    <br><br><br><br><br><br>
+
+    <div class="categorie">
+        <h4>Ajouter un sujet sur le forum</h4>
+        <br>
+        <form id="addSubjectForm" method="POST" action="{{ url_for('user.add_subject_forum') }}">
+            {{ formsubjectforum.csrf_token }}
+            {{ formsubjectforum.nom.label }}
+            <label class="label">{{ formsubjectforum.nom(size=20) }}</label>
+            {{ formsubjectforum.submit() }}
+        </form>
+        <br>
+    </div>
+    <br>
+    <div class="separation"></div>
+    <br>
+    <div id="container-subject">
+        <h4>Sujets</h4>
+        <br>
+        <table id="subject">
+            <tbody>
+            {% for subject in subjects %}
+            <tr>
+                <td style="font-weight: bold;">{{ subject.nom }}</td>
+                <td style="font-style: italic;">{{ subject.author }}</td>
+                <td><a href="{{ url_for('frontend.forum_subject', subject_id=subject.id) }}" class="button-subject">Voir le sujet</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<div class="separation"></div>
+</section>
+
+    {% endblock %}
+
+    {% block footer_content %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('addSubjectForm');
+
+    // Variable JavaScript indiquant si l'utilisateur est connecté
+    var isAuthenticated = {{ is_authenticated|tojson }};
+
+    form.addEventListener('submit', function(event) {
+        if (!isAuthenticated) {
+            // Afficher une alerte si l'utilisateur n'est pas connecté
+            alert("Vous devez être connecté pour ajouter un sujet.");
+            event.preventDefault(); // Empêche la soumission du formulaire
+            }
+    });
+});
+</script>
+    {% endblock %}

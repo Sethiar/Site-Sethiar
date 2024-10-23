@@ -14,7 +14,9 @@ from flask import render_template, redirect, url_for, session, request, current_
 from app.Models import db
 
 from app.Models.user import User
-from flask_login import logout_user
+from app.Models.admin import Admin
+
+from flask_login import logout_user, login_user
 
 from app.mail.routes import reset_password_mail, password_reset_success_email
 
@@ -44,13 +46,13 @@ def user_connection():
     session['next_url'] = next_url
 
     # Instanciation du formulaire.
-    form = UserConnection()
-    return render_template("User/user_login.html", form=form, next_url=next_url)
+    form_loginuser = UserConnection()
+    return render_template("User/user_login.html", form_loginuser=form_loginuser, next_url=next_url)
 
 
 # Route permettant à un utilisateur de se connecter au site de l'entreprise.
 @auth_bp.route('/connexion-utilisateur', methods=['GET', 'POST'])
-def login_user():
+def login():
     """
     Gère l'authentification de l'utilisateur.
 
@@ -105,8 +107,8 @@ def login_user():
             # Redirection vers l'URL précédente ou la page d'accueil.
             return redirect(next_url or url_for('landing_page'))
 
+    flash("Votre authentification a échoué, veuillez recommencer la saisie de vos identifiants.", "error")
     return render_template("User/user_login.html", form_loginuser=form_loginuser)
-    pass
 
 
 # Route permettant à un utilisateur de se déconnecter du site de l'entreprise.
@@ -162,11 +164,46 @@ def login_admin():
     :return: La page de connexion pour les administrateurs, ou une redirection en fonction
     du succès de l'authentification.
     """
-    pass
+    # Instanciation du formulaire de connexion.
+    form_admin = AdminConnection()
+
+    # Vérification si la méthode de la requête est POST, indiquant la soumission du formulaire.
+    if request.method == 'POST':
+        # Validation des donnees des formulaires.
+        if form_admin.validate_on_submit():
+            # Récupération des données soumises dans le formulaire.
+            pseudo = form_admin.pseudo.data
+            password = form_admin.password.data
+            role = form_admin.role.data
+
+            # Recherche de l'administrateur correspondant au pseudo dans la table de données Admin.
+            admin = Admin.query.filter_by(pseudo=pseudo).first()
+
+            if admin is None:
+                # Le pseudo n'existe pas.
+                current_app.logger.warning(f"Tentative de connexion échouée : pseudo {pseudo} incorrect.")
+                flash("Le pseudo est incorrect.", "login_admin")
+            elif not bcrypt.checkpw(password.encode('utf-8'), admin.password_hash):
+                # Password incorrect.
+                current_app.logger.warning(f"Tentative de connexion échouée : {pseudo} : mot de passe incorrect.")
+                flash("Le mot de passe est incorrect.", "login_admin")
+            elif role != admin.role:
+                # Rôle incorrect.
+                current_app.logger.warning(f"Tentative de connexion échouée pour {pseudo} : rôle {role} incorrect.")
+                flash("Le rôle est incorrect.", "login_admin")
+            else:
+                # Si tout est correct.
+                current_app.logger.info(f"L'administrateur {admin.pseudo} s'est bien connecté.")
+                login_user(admin)
+                session['pseudo'] = admin.pseudo
+                session["role"] = admin.role
+                return redirect(url_for("admin.backend"))
+
+            return render_template("Admin/admin_login.html", form_admin=form_admin)
 
 
-# Route permettant à un administrateur de se déconnecter du backend.
-@auth_bp.route('/déconnexion-administrateur', methods=['GET', 'POST'])
+# Route permettant à l'administrateur de se déconnecter.
+@auth_bp.route('/backend/déconnexion-administrateur')
 def logout_admin():
     """
     Déconnecte l'administrateur actuellement authentifié.
@@ -322,4 +359,21 @@ def recording_new_password(token):
     return render_template('functional/recording_password.html', formpassword=formpassword, token=token)
 
 
+# Route renvoyant l'utilisateur banni devant le template d'information concernant le bannissement.
+@auth_bp.route("/utilisateur-banni-informations/<int:user_id>")
+def user_banned(user_id):
+    """
+    Fonction qui renvoie la page d'information concernant le bannissement d'un utilisateur.
+
+    :param user_id: ID de l'utilisateur qui est banni.
+    :return: Functional/user_banned.html
+    """
+    # Recherche du pseudo de l'utilisateur banni dans la table de données User.
+    user = User.query.filter_by(id=user_id).first()
+    # Vérification de l'utilisateur dans la table de données.
+    if not user:
+        # Gestion du cas où l'utilisateur n'existe pas.
+        return "Utilisateur non trouvé", 404
+
+    return render_template("Functional/user_banned.html", user=user)
 
