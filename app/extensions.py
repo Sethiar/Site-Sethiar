@@ -14,6 +14,7 @@ load_dotenv()
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'pdf', 'doc', 'docx'}
 
 
+# Fonction qui génère l'autorisation des fichiers acceptés pour le site.
 def allowed_file(filename):
     """
     Vérifie si l'extension d'un fichier est autorisée en fonction de la liste ALLOWED_EXTENSIONS.
@@ -26,6 +27,7 @@ def allowed_file(filename):
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+# Fonction qui permet de générer la réunion vidéo avec administrateur du site et un utilisateur.
 def create_whereby_meeting_admin():
     """
     Crée une réunion pour un administrateur et renvoie l'URL de la salle.
@@ -44,7 +46,6 @@ def create_whereby_meeting_admin():
         "endDate": "2099-02-18T14:23:00.000Z",
         "fields": ["hostRoomUrl"]
     }
-
     # En-têtes HTTP avec l'authentification Bearer.
     headers = {
         "Authorization": f"Bearer {API_KEY}",
@@ -76,3 +77,4 @@ def create_whereby_meeting_admin():
         # Affichage des autres erreurs générales.
         print(f"Erreur: {err}")
         return None
+

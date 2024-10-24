@@ -5,7 +5,7 @@ from flask_wtf import FlaskForm
 
 from wtforms import StringField, TextAreaField, DateField, SubmitField, FileField, TimeField, HiddenField
 
-from flask_wtf.file import FileRequired, FileAllowed
+from flask_wtf.file import FileAllowed
 
 from wtforms.validators import DataRequired
 
@@ -46,7 +46,6 @@ class ChatRequestForm(FlaskForm):
                       render_kw={"placeholder": "12:00"})
 
     attachment = FileField("Joindre un document", validators=[
-        FileRequired(),
         FileAllowed(['pdf', 'doc', 'docx'], 'Seuls les fichiers PDF ou Word sont autorisés.')
     ])
     # Action de soumettre le formulaire.
@@ -55,12 +54,13 @@ class ChatRequestForm(FlaskForm):
     csrf_token = HiddenField()
 
 
-# Formulaire permettant d'envoyer le lien pour la session de chat vidéo.
+# Formulaire permettant d'envoyer le lien pour la session de chat vidéo à l'utilisateur.
 class UserLink(FlaskForm):
     """
     Formulaire pour envoyer le lien à l'utilisateur.
     """
-    chat_link = StringField('Chat_link', validators=[DataRequired()],
+    chat_link = StringField('Chat-link', validators=[DataRequired()],
                             render_kw={"placeholder": "Veuillez renseigner le lien copié."})
     csrf_token = HiddenField()
-    submit = SubmitField('Envoyer')
+    submit = SubmitField("Envoyer à l'utilisateur")
+
