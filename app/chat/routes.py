@@ -21,7 +21,7 @@ from app.Models.admin import Admin
 from app.mail.routes import send_mail_validate_request, send_mail_refusal_request, \
     send_confirmation_request_reception, send_request_admin
 
-from app.extensions import create_whereby_meeting_admin, allowed_file
+from app.extensions import create_whereby_meeting_admin
 
 
 # Route permettant d'afficher la vidéo du chat vidéo.
@@ -68,7 +68,7 @@ def chat_request():
     # Instanciation du formulaire.
     formrequest = ChatRequestForm()
 
-    # Pré-remplir le pseudo de l'utilisateur connecté.
+    # Intégration du pseudo de l'utilisateur connecté.
     formrequest.pseudo.data = current_user.pseudo
 
     if not current_user.is_authenticated:
@@ -105,21 +105,6 @@ def send_request(user_id):
                   "danger")
             return redirect(request.url)
 
-        # Traitement du fichier joint.
-        file_path = None
-        filename = None
-        if formrequest.attachment.data:
-            file = formrequest.attachment.data
-
-            # Vérification si le fichier est autorisé.
-            if allowed_file(file.filename):
-                # Sécurisation du nom du fichier.
-                filename = secure_filename(file.filename)
-                file_data = file.read()
-            else:
-                flash("Type de fichier non autorisé.", "danger")
-                return redirect(request.url)
-
         # Récupération de l'utilisateur et l'administrateur.
         user = User.query.get(user_id)
         if not user:
@@ -136,7 +121,6 @@ def send_request(user_id):
             request_content=request_content,
             date_rdv=date_rdv,
             heure=heure,
-            attachment=filename,
             user_id=user_id,
             admin_id=admin.id
         )
@@ -149,8 +133,7 @@ def send_request(user_id):
             send_confirmation_request_reception(user)
 
             # Envoi du mail à l'administrateur avec le fichier en pièce jointe (si fichier joint).
-            send_request_admin(admin, request_content=request_content, attachment_data=file_data,
-                               attachment_name=filename)
+            send_request_admin(admin, request_content=request_content)
 
             flash("Demande effectuée avec succès.", "success")
 
