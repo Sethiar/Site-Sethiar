@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/accueil.css') }}">
     <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/header.css') }}">
     <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/footer.css') }}">
-    <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/animation.css') }}">
+    <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/animations.css') }}">
     <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/comment.css' ) }}">
 
     {% block head_content %}
@@ -16,34 +17,50 @@
 </head>
 
 <body>
-    <header>
-    <div id="navbar">
-        <nav>
-            <ul class="nav-links">
-                <li><a href="{{ url_for('frontend.forum') }}">Accès au forum</a></li>
-                <li><a href="{{ url_for('chat.chat_request') }}">Demande de Chat vidéo</a></li>
-                <li><a href="www.sethiar-lefetey.fr">Portfolio</a></li>
-                <li><a href="">Voir les projets</a></li>
-                <li><a href="">Voir les produits</a></li>
-            </ul>
+    <header class="header>
+        <div class="container-header">
+        <!-- Conteneur logo -->
+            <div class="logo">
+                <img src="{{ url_for('static', filename='Images/images_accueil/logo.jpg') }}" alt="Logo de l'entreprise SethiarWorks.">
+            </div>
+            <!-- Conteneur menu de navigation -->
+            <div class="right-header">
+                <nav class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('landing_page') }}">Accueil</a></li>
+                        <li><a href="">Voir les produits</a></li>
+                        <li><a href="{{ url_for('chat.chat_request') }}">Demande de Chat vidéo</a></li>
+                        <li><a href="https://www.sethiar-lefetey.com">Portfolio</a></li>
+                        <li><a href="{{ url_for('frontend.forum') }}">Accès au forum</a></li>
+                        <li><a href="">Voir les projets</a></li>
+                        <li><a href="{{ url_for('functional.contact') }}">Contact</a></li>
+                    </ul>
+                </nav>
+                <!-- Hamburger pour le menu mobile -->
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="cta">
+                    <a href="#" class="btn-primary">Demander un devis</a>
+                </div>
             <div id="connection">
                 {% if logged_in %}
                 <p>Bienvenue, {{ pseudo }} ! Vous êtes connecté !!</p>
-                <p><button><a href="{{ url_for('auth.user_logout') }}">Se déconnecter</a></button></p>
+                <p><a href="{{ url_for('auth.user_logout') }}" class="logout-btn">Se déconnecter</a></p>
             <!-- Afficher d'autres contenus de la page pour les utilisateurs connectés -->
                 {% else %}
-                <p>Pour se connecter.</p>
-                <button><a href="{{ url_for('auth.login') }}">Cliquer ici</a></button>
+                <p>Pour se connecter</p>
+                <a href="{{ url_for('auth.login') }}" class="login-btn">Cliquer ici</a>
                 {% endif %}
             </div>
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
+            <div class="visits">
+                <p>Nombre de visites du site : <span class="number-visit">{{ total_visits }}</span></p>
             </div>
-        </nav>
-    </div>
-    <div class="separation-2"></div>
+        </div>
+        <div class="separation-2"></div>
 
         {% block header_content %}
         {% endblock %}
@@ -53,14 +70,17 @@
         {% block main_content %}
         {% endblock %}
     </main>
+    <div class="separation"></div>
     <footer class="footer">
         <div class="container">
             <div class="footer-content row">
                 <div class="footer-section col-md-3">
                     <h3>Informations</h3>
-                    <li><p>Email : <a href="mailto:sethiarworks@gmail.com">sethiarworks@gmail.com</a></p></li>
-                    <li><p>Adresse, Caen, Normandie, France</p></li>
-                    <li><p><a href="">Informations sur le créateur du site</a></p></li>
+                    <ul>
+                        <li><p>Email : <a href="mailto:sethiarworks@gmail.com">sethiarworks@gmail.com</a></p></li>
+                        <li><p>Adresse, Caen, Normandie, France</p></li>
+                        <li><p><a href="">Informations sur le créateur du site</a></p></li>
+                    </ul>
                 </div>
                 <div class="footer-section col-md-3">
                     <h3>Mentions Légales</h3>
@@ -78,11 +98,11 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="separation2"></div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 SethiarWorks. Tous droits réservés.</p>
-            <a href="{{ url_for('auth.admin_connection') }}">S'identifier en tant qu'administrateur</a>
+            <div class="separation2"></div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SethiarWorks. Tous droits réservés.</p>
+                <a href="{{ url_for('auth.admin_connection') }}">S'identifier en tant qu'administrateur</a>
+            </div>
         </div>
     </footer>
 
@@ -92,7 +112,8 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" defer></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
-    <script src="{{ url_for('static', filename='javascript/menu_portable.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='Javascript/menu_portable.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='Javascript/accueil.js') }}" defer></script>
 
      {% block footer_content %}
      {% endblock %}

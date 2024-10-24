@@ -1,8 +1,8 @@
 {% extends 'baseform.html.jinja2' %}
 
 {% block head_content %}
-    <meta name="description" content="Formulaire permettant de demander un chat vidéo avec l'administrateur.">
-    <title>{% block title %}Formulaire de demande de chat avec <b>Titi Technique</b>>.{% endblock %}</title>
+    <meta name="description" content="Formulaire permettant de demander un chat vidéo avec l'administrateur du site entreprise SethiarWorks.">
+    <title>{% block title %}Formulaire de demande de chat avec <b>SethiarWorks</b>>.{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     {% endblock %}
@@ -11,11 +11,16 @@
     <header>
         <div id="introduction">
             <h2>Informations concernant la demande de chat vidéo.</h2>
-            <p>Coucou !!</p>
-            <p>Si vous souhaitez vous entretenir avec TitiTechnique directement en chat vidéo, vous
-            pouvez remplir ce formulaire. Votre demande sera traitée dans les plus brefs délais,
-            et nous ferons tout notre possible pour vous aider.</p>
-            <p>Afin de vous faciliter la démarche, nous vous proposons de faire ainsi :</p>
+            <h3>Bienvenue</h3>
+            <p>
+                Si vous souhaitez vous entretenir avec un membre de l'équipe de l'entreprise SethiarWorks
+                directement en chat vidéo, vous pouvez remplir ce formulaire.
+                Votre demande sera traitée dans les plus brefs délais,
+                et nous ferons tout notre possible pour vous aider.
+            </p>
+            <p>
+                Afin de vous faciliter la démarche, nous vous proposons de faire ainsi :
+            </p>
             <ul>
                 <li>
                     1 - Vous devez préciser une date (Ex : le 15 février)
@@ -26,8 +31,8 @@
                     la demande a bien été effectuée et qu'elle est prise en charge.
                 </li>
                 <li>
-                    3 - Suite aux informations données, Tititechnique validera le rendez-vous ou vous proposera
-                    de renouveler votre demande s'il ne peut se rendre disponible à l'heure choisie.
+                    3 - Suite aux informations données, un membre de SethiarWorks validera le rendez-vous
+                    ou vous proposera de renouveler votre demande s'il ne peut se rendre disponible à l'heure choisie.
                 </li>
             </ul>
         </div>
@@ -49,7 +54,7 @@
             {% endfor %}
         </ul>
         {% endif %}
-        <br><br>
+        <div class="space"></div>
         {{ formrequest.request_content.label }} {{ formrequest.request_content(rows=20, cols=20) }}
         {% if formrequest.request_content.errors %}
         <ul>
@@ -58,7 +63,7 @@
             {% endfor %}
         </ul>
         {% endif %}
-        <br><br>
+        <div class="space"></div>
         {{ formrequest.date_rdv.label }} {{ formrequest.date_rdv() }}
         {% if formrequest.date_rdv.errors %}
         <ul>
@@ -67,7 +72,7 @@
             {% endfor %}
         </ul>
         {% endif %}
-        <br><br>
+        <div class="space"></div>
         {{ formrequest.heure.label }}
         {{ formrequest.heure() }}
         {% if formrequest.heure.errors %}
@@ -77,10 +82,7 @@
             {% endfor %}
         </ul>
         {% endif %}
-        <ul>
-            {{ formrequest.attachment.label }} {{ formrequest.attachment() }}
-        </ul>
-        <br><br>
+        <div class="space"></div>
     </div>
     <div class="separation"></div>
     <div class="container" style="background-color:black">

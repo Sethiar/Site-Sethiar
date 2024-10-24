@@ -1,7 +1,7 @@
 {% extends 'baseback.html.jinja2' %}
 
 {% block head_content %}
-    <meta name="description" content="Page du backend afin d'afficher la liste des rendez-vous pour le chat vidéo.">
+    <meta name="description" content="Page du backend afin d'afficher la liste des rendez-vous pour le chat vidéo avec administrateur de SethiarWorks.">
     <title>{% block title %}Page administrateur - Calendrier pour chat vidéo{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet" />
     <link rel='stylesheet' type="text/css" href="{{ url_for('static',filename='CSS/calendar.css') }}">
@@ -20,7 +20,6 @@
         <thead>
             <tr>
                 <th>Pseudo de l'utilisateur</th>
-                <th>Document joint</th>
                 <th>Date choisie par l'utilisateur</th>
                 <th>heure choisie par l'utilisateur</th>
                 <th>Statue de la requête</th>

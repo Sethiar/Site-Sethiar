@@ -9,50 +9,67 @@
 {% endblock %}
 
 {% block main_content %}
-<div id="logo-container">
-    <img src="{{ url_for('static', filename='Images/images_accueil/logo.jpg') }}" alt="Logo de l'entreprise SethiarWorks.">
+
+<div class="separation1"></div>
+<div class="title-container">
+    <h2>Bienvenue sur le site de l'entreprise <i><b>SethiarWorks</b></i></h2>
 </div>
-<div class="separation-1"></div>
-<div class="visits">
-    <p>Nombre de visites du site : <span class="number-visit">{{ total_visits }}</span></p>
-</div>
-<div>
-    <h2 id="title">Bienvenue sur le site de l'entreprise <i><b>SethiarWorks</b></i></h2>
-</div>
-<div id="introduction">
+<section class="content-section">
     <p class="intro">
-        Bonjour, vous voici sur le site de l'entreprise SethiarWorks. Je m'appelle Lefetey Arnaud
-        et je suis Concepteur Développeur de solutions digitales.
+        Bonjour, vous voici sur le site de l'entreprise SethiarWorks.
     </p>
+    <p class="intro">
+        Je m'appelle Arnaud Lefetey et je suis Concepteur Développeur de solutions digitales.
+    </p>
+    <div class="space"></div>
     <p class="intro">
         Notre entreprise crée des solutions numériques sur mesure, adaptées à vos besoins.
-        Notre objectif est de vous accompagner dans la réalisation de vos projets web tout en perfectionnant continuellement
-        les compétences de l'équipe de développement à travers les multiples attentes de notre clientèle dans la création et le développement
-        de votre projet.
+    </p>
+    <div class="space"></div>
+    <p class="intro">
+        Notre objectif est de vous accompagner dans la réalisation de vos projets web.
+
     </p>
     <p class="intro">
-        Répondre à vos besoins est notre priorité. Chaque retour de nos clients nous permet d'affiner notre approche afin de
+        Cela permet de continuellement perfectionner les compétences de l'équipe de développement à travers
+        les multiples attentes de notre clientèle dans la création et le développement de votre projet.
+    </p>
+    <div class="space"></div>
+    <p class="intro">
+        Répondre à vos attentes est notre priorité.
+    </p>
+    <div class="space"></div>
+    <p class="intro">
+        Chaque retour de nos clients nous permet d'affiner notre approche afin de
         vous offrir des solutions toujours plus adaptées.
     </p>
+    <div class="space"></div>
     <p class="intro">
         Chaque client est différent, ce qui fait que chaque projet possède une unicité et une originalité que nous
-        chercherons à personnifier au sein d'une réalisation qui marquera non seulement notre manière de coder, mais surtout,
-        qui sera le reflet du besoin de ce que vous, en tant que client, voulez mettre en avant.
+        chercherons à personnaliser au sein d'une réalisation.
+    </p>
+    <p class="intro">
+        Cela marquera non seulement notre manière de coder, mais surtout,
+        sera le reflet du besoin de ce que <b>vous</b>, en tant que client, voulez mettre en avant.
+    </p>
+</section>
+<div class="space"></div>
+<div class="slogan-container">
+    <p class="slogan-text">
+        Confiez-nous votre imagination, ensemble, nous la concrétiserons.
     </p>
 </div>
-<div class="important">
-    <p class="important">
-        <b>Mieux que ce que vous imaginez, nous nous efforcerons de le réaliser.</b>
-    </p>
-</div>
-<div id="register">
+<div class="space"></div>
+<div class="register">
     <p class="registration-sentence">
         Inscrivez-vous dès maintenant pour obtenir des informations, laisser un commentaire ou planifier un chat vidéo avec notre équipe.
     </p>
     <p class="registration-sentence">
         Ensemble, nous discuterons de vos besoins et nous vous proposerons un devis adapté à votre projet.
     </p>
-    <button><a class="registration" href="{{ url_for('user.user_registration') }}">Inscrivez-vous ici !!!</a></button>
+    <a class="registration" href="{{ url_for('user.user_registration') }}">Inscrivez-vous ici !!!</a>
 </div>
+<br>
+<div class="separation1"></div>
 
 {% endblock %}
