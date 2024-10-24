@@ -1,7 +1,12 @@
-/* Style général du formulaire */
+/* Style général des formulaires */
 * {
   font-family: 'Comic Sans MS', cursive;
   font-weight: bold;
+}
+
+/* Formulaire du chat vidéo */
+#introduction {
+  color: white;
 }
 
 #annonce {

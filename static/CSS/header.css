@@ -1,2 +1,166 @@
-/* Style pour le header */
+/* Style général du header */
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(44, 62, 80, 0.9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: background-color 0.3s ease-in-out;
+}
 
+.container-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+/* Style du logo */
+.logo {
+  flex: 0 1 auto;
+}
+
+.logo img {
+  width: 12%;
+  min-width: 10%;
+}
+
+/* Conteneur pour la partie droite du header */
+.right-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Aligne le menu à droite */
+  gap: 30px; /* Espace entre les éléments */
+}
+
+.nav-links ul {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links ul li {
+  list-style: none;
+}
+
+.nav-links ul li a {
+  text-decoration: none;
+  font-size: 16px;
+  color: white;
+  font-weight: 600;
+  transition: color 0.5s;
+}
+
+.nav-links ul li a:hover {
+  color: orange;
+}
+
+.cta .btn-primary {
+  background-color: orange;
+  color: black;
+  padding: 10px 20px;
+  width: auto;
+  border-radius: 30px;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cta .btn-primary:hover {
+  background-color: gold;
+}
+
+/* Style pour la connexion utilisateur */
+#connection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#connection p {
+  color: white;
+  font-size: 16px;
+}
+
+#connection .login-btn,
+#connection .logout-btn {
+  background-color: orange;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+#connection .login-btn:hover,
+#connection .logout-btn:hover {
+  background-color: gold;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger line {
+  width: 25px;
+  height: 3px;
+  background-color: darkgrey;
+  margin: 4px 0;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+  .nav-links ul {
+    display: none; /* Masquer le menu de navigation sur mobile */
+  }
+
+  .logo img {
+    width: 20%; /* Réduire encore plus la taille sur mobile */
+  }
+
+  /* Ajuster aussi le conteneur de la navigation pour éviter de chevaucher */
+  .right-header {
+    gap: 15px; /* Réduire l'espace entre les éléments du menu sur mobile */
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .hamburger .line {
+    width: 25px;
+    height: 3px;
+    background-color: darkgrey;
+    margin: 4px 0;
+  }
+
+  .nav-links.active ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(44, 62, 80, 0.95);
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .cta {
+    display: none; /* Masquer le CTA sur mobile */
+  }
+
+  /* Ajustement du container connexion pour le mobile */
+  #connection {
+    display: block;
+    text-align: center;
+  }
+}
