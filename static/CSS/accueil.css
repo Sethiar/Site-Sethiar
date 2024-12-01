@@ -8,27 +8,11 @@
 }
 
 /* Style globaux */
-* {
+body {
   font-family: 'Comic Sans MS', cursive;
   color: var(--color-default);
   background-color: var(--background-default);
   box-sizing: border-box;
-}
-
-.visits {
-  padding-left: 5vw;
-}
-
-.visits p {
-  color: darkorange;
-  font-size: 1.2rem;
-}
-
-.number-visit {
-  border: 1px solid gold;
-  margin: 2vw;
-  color: gold;
-  padding: 0.5vw;
 }
 
 .title-container {
@@ -40,10 +24,20 @@
     height: 10vh;
 }
 
-.separation1, .separation2 {
+.separation1 {
   width: 90%;
   margin: 0 auto;
   border-bottom: 3px solid gold;
+}
+
+.separation2 {
+  width: 80%;
+  margin-left: auto;
+  border-bottom: 3px solid gold;
+}
+
+.space {
+  height: 10vh;
 }
 
 /* Centrer le contenu et ajuster la hauteur pour un défilement naturel */
@@ -125,26 +119,26 @@
 
 /* Style pour le bouton d'inscription */
 .registration {
-    font-size: 2rem;
-    font-weight: bold;
-    color: black;
-    background-color: darkorange;
-    padding: 1.2rem 2.5rem;
-    margin: 0 auto;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-top: 2%;
-    transition: background-color 0.4s;
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  background-color: darkorange;
+  padding: 1.2rem 2.5rem;
+  margin: 0 auto;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 2%;
+  transition: background-color 0.4s;
 }
 
 .registration:hover {
-    background-color: gold; /* Changement de couleur au survol */
+  background-color: gold; /* Changement de couleur au survol */
 }
 
 /* Classe animée lors de l'apparition */
 p.appear {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 /* Styles pour les paragraphes sans animation */
@@ -181,9 +175,6 @@ p.animate {
         height: auto;
     }
 
-    .visits p {
-        font-size: var(--font-size-tablet);
-    }
     .register p {
     font-size: var(--font-size-tablet);
   }
@@ -196,10 +187,6 @@ p.animate {
     }
 
     .content-section p {
-        font-size: var(--font-size-tablet);
-    }
-
-    .visits p {
         font-size: var(--font-size-tablet);
     }
 
@@ -218,9 +205,6 @@ p.animate {
         font-size: var(--font-size-phone);
     }
 
-    .visits p {
-        font-size: var(--font-size-phone);
-    }
     .register p {
     font-size: var(--font-size-phone);
   }
@@ -233,10 +217,6 @@ p.animate {
     }
 
     .content-section p {
-        font-size: var(--font-size-phone);
-    }
-
-    .visits p {
         font-size: var(--font-size-phone);
     }
 

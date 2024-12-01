@@ -11,10 +11,11 @@
 }
 
 .container-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: nowrap;
+  padding: 1rem 5vw;
 }
 
 /* Style du logo */
@@ -57,6 +58,9 @@
 }
 
 .cta .btn-primary {
+  position: absolute; /* Place le bouton en haut à droite */
+  top: 15vh;
+  left: 5vw;
   background-color: orange;
   color: black;
   padding: 10px 20px;
@@ -73,10 +77,15 @@
 }
 
 /* Style pour la connexion utilisateur */
+/* Bouton de connexion */
 #connection {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+    position: absolute; /* Place le bouton en haut à droite */
+    top: 15vh;
+    right: 5vw;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10; /* Assure qu'il soit toujours au-dessus */
 }
 
 #connection p {

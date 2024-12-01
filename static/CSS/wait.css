@@ -12,8 +12,8 @@ body, html {
   background-color: black;
   border: 1px solid gold;
   padding: 2%;
-  text-align: center; /* Centrer le texte à l'intérieur de la div */
-  max-width: 80%; /* Limite la largeur de la div */
+  text-align: center;
+  max-width: 80%;
 }
 
 h1 {
