@@ -97,3 +97,17 @@ def forum_subject(subject_id):
                                comment_subject=comment_subject, formcomment=formcomment,
                                formlikecomment=formlikecomment, comment_likes_data=comment_likes_data,
                                is_authenticated=is_authenticated)
+
+
+# Route permettant d'afficher les produits.
+@frontend_bp.route("/panel-produits")
+def products():
+    """
+    Route permettant d'accéder au panel des produits de SethiarWorks.
+
+    Returns :
+       Template HTML 'Frontend/produits.html' avec les détails des produits développés.
+
+    """
+    return render_template("Frontend/produits.html")
+

@@ -6,10 +6,9 @@ from datetime import datetime
 
 from app.chat import chat_bp
 
-from flask import render_template, flash, redirect, url_for, abort, request, current_app, send_from_directory
+from flask import render_template, flash, redirect, url_for, abort, request
 from flask_login import current_user, login_required
 
-from werkzeug.utils import secure_filename
 from app import db
 
 from app.forms.chatrequest import ChatRequestForm, UserLink

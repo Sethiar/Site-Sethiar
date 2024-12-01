@@ -31,7 +31,7 @@ def politique():
     return render_template("functional/politique.html")
 
 
-# Route permettant d'afficher la politique d'utilisation du site.
+# Route permettant d'afficher les contacts du site.e
 @functional_bp.route('/contact')
 def contact():
     """
@@ -41,3 +41,16 @@ def contact():
         Template HTML de la page des contacts du site.
     """
     return render_template("functional/contact.html")
+
+
+# Route permettant d'afficher la politique d'utilisation du site.
+@functional_bp.route('/informations')
+def informations():
+    """
+    Accès aux informations du propriétaire du site.
+
+    Returns:
+        Template HTML des informations du propriétaire du site.
+    """
+    return render_template("functional/informations.html")
+
