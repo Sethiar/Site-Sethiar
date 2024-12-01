@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/footer.css') }}">
     <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/animations.css') }}">
     <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/comment.css' ) }}">
+    <link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='CSS/animations.css') }}">
 
     {% block head_content %}
     {% endblock %}
@@ -19,16 +20,12 @@
 <body>
     <header class="header>
         <div class="container-header">
-        <!-- Conteneur logo -->
-            <div class="logo">
-                <img src="{{ url_for('static', filename='Images/images_accueil/logo.jpg') }}" alt="Logo de l'entreprise SethiarWorks.">
-            </div>
             <!-- Conteneur menu de navigation -->
             <div class="right-header">
                 <nav class="nav-links">
                     <ul>
                         <li><a href="{{ url_for('landing_page') }}">Accueil</a></li>
-                        <li><a href="">Voir les produits</a></li>
+                        <li><a href="{{ url_for('frontend.products') }}">Voir les produits</a></li>
                         <li><a href="{{ url_for('chat.chat_request') }}">Demande de Chat vidéo</a></li>
                         <li><a href="https://www.sethiar-lefetey.com">Portfolio</a></li>
                         <li><a href="{{ url_for('frontend.forum') }}">Accès au forum</a></li>
@@ -43,12 +40,16 @@
                     <div class="line"></div>
                 </div>
             </div>
+
+            <!-- Bouton principal -->
             <div class="cta">
-                    <a href="#" class="btn-primary">Demander un devis</a>
-                </div>
+                <a href="#" class="btn-primary">Demander un devis</a>
+            </div>
+
+            <!-- Bouton de connexion -->
             <div id="connection">
                 {% if logged_in %}
-                <p>Bienvenue, {{ pseudo }} ! Vous êtes connecté !!</p>
+                <p>Bienvenue, {{ pseudo }} !</p>
                 <p><a href="{{ url_for('auth.user_logout') }}" class="logout-btn">Se déconnecter</a></p>
             <!-- Afficher d'autres contenus de la page pour les utilisateurs connectés -->
                 {% else %}
@@ -56,11 +57,10 @@
                 <a href="{{ url_for('auth.login') }}" class="login-btn">Cliquer ici</a>
                 {% endif %}
             </div>
-            <div class="visits">
-                <p>Nombre de visites du site : <span class="number-visit">{{ total_visits }}</span></p>
-            </div>
         </div>
-        <div class="separation-2"></div>
+
+        <!-- Barre de séparation sous le conteneur -->
+        <div class="separation2"></div>
 
         {% block header_content %}
         {% endblock %}
@@ -70,7 +70,6 @@
         {% block main_content %}
         {% endblock %}
     </main>
-    <div class="separation"></div>
     <footer class="footer">
         <div class="container">
             <div class="footer-content row">
@@ -79,7 +78,7 @@
                     <ul>
                         <li><p>Email : <a href="mailto:sethiarworks@gmail.com">sethiarworks@gmail.com</a></p></li>
                         <li><p>Adresse, Caen, Normandie, France</p></li>
-                        <li><p><a href="">Informations sur le créateur du site</a></p></li>
+                        <li><p><a href="{{ url_for('functional.informations') }}">Informations sur le créateur du site</a></p></li>
                     </ul>
                 </div>
                 <div class="footer-section col-md-3">
@@ -98,10 +97,9 @@
                     </ul>
                 </div>
             </div>
-            <div class="separation2"></div>
+            <div class="separation1"></div>
             <div class="footer-bottom">
                 <p>&copy; 2024 SethiarWorks. Tous droits réservés.</p>
-                <a href="{{ url_for('auth.admin_connection') }}">S'identifier en tant qu'administrateur</a>
             </div>
         </div>
     </footer>
@@ -114,6 +112,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
     <script src="{{ url_for('static', filename='Javascript/menu_portable.js') }}" defer></script>
     <script src="{{ url_for('static', filename='Javascript/accueil.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='Javascript/animations.js') }}" defer></script>
 
      {% block footer_content %}
      {% endblock %}
