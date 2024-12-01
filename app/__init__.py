@@ -171,70 +171,11 @@ def create_app():
         Injecte le statut de connexion et le pseudo dans le contexte global.
 
         :return:
-        dict: Contexte contenant le staut de la connexion et le pseudo.
+        dict: Contexte contenant le statut de la connexion et le pseudo.
         """
         logged_in = session.get("logged_in", False)
         pseudo = session.get("pseudo", None)
         return dict(logged_in=logged_in, pseudo=pseudo)
-
-    # Gestion des visites anonymes.
-    @app.before_request
-    def before_request():
-        """
-        Fonction exécutée avant chaque requête.
-
-        Cette fonction est utilisée pour gérer les visiteurs anonymes en attribuant
-        un identifiant unique à chaque utilisateur anonyme s'il n'en a pas déjà un
-        """
-        # La session est rendue permanente pour que sa durée de vie suive la configuration.
-        session.permanent = True
-
-        # Récupération de l'identifiant du visiteur depuis la session.
-        visitor_id = session.get("visitor_id")
-        # Si l'identifiant n'existe pas, création d'un nouveau.
-        if not visitor_id:
-            visitor_id = str(uuid4())
-            # Stockage du nouvel identifiant au sein de la session.
-            session["visitor_id"] = visitor_id
-        # L'identifiant est rendu disponible globalement dans la requête via 'g'.
-        g.visitor_id = visitor_id
-
-    @app.after_request
-    def after_request(response):
-        """
-        Fonction exécutée après chaque requête.
-
-        Cette fonction enregistre ou met à jour les informations de visite du visiteur anonyme
-        dans la base de données après que la requête a été traitée.
-
-        Args:
-            response (Response): L'objet réponse HTTP généré par la requête.
-        """
-        # Récupération de l'identifiant du visiteur depuis 'g'.
-        visitor_id = getattr(g, 'visitor_id', None)
-        # Si l'identifiant du visiteur existe, enregistrement de la visite.
-        if visitor_id:
-            log_visit(visitor_id)
-        return response
-
-    def log_visit(visitor_id):
-        """
-        Vérification de l'existence de la visite, mise à jour ou enregistrement.
-
-        Args:
-            visitor_id (str): L'ID unique du visiteur.
-        """
-        # Vérification de l'existence de la visite, mise à jour ou enregistrement.
-        existing_visit = db.session.query(AnonymousVisit).filter_by(visitor_id=visitor_id)
-        if existing_visit:
-            # Mise à jour de l'horodatage de la visite existante.
-            existing_visit.visit_time = datetime.now()
-        else:
-            # Création d'un nouvel enregistrement de visite sans redéfinir le constructeur.
-            new_visit = AnonymousVisit(visitor_id=visitor_id)
-            db.session.add(new_visit)
-        # Sauvegarde des modifications dans la base de données.
-        db.session.commit()
 
     # Configuration de la journalisation.
     logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')
