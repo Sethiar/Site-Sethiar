@@ -107,6 +107,8 @@ def user_registration():
         except Exception as e:
             db.session.rollback()
             flash(f"Erreur lors de l'enregistrement de l'utilisateur: {str(e)}", "error")
+        finally:
+            db.session.close()
 
     return render_template('user/user_registration.html', form_usersaving=form_usersaving)
 
@@ -126,6 +128,18 @@ def profil_photo(user_id):
         return user.profil_photo, {'Content-Type': 'image/jpeg'}
     else:
         return "No image found", 404
+
+
+# Route permettant de remplir un formulaire pour un devis.
+@user_bp.route("/formulaire-demande-devis", methods=['GET', 'POST'])
+def devis():
+    """
+    Permet à un utilisateur de remplir un formulaire.
+
+    Returns :
+        Formulaire pour renseigner un devis (devis.html)
+    """
+    return render_template("user/devis.html")
 
 
 # Route permettant d'ajouter un sujet au forum une fois connecté.

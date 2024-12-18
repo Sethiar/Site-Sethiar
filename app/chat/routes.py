@@ -52,7 +52,7 @@ def video_chat(request_id):
 
 
 # Route permettant de remplir le formulaire afin de demander un chat vidéo.
-@chat_bp.route('/demande-chat-vidéo', methods=['GET', 'POST'])
+@chat_bp.route('/demande-chat-video', methods=['GET', 'POST'])
 @login_required
 def chat_request():
     """"
@@ -324,7 +324,7 @@ def chat_video_session_admin():
 
     if admin_room_url:
         # Log pour vérifier le lien récupéré.
-        print("Admin Host Room URL:", admin_room_url)
+        print("admin Host Room URL:", admin_room_url)
 
         # Rendu du template avec le lien admin.
         return render_template('chat/chat_session_admin.html', room_url=admin_room_url)

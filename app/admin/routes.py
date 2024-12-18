@@ -47,12 +47,12 @@ def backend():
     Cette route est accessible uniquement aux administrateurs et permet de visualiser la page d'accueil du backend.
     Elle récupère la liste des administrateurs enregistrés et passe ces informations au modèle HTML pour affichage.
 
-    :return: Admin/backend.html
+    :return: admin/backend.html
     """
     # Récupération du nom et des informations de l'administrateur.
     admin = Admin.query.all()
 
-    return render_template("Admin/backend.html", admin=admin, logged_in=True)
+    return render_template("admin/backend.html", admin=admin, logged_in=True)
 
 
 # Route permettant de visualiser la liste des utilisateurs et leurs informations.
@@ -95,7 +95,7 @@ def users_list():
         for user in users
     ]
 
-    return render_template("Admin/users_list.html", users=user_data, formuser=formuser,
+    return render_template("admin/users_list.html", users=user_data, formuser=formuser,
                            formban=formban, formunban=formunban)
 
 
@@ -262,7 +262,7 @@ def list_subject_forum():
         for subject_id, nom, author in subjects
     ]
 
-    return render_template("Admin/subject_forum_list.html", subject_data=subject_data,
+    return render_template("admin/subject_forum_list.html", subject_data=subject_data,
                            formsuppresssubject=formsuppresssubject, formsubjectforum=formsubjectforum)
 
 
@@ -294,7 +294,7 @@ def add_subject_forum_back():
     ]
 
     # Retourne la vue avec le formulaire et les sujets mis à jour.
-    return render_template("Admin/subject_forum_list.html", formsubjectforum=formsubjectforum,
+    return render_template("admin/subject_forum_list.html", formsubjectforum=formsubjectforum,
                            formsuppresssubject=formsuppresssubject, subject_data=subject_data)
 
 
@@ -388,7 +388,7 @@ def list_comments_forum():
                 'comment': comment
             })
 
-    return render_template("Admin/users_subject_comments.html", user_comments=user_comments, formuser=formuser,
+    return render_template("admin/users_subject_comments.html", user_comments=user_comments, formuser=formuser,
                            suppressform=suppressform)
 
 
@@ -473,13 +473,13 @@ def calendar():
                 'link': admin_room_url
             })
 
-            return render_template('Admin/calendar.html',
+            return render_template('admin/calendar.html',
                                    formrequest=formrequest,
                                    requests=requests,
                                    formlink=formlink,
                                    rdv_data=rdv_data)
 
-    return render_template('Admin/calendar.html', formrequest=formrequest, requests=requests,
+    return render_template('admin/calendar.html', formrequest=formrequest, requests=requests,
                            rdv_data=rdv_data, formlink=formlink)
 
 
@@ -489,12 +489,12 @@ def create_admin_user_form():
     """
     Crée un utilisateur avec le rôle administrateur automatiquement.
     Utilise des informations prédéfinies et des variables d'environnement pour créer un administrateur.
-    :return: Redirection vers la page du backend - Admin/backend.html ou affiche un message d'erreur.
+    :return: Redirection vers la page du backend - admin/backend.html ou affiche un message d'erreur.
     """
     # Instanciation du formulaire.
     formuseradmin = UserAdminSaving()
 
-    return render_template("Admin/form_useradmin.html", formuseradmin=formuseradmin)
+    return render_template("admin/form_useradmin.html", formuseradmin=formuseradmin)
 
 
 # Route permettant de traiter les données du formulaire de l'enregistrement d'un utilisateur administrateur.
@@ -573,5 +573,5 @@ def user_admin_recording():
             db.session.rollback()
             flash(f"Erreur lors de l'enregistrement de l'utilisateur: {str(e)}", "error")
 
-    return render_template("Admin/backend.html", formuseradmin=formuseradmin)
+    return render_template("admin/backend.html", formuseradmin=formuseradmin)
 

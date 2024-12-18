@@ -8,7 +8,7 @@ from app.functional import functional_bp
 
 
 # Route permettant d'afficher les mentions légales du site.
-@functional_bp.route('/mentions-légales')
+@functional_bp.route('/mentions-legales')
 def mentions():
     """
         Accès aux Mentions légales du site.
@@ -20,7 +20,7 @@ def mentions():
 
 
 # Route permettant d'afficher la politique d'utilisation du site.
-@functional_bp.route('/politique-de-confidentialité')
+@functional_bp.route('/politique-de-confidentialite')
 def politique():
     """
     Accès à la Politique de confidentialité du site.

@@ -112,7 +112,7 @@ def login():
 
 
 # Route permettant à un utilisateur de se déconnecter du site de l'entreprise.
-@auth_bp.route("/déconnexion-utilisateur")
+@auth_bp.route("/deconnexion-utilisateur")
 def user_logout():
     """
     Déconnecte l'utilisateur actuellement authentifié.
@@ -149,7 +149,7 @@ def admin_connection():
     # Création de l'instance du formulaire.
     form_admin = AdminConnection()
 
-    return render_template("Admin/admin_login.html", form_admin=form_admin)
+    return render_template("admin/admin_login.html", form_admin=form_admin)
 
 
 # Route permettant à un administrateur de se connecter au site de l'entreprise.
@@ -176,7 +176,7 @@ def login_admin():
             password = form_admin.password.data
             role = form_admin.role.data
 
-            # Recherche de l'administrateur correspondant au pseudo dans la table de données Admin.
+            # Recherche de l'administrateur correspondant au pseudo dans la table de données admin.
             admin = Admin.query.filter_by(pseudo=pseudo).first()
 
             if admin is None:
@@ -199,11 +199,11 @@ def login_admin():
                 session["role"] = admin.role
                 return redirect(url_for("admin.backend"))
 
-            return render_template("Admin/admin_login.html", form_admin=form_admin)
+            return render_template("admin/admin_login.html", form_admin=form_admin)
 
 
 # Route permettant à l'administrateur de se déconnecter.
-@auth_bp.route('/backend/déconnexion-administrateur')
+@auth_bp.route('/backend/deconnexion-administrateur')
 def logout_admin():
     """
     Déconnecte l'administrateur actuellement authentifié.
@@ -247,7 +247,7 @@ def user_connection_error():
 
 
 # Route permettant de réinitialiser le mot de passe utilisateur.
-@auth_bp.route("/réinitialisation-password", methods=['GET', 'POST'])
+@auth_bp.route("/reinitialisation-password", methods=['GET', 'POST'])
 def password_reset():
     """
     Réinitialise le mot de passe utilisateur.
@@ -366,7 +366,7 @@ def user_banned(user_id):
     Fonction qui renvoie la page d'information concernant le bannissement d'un utilisateur.
 
     :param user_id: ID de l'utilisateur qui est banni.
-    :return: Functional/user_banned.html
+    :return: functional/user_banned.html
     """
     # Recherche du pseudo de l'utilisateur banni dans la table de données User.
     user = User.query.filter_by(id=user_id).first()
@@ -375,5 +375,5 @@ def user_banned(user_id):
         # Gestion du cas où l'utilisateur n'existe pas.
         return "Utilisateur non trouvé", 404
 
-    return render_template("Functional/user_banned.html", user=user)
+    return render_template("functional/user_banned.html", user=user)
 

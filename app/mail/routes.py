@@ -43,6 +43,40 @@ def send_confirmation_email_user(email):
 
 
 # Méthode qui avertit l'utilisateur de son bannissement pendant 7 jours.
+@mail_bp.route('envoi-pour-confirmer-desinsciption/<string:email>')
+def send_confirmation_unsubscribe_email_user(email):
+    """
+    Fonction qui envoie un mail automatique de confirmation de désinscription au site de l'entreprise SethiarWorks.
+
+    :param email: Email de l'utilisateur qui souhaite se désinscrire.
+    :return: page d'accueil du site.
+    """
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        flash("Utilisateur non trouvé.", "Attention")
+        return redirect(url_for('landing_page'))
+
+    # Corps du message.
+    msg = Message("Confirmation de désinscription", sender=current_app.config['MAIL_DEFAULT_SENDER'], recipients=[email])
+    msg.body = f"Bonjour {user.pseudo} \n" \
+               "\n" \
+               f"Merci de vous être inscrit sur le site de l'entreprise SethiarWorks. " \
+               f"Votre désinscription a été confirmée avec succès.\n" \
+               "\n" \
+               f"Nous espérons que nous vous retrouverons bientôt afin de créer votre besoin selon nos soins.\n" \
+               f"N'hésitez pas à nous faire part de ce qui vous a fait vous désinscrire de notre site.\n" \
+               f"Cela nous permettra d'améliorer notre expérience client.\n" \
+               "\n" \
+               f"Merci {user.pseudo} de votre confiance. \n" \
+               "\n" \
+               f"Cordialement, \n" \
+               f"L'équipe du site de SethiarWorks."
+
+    current_app.extensions['mail'].send(msg)
+    return redirect(url_for('landing_page'))
+
+
+# Méthode qui avertit l'utilisateur de son bannissement pendant 7 jours.
 def mail_banned_user(email):
     """
     Envoie un e-mail informant un utilisateur de son bannissement temporaire pour non-respect des règles.

@@ -20,7 +20,7 @@ from app.forms.form_comment import CommentSubjectForm, CommentLike, SuppressComm
 
 
 # Route permettant d'accéder au forum su site entreprise SethiarWoks.
-@frontend_bp.route('accès-forum')
+@frontend_bp.route('acces-forum')
 def forum():
     """
     Route permettant d'accéder à la page du forum du site.
@@ -44,7 +44,7 @@ def forum():
 
 
 # Route afin de visualiser un sujet du forum particulier.
-@frontend_bp.route("/accès-sujet-forum/<int:subject_id>", methods=['GET', 'POST'])
+@frontend_bp.route("/acces-sujet-forum/<int:subject_id>", methods=['GET', 'POST'])
 def forum_subject(subject_id):
     """
     Route permettant d'accéder à un sujet spécifique du forum.
@@ -56,7 +56,7 @@ def forum_subject(subject_id):
         Template HTML 'frontend/subject_forum.html' avec les détails du sujet et ses commentaires associés.
 
     Raises :
-        404 Error : Si aucun sujet correspondant à l'ID spécifié n'est trouvé dans la base de données.
+        404 error : Si aucun sujet correspondant à l'ID spécifié n'est trouvé dans la base de données.
     """
     # Création de l'instance des formulaires.
     formcomment = CommentSubjectForm()
@@ -92,22 +92,11 @@ def forum_subject(subject_id):
             "liked_user_ids": liked_user_ids,
             "liked_by_current_user": liked_by_current_user
         }
-    return render_template("Frontend/subject_forum.html", subject=subject, subject_id=subject_id,
+    return render_template("frontend/subject_forum.html", subject=subject, subject_id=subject_id,
                                formsuppress=formsuppress, formsuppressreply=formsuppressreply,
                                comment_subject=comment_subject, formcomment=formcomment,
                                formlikecomment=formlikecomment, comment_likes_data=comment_likes_data,
                                is_authenticated=is_authenticated)
 
 
-# Route permettant d'afficher les produits.
-@frontend_bp.route("/panel-produits")
-def products():
-    """
-    Route permettant d'accéder au panel des produits de SethiarWorks.
-
-    Returns :
-       Template HTML 'Frontend/produits.html' avec les détails des produits développés.
-
-    """
-    return render_template("Frontend/produits.html")
 
