@@ -69,4 +69,5 @@ class TestingConfig(Config):
     paramètres spécifiques à l'environnement de test.
     """
     TESTING = True
-    WTF_CRSF_ENABLED = False
+    WTF_CSRF_ENABLED = False
+
