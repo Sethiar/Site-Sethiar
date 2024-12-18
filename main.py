@@ -4,12 +4,9 @@ Page d'accueil de mon site entreprise
 import locale
 import os
 
-from uuid import uuid4
 
-from flask import render_template, send_from_directory, session
+from flask import render_template, send_from_directory
 
-from app.Models import db
-from app.Models.anonymousvisit import AnonymousVisit
 
 from app import create_app
 
@@ -41,7 +38,7 @@ def page_not_found(error):
     Returns :
         La page d'erreur 404.
     """
-    return render_template("Error/error404.html"), 404
+    return render_template("error/error404.html"), 404
 
 
 # Route renvoyant l'erreur 401.
@@ -56,33 +53,20 @@ def no_authenticated(error):
     Returns :
         La page d'erreur 401.
     """
-    return render_template("Error/401.html"), 401
+    return render_template("error/401.html"), 401
 
 
+# Route affichant la page d'accueil du site SethiarWorks.
 @app.route('/')
 def landing_page():
     """
+    Page d'accueil du site entreprise de SethiarWorks.
 
-    :return:
+    :return:  renvoie le fichier html de la page d'accueil 'frontend/accueil.html'
     """
-    visitor_id = session.get('visitor_id')
-
-    # Vérification de l'existence de l'ID du visiteur dans la session.
-    if not visitor_id:
-        # Si pas d'ID de visiteur dans la session, génération d'un nouvel ID et ajout à la session.
-        visitor_id = str(uuid4())
-        session['visitor_id'] = visitor_id
-
-        # Enregistrement de la nouvelle visite dans la base de données.
-        new_visit = AnonymousVisit(visitor_id=visitor_id)
-        db.session.add(new_visit)
-        db.session.commit()
-
-    # Récupération du nombre total de visites.
-    total_visits = AnonymousVisit.query.count()
 
     return render_template(
-        'frontend/accueil.html', total_visits=total_visits)
+        'frontend/accueil.html')
 
 
 # Code lançant l'application.
