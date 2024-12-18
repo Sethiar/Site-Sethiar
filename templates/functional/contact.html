@@ -1,24 +1,43 @@
 {% extends 'base2.html.jinja2' %}
 
 {% block head_content %}
-    <meta name="description" content="Page de contacts du site de l'entreprise SethiarWorks.">
-    <title>{% block title %}Contacts{% endblock %}</title>
+<meta name="description" content="Page de contacts du site de l'entreprise SethiarWorks.">
+<title>{% block title %}Contacts{% endblock %}</title>
 {% endblock %}
 
 {% block main_content %}
+<div class="outer-frame-politique">
+    <div class="inner-frame-politique">
+        <main class="politique-main">
+            <div class="politique-border">
 
-<h1>Contacts</h1>
-<br>
-<p>Dernière mise à jour : 1 octobre 2024</p>
-<a href="{{ url_for('landing_page') }}">Retour à l'accueil</a>
-<div class="separation">
+                <!--titre -->
+                <h1 class="politique-title">Contacts</h1>
 
+                <!-- Section : Mise à jour et retour -->
+                <div class="politique-header">
+                    <p class="politique-update">Dernière mise à jour : 1 janvier 2025</p>
+                    <a href="{{ url_for('landing_page') }}" class="politique-home-link">Retour à l'accueil</a>
+                </div>
+            </div>
+
+            <!-- Séparation -->
+            <hr class="politique-divider">
+
+            <!-- Logo -->
+            <div class="politique-logo">
+                <img src="{{ url_for('static', filename='Images/images_accueil/logo.jpg') }}"
+                     alt="Logo de SethiarWorks"
+                     class="politique-logo-img">
+            </div>
+
+            <!-- Contenu principal -->
+            <div class="politique-content">
+
+            </div>
+        </main>
+    </div>
 </div>
-<br>
-<div id="container_contact">
-
-</div>
-
 {% endblock %}
 {% block footer_content %}
 {% endblock %}
