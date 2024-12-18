@@ -1,0 +1,149 @@
+// Importation de variables.scss
+@use '../base/variables' as *;
+
+
+/* button CSS - components/buttons.scss */
+
+// Styles des boutons pour la page des formulaires
+/* Actions utilisateur avec les boutons */
+.btn-primary, .btn-primary-forum {
+  padding: 3% 7%;
+  border-radius: 30px;
+  font-size: $font-size-base;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  background-color: $color-accent-darkorange;
+  color: $color-primary;
+}
+
+.btn-primary, .btn-primary-forum:hover {
+  background-color: $color-primary;
+  border: 2px solid $color-neutral-gold;
+  color: $color-accent-darkorange;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary {
+  padding: 3% 5%;
+  border-radius: 30px;
+  font-size: $font-size-lg;
+  text-decoration: none;
+  transition: background-color 0.5s ease;
+  background-color: $color-lightgrey;
+  transition: background-color 0.3s ease;
+  color: $color-primary;
+}
+
+.btn-secondary:hover {
+  background-color: $color-neutral-darkgrey;
+  color: $color-neutral-gold;
+  transition: background-color 0.3s ease;
+}
+
+/* Bouton "voir" forum */
+.btn-secondary-forum {
+  padding: 3% 5%;
+  border-radius: 30px;
+  font-size: $font-size-lg;
+  text-decoration: none;
+  transition: background-color 0.5s ease;
+  background-color: $color-neutral-gold;
+  transition: background-color 0.3s ease;
+  color: $color-primary;
+}
+
+.btn-secondary-forum:hover {
+  background-color: $color-primary;
+  color: $color-neutral-gold;
+  transition: background-color 0.3s ease;
+  border: 1px solid $color-neutral-gold;
+}
+
+// Style pour formulaires.
+/* Styles pour les boutons des formulaires */
+.cancelled-btn, .validated-btn {
+  display: inline-block;
+  width: 80%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: $font-size-xl;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Bouton annulé */
+.cancelled-btn {
+  background-color: $color-accent-orange;
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover {
+    background-color: darken($color-accent-orange, 10%);
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+/* Bouton validé */
+.validated-btn {
+  background-color: $color-neutral-gold;
+  color: $color-primary;
+
+  &:hover {
+    background-color: $color-accent-darkorange;
+    transform: scale(1.05);
+  }
+}
+
+// Boutons du backend.
+/* Styles pour le backend */
+nav button {
+  background-color: $color-accent-orange;
+  color: $color-primary;
+  border: 2px solid $color-neutral-gold;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+nav button:hover {
+  background-color: $color-neutral-gold;
+  border: 2px solid $color-accent-orange;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.button-container button {
+  width: 70%;
+  padding: 10px 20px;
+  background-color: $color-accent-orange;
+  color: $color-primary;
+  border: none;
+  border-radius: 5px;
+  font-size: $font-size-base;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-container button a {
+  text-decoration: none;
+  color: $color-primary;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 20px;
+}
+
+.button-container button:hover {
+  background-color: $color-accent-darkorange;
+  border: 2px solid $color-neutral-gold;
+}

@@ -1,0 +1,93 @@
+// Importation des variables.
+@use '../base/variables' as *;
+
+
+/* Styles Footer Global */
+footer {
+  background-color: $color-footer;
+  width: 70%;
+  height: 60vh;
+  margin-left: 30%;
+  color: $color-secondary;
+  padding: 30px 0;
+  box-sizing: border-box;
+}
+
+/* Contenu principal du pied de page */
+.footer-content {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 0 15px;
+}
+
+/* Titres */
+footer h3 {
+  font-size: $font-size-xl;
+  font-weight: bold;
+  margin-bottom: 10%;
+  text-decoration: underline;
+  color: $color-accent-orange;
+}
+
+/* Listes */
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li {
+  margin-bottom: 1%;
+  font-size: $font-size-lg;
+}
+
+footer ul li a {
+  font-size: $font-size-lg;
+  text-decoration: none;
+  color: $color-secondary;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+footer ul li a:hover {
+  color: $color-neutral-gold;
+  text-decoration: none;
+}
+
+footer ul li p {
+  font-size: $font-size-lg;
+  color: $color-secondary;
+}
+
+footer ul li p a {
+  font-size: $font-size-base;
+  text-decoration: none;
+  color: $color-neutral-gold;
+  transition: color 0.3s ease;
+}
+
+footer ul li p a:hover {
+  color: $color-accent-orange;
+}
+
+/* Texte simple */
+footer p {
+  margin-bottom: 10px;
+  color: $color-accent-orange;
+}
+
+/* Bas de la section */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-lg;
+  padding: 15px;
+  color: $color-accent-darkorange;
+}
+

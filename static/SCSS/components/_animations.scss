@@ -1,0 +1,77 @@
+/* Animation CSS - components/animations.css */
+
+// Style concernant les animations du site entreprise SethiarWorks
+
+/* Configuration des sprites de l'animation*/
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 550px;
+  height: 569px;
+  background-repeat: no-repeat;
+  margin: auto;
+}
+
+.logo-animation {
+  position: relative;
+  width: 550px;
+  height: 569px;
+  overflow: hidden;
+}
+
+/* Base commune pour tous les sprites */
+.sprite {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  background-repeat: no-repeat;
+  animation-fill-mode: forwards;
+}
+
+/* Animation pour chaque sprite */
+.sprite1 { background-image: url('/static/Images/images_spritesheet/sprite_1.png'); }
+.sprite2 { background-image: url('/static/Images/images_spritesheet/sprite_2.png'); }
+.sprite3 { background-image: url('/static/Images/images_spritesheet/sprite_3.png'); }
+.sprite4 { background-image: url('/static/Images/images_spritesheet/sprite_4.png'); }
+.sprite5 { background-image: url('/static/Images/images_spritesheet/sprite_5.png'); }
+.sprite6 { background-image: url('/static/Images/images_spritesheet/sprite_6.png'); }
+.sprite7 { background-image: url('/static/Images/images_spritesheet/sprite_7.png'); }
+.sprite8 { background-image: url('/static/Images/images_spritesheet/sprite_8.png'); }
+
+/* Keyframes pour chaque animation de sprite */
+@keyframes animateLogo1 {
+    from { background-position: 0 0; }
+    to { background-position: -11000px 0; }
+}
+@keyframes animateLogo2 {
+    from { background-position: 0 0; }
+    to { background-position: -11000px 0; }
+}
+@keyframes animateLogo3 {
+    from { background-position: 0 0; }
+    to { background-position: -11000px 0; }
+}
+@keyframes animateLogo4 {
+    from { background-position: 0 0; }
+    to { background-position: -11000px 0; }
+}
+@keyframes animateLogo5 {
+    from { background-position: 0 0; }
+    to { background-position: -11000px 0; }
+}
+@keyframes animateLogo6 {
+    from { background-position: 0 0; }
+    to { background-position: -11000px 0; }
+}
+@keyframes animateLogo7 {
+    from { background-position: 0 0; }
+    to { background-position: -11000px 0; }
+}
+@keyframes animateLogo8 {
+    from { background-position: 0 0; }
+    to { background-position: -11000px 0; }
+}

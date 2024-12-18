@@ -1,0 +1,15 @@
+// Importation des variables.
+@use '../base/variables' as *;
+
+/* Links CSS - components/links.scss */
+
+/* Liens communs dans l'interface */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: $color-accent-orange;
+}

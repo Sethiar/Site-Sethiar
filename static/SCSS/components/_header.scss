@@ -1,0 +1,116 @@
+// Importation de variables.scss
+@use '../base/variables' as *;
+
+
+// Style du Header.
+.header {
+  position: fixed;
+  top: 0;
+  bottom: 0; /* Réduit la largeur pour que les éléments soient visibles */
+  width: 30%;
+  background-color: rgba(44, 62, 80, 0.95);
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  height: 100%;
+}
+
+// Navigation
+.nav-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.nav-links ul li a {
+  font-size: $font-size-xl;
+  color: $color-secondary;
+  text-decoration: none;
+  margin: 0;
+}
+
+.nav-links ul li a:hover {
+  color: $color-neutral-gold;
+}
+
+// Actions utilisateur
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.actions a {
+  text-align: center;
+  font-size: $font-size-lg;
+  color: $color-primary;
+  padding: 0.8rem 1rem;
+  border-radius: 5px;
+  background-color: $color-accent-darkorange;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.actions a:hover {
+  background-color: $color-primary;
+  color: $color-neutral-gold;
+  transform: scale(1.05);
+}
+
+// Menu hamburger
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  width: 2rem;
+  height: 0.2rem;
+  background-color: $color-secondary;
+}
+
+
+// Responsive header
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(44, 62, 80, 0.95);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 999;
+  }
+}
+
