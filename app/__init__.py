@@ -5,8 +5,6 @@ Fichier de configuration de mon site entreprise SethiarWorks
 import os
 import logging
 import secrets
-from uuid import uuid4
-from datetime import datetime
 import config.config
 
 
@@ -15,17 +13,17 @@ from config.config import Config
 
 from dotenv import load_dotenv
 
+from itsdangerous import URLSafeTimedSerializer
+
 from flask import Flask, request, redirect, url_for, session, g
 from flask_wtf.csrf import CSRFProtect
 from flask_migrate import Migrate
 from flask_moment import Moment
 from flask_mail import Mail
 from flask_login import LoginManager
-
+from flask_assets import Environment, Bundle
 
 from app.Models import db
-from app.Models.anonyme import Anonyme
-from app.Models.anonymousvisit import AnonymousVisit
 from app.Models.user import User
 from app.Models.admin import Admin
 
@@ -76,6 +74,20 @@ def create_app():
     from app.user import user_bp
     app.register_blueprint(user_bp, url_prefix='/user')
 
+    # Configuration de Flask-Assets
+    assets = Environment(app)
+    css_bundle = Bundle('SCSS/style.scss', output='gen/style.css', filters='scss')
+    assets.register('css_all', css_bundle)
+
+    # Rattachement de Flask-Assets à l'instance Flask.
+    app.assets = assets
+
+    # Empêcher le cache durant le développement
+    app.config['ASSETS_DEBUG'] = True
+
+    # Forcer la compilation manuelle
+    css_bundle.build()
+
     # Configuration du mailing Flask.
     app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
     app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT'))
@@ -109,6 +121,11 @@ def create_app():
     # Définition de la clé secrète pour les cookies.
     app.secret_key = secrets.token_hex(16)
 
+    # Configuration du serializer.
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+    app.config['serializer'] = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    app.config['SECURITY_PASSWORD_SALT'] = os.getenv('SECURITY_PASSWORD_SALT')
+
     # Initialisation de la base de données.
     db.init_app(app)
     # Instanciation de flask-Migrate.
@@ -126,9 +143,6 @@ def create_app():
     # Redirection automatique vers le formulaire de connexion.
     login_manager.login_view = 'auth.user_connection'
 
-    # Enregistrement de la classe Anonyme.
-    login_manager.anonymous_user = Anonyme
-
     # Fonction pour charger un utilisateur ou un administrateur.
     @login_manager.user_loader
     def load_user(user_id):
@@ -137,14 +151,14 @@ def create_app():
 
         :param user_id: identifiant de l'utilisateur ou de l'administrateur.
 
-        :return: Instance de User ou de Admin.
+        :return: Instance de User ou de admin.
         """
         # Chargement d'un utilisateur.
         user = User.query.get(int(user_id))
         if user:
             return user
 
-        # Si c'est un admin, chargeemnt d'un admin.
+        # Si c'est un admin, chargement d'un admin.
         admin = Admin.query.get(int(user_id))
         if admin:
             return admin

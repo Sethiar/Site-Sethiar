@@ -36,7 +36,7 @@ def admin_required(f):
             Response: Soit la réponse de la fonction décorée, soit une redirection vers
         """
         # Vérifie si l'utilisateur est connecté et est un administrateur
-        if 'role' not in session or session['role'] != 'Admin':
+        if 'role' not in session or session['role'] != 'admin':
             flash("Vous n'avez pas l'autorisation d'accéder à cette page.", "danger")
             return redirect(url_for('auth.login_admin'))
 
@@ -44,3 +44,4 @@ def admin_required(f):
         return f(*args, **kwargs)
 
     return decorated_function
+
