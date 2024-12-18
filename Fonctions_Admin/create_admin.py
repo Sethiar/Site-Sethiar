@@ -29,7 +29,7 @@ from database_config.db_sethiarworks import conn
 # Si vous voulez changer votre identifiant et votre mot de passe, c'est ici.
 pseudo = "Nosiris"
 password = "Monolithe8"
-role = "Admin"
+role = "admin"
 
 # Génération d'un sel aléatoire pour le hachage du mot de passe.
 salt = bcrypt.gensalt()
