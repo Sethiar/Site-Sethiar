@@ -1,0 +1,40 @@
+// Importation des variables.
+@use '../base/variables' as *;
+
+/* pages css - pages/home.scss */
+
+/* Styles pour la pages d'accueil.*/
+/* Styles pour les conteneurs et slogans */
+.slogan-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding: 20px;
+  border-radius: 50%;
+  margin: 0 auto;
+  text-align: center;
+  border: 2px solid $color-accent-darkorange;
+  box-shadow: 0 0 10px $color-accent-darkorange 0 0 20px $color-accent-darkorange;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.slogan-text {
+  font-size: $font-size-xxl;
+  color: $color-neutral-gold;
+  font-weight: bold;
+  font-family: 'Comfortaa', cursive;
+  text-shadow: 10px 10px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.content-section p {
+  opacity: 0;
+  transform: translateY(50px) scale(0.8);
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  font-size: $font-size-base;
+  color: darkgrey;
+  text-align: center;
+  margin: 30px 0;
+  line-height: 1.8;
+}

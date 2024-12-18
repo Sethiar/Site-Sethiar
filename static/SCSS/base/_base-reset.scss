@@ -1,0 +1,74 @@
+/* Reset CSS - base/reset.scss */
+
+/* Réinitialiser les marges, le padding et la box-sizing */
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+ul,
+li,
+figure,
+figcaption,
+footer,
+header,
+section,
+article,
+main,
+aside {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Utiliser box-sizing border-box par défaut */
+}
+
+/* Éviter que le texte soit hérité de styles non désirés */
+body {
+  line-height: 1.6;
+  font-family: inherit;
+}
+
+/* Réinitialiser les styles pour les liens */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Réinitialiser les styles pour les listes */
+ul,
+li {
+  list-style: none;
+}
+
+/* Réinitialiser les bordures */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Assurez-vous que les boutons sont sans styles par défaut */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Empêcher les comportements par défaut des formulaires */
+input,
+textarea {
+  outline: none;
+}
+
+/* Contrôler les valeurs par défaut des images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
