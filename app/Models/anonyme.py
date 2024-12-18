@@ -3,6 +3,7 @@ Code de la classe Anonyme.
 """
 from flask_login import AnonymousUserMixin
 
+
 # Code la classe anonyme.
 class Anonyme(AnonymousUserMixin):
     """

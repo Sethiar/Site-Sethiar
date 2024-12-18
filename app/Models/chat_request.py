@@ -43,7 +43,7 @@ class ChatRequest(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', back_populates='chat_requests')
 
-    # Relation avec la classe Admin.
+    # Relation avec la classe admin.
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'), nullable=False)
     admin = db.relationship('Admin', back_populates='chat_requests')
 

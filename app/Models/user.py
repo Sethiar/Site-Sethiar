@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
         email (str) : Adresse e-mail de l'utilisateur.
         date_naissance (datetime.date) : Date de naissance de l'utilisateur.
         profil_photo (bytes) : Photo de profil de l'utilisateur en format binaire.
-        role (str) : Par défaut, c'est 'Utilisateur' si enregistrement via le Frontend.
+        role (str) : Par défaut, c'est 'Utilisateur' si enregistrement via le frontend.
         banned (bool) : Indique si l'utilisateur est banni (par défaut False).
         date_banned : Indique la date de début du bannissement.
         date_ban_end : Permet de définir la date de fin du bannissement.

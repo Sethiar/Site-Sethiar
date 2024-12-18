@@ -1,5 +1,5 @@
 """
-Code permettant de créer la classe Admin.
+Code permettant de créer la classe admin.
 """
 import logging
 
@@ -7,7 +7,7 @@ from flask_login import UserMixin
 from . import db
 
 
-# Code de la classe Admin.
+# Code de la classe admin.
 class Admin(db.Model, UserMixin):
     """
     Modèle de données représentant un administrateur.
@@ -41,7 +41,7 @@ class Admin(db.Model, UserMixin):
         :return:
             str : chaîne de caractère représentant un administrateur.
         """
-        return f"<Admin(id='{self.id}', pseudo='{self.pseudo}', role='{self.role}'>"
+        return f"<admin(id='{self.id}', pseudo='{self.pseudo}', role='{self.role}'>"
 
     def is_active(self):
         """
@@ -93,7 +93,7 @@ class Admin(db.Model, UserMixin):
         Returns:
              bool: True si l'administrateur est un administrateur, False sinon.
         """
-        return self.role == 'Admin'
+        return self.role == 'admin'
 
 
 
