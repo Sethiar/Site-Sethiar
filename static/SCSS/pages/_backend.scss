@@ -1,0 +1,245 @@
+// Importation des variables.
+@use '../base/variables' as *;
+
+
+/* Backend CSS - pages/backend.scss */
+
+/* Style pour la page d'accueil du back-end */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: $color-primary;
+    color: $color-secondary;
+    font-size: $font-size-sm;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+nav {
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+}
+
+/* Styles propres au backend */
+nav button {
+  background-color: $color-accent-orange;
+  color: $color-primary;
+  border: 2px solid $color-neutral-gold;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+nav button:hover {
+  background-color: $color-neutral-gold;
+  border: 2px solid $color-accent-orange;
+}
+
+nav button a:hover {
+  color: $color-secondary;
+}
+
+/* Styles propres au backend */
+h1 {
+  padding: 3%;
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid $color-neutral-darkgrey;
+  margin: 0 auto;
+}
+
+.space {
+  height: 15vh;
+  background-color: $color-primary;
+}
+
+.intro {
+  border: 1px solid $color-neutral-gold;
+  background-color: $color-accent-orange;
+  width: 30vw;
+  height: 10vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.intro p {
+  font-size: 18px;
+  background-color: $color-accent-orange;
+  color: $color-primary;
+  padding: 3%;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+}
+
+// Style pour les pages du backend.
+h5 {
+  padding-left: 5vw;
+  text-decoration: underline;
+  font-size: $font-size-xl;
+}
+
+.select-all-users {
+  color: $color-neutral-gold;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.select-all-users:hover {
+  font-size: $font-size-lg;
+  color: $color-accent-orange;
+}
+
+.lettre-navigation {
+  padding-left: 20vw;
+  display: flex-column;
+}
+
+.lettre a {
+  color: $color-accent-darkorange;
+  margin-right: 4vw;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.lettre a:hover {
+  color: $color-neutral-gold;
+  transform: scale(1.1);
+  text-decoration: underline;
+}
+
+.table {
+  font-size: $font-size-base;
+  width: 100%;
+}
+
+th {
+  color: $color-accent-darkorange;
+}
+
+tr {
+  color: $color-secondary;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+  padding: 10px;
+}
+
+.col-user {
+  width: 15vw;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.col-title {
+  width: 25vw;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.col-comment {
+  width: 40vw;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.col-actions {
+  width: 20vw;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.subject-comment-backend {
+  text-indent: 5%;
+  max-width: 50vw;
+  font-size: $font-size-base;
+  word-wrap: break-word;
+  white-space: normal;
+  text-align: justify;
+}
+
+.separation {
+  border: 1px solid $color-secondary;
+}
+
+.btn-suppression {
+  width: 10vw;
+  border: 1px solid $color-accent-darkorange;
+  background-color: $color-neutral-gold;
+}
+
+.btn-suppression:hover {
+ border: 1px solid $color-neutral-gold;
+  background-color: $color-accent-darkorange;
+}
+
+.btn-valide {
+  width: 10vw;
+  border: 1px solid $color-accent-darkorange;
+  background-color: $color-neutral-gold;
+}
+
+.btn-valide:hover {
+ border: 1px solid $color-neutral-gold;
+  background-color: $color-accent-darkorange;
+}
+
+
+.categorie {
+  margin: 0 auto;
+  text-align: center;
+  border : 1px solid $color-accent-orange;
+  font-size: $font-size-base;
+  width : 50%;
+}
+
+.label {
+  width: 40%;
+}
+
+.separation {
+  margin: 0 auto;
+  border-bottom: 1px solid $color-neutral-gold;
+  margin: 3% 20% 3%  20%;
+}
+
+#subject {
+  width: 30%;
+  margin-left: 10%;
+  border-collapse: collapse;
+  border: 1px solid $color-accent-orange;
+  text-align: left;
+}
+
+#subject th, #subject td {
+  padding: 8px;
+  font-size: 14px;
+  border-top: 1px solid $color-accent-orange;
+  border-bottom: 1px solid $color-accent-orange;
+}
+
+h4{
+  margin-left: 10%;
+}
+
+.button-subject {
+  color: $color-primary;
+  background-color: $color-accent-orange;
+  border: 1px solid $color-neutral-gold;
+  justify-content: flex-end;
+  margin: 10px 0;
+  padding: 2px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(255, 165, 0, 0.5);
+  cursor: pointer;
+}

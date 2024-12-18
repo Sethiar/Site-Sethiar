@@ -4,37 +4,179 @@
 /* pages css - pages/home.scss */
 
 /* Styles pour la pages d'accueil.*/
-/* Styles pour les conteneurs et slogans */
+
+// Styles du contenu de la page d'accueil.
+
+/* Landing Page */
+.title-container-landing {
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  font-size: $font-size-xxxl;
+  align-items: center;
+  height: 20vh;
+  border: 1px solid $color-accent-darkorange;
+  padding: 2% 3%;
+}
+
+/* Contenu centré avec dégradé */
+.content-section-landing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  padding: 1rem;
+  position: relative;
+  background: linear-gradient(to bottom, $color-neutral-darkgrey, $color-footer);
+}
+
+.intro-landing {
+  opacity: 0;
+  transform: translateY(50px) scale(0.8);
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  font-size: $font-size-xxxl;
+  color: $color-lightgrey;
+  text-align: center;
+  margin: 3% 0;
+  line-height: 1.4;
+}
+
+/* Conteneur pour le slogan de l'entreprise */
 .slogan-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: auto;
-  padding: 20px;
-  border-radius: 50%;
+  padding: 2%;
   margin: 0 auto;
   text-align: center;
+
+  /* Style de base */
   border: 2px solid $color-accent-darkorange;
-  box-shadow: 0 0 10px $color-accent-darkorange 0 0 20px $color-accent-darkorange;
+
+  /* Animation fluide */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Texte du slogan */
 .slogan-text {
   font-size: $font-size-xxl;
   color: $color-neutral-gold;
   font-weight: bold;
   font-family: 'Comfortaa', cursive;
-  text-shadow: 10px 10px 4px rgba(0, 0, 0, 0.5);
-  animation: fadeInUp 1s ease-in-out;
+
+  /* Transition harmonisée */
+  transition: transform 0.3s ease, font-size 0.3s ease;
 }
 
-.content-section p {
-  opacity: 0;
-  transform: translateY(50px) scale(0.8);
-  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-  font-size: $font-size-base;
-  color: darkgrey;
+/* Survol synchronisé (conteneur et texte grandissent ensemble) */
+.slogan-container:hover {
+  transform: scale(1.1); /* Agrandir le conteneur */
+}
+
+.slogan-container:hover .slogan-text {
+  font-size: $font-size-xxxl; /* Grossir légèrement le texte */
+  background: linear-gradient(to right, $color-neutral-gold, $color-accent-darkorange);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+// Animation concernant l'apparition des phrases de l'accueil.
+
+/* Animation principale : fadeInUp */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.registration-sentence-landing {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    font-size: $font-size-xxxl;
+    color: darkgrey;
+    text-align: center;
+    margin: 30px 0;
+    line-height: 1;
+}
+
+/* Classe animée lors de l'apparition */
+p.appear {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Styles pour les paragraphes sans animation */
+p.animate {
+  animation: fadeInAndGrow 0.5s ease-out forwards;
+}
+
+/* Animation pour fade in */
+@keyframes fadeInAndGrow {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Médias Queries pour la Responsivité */
+
+/* Animation pour fade in avec croissance */
+@keyframes fadeInAndGrow {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Conteneur pour les produits de la page d'accueil. */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Grille principale */
+
+.product-card {
+  background-color: $color-background-product;
+  color: $color-text-product;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+}
+
+// Styles pour la page wait.
+.wait-container {
+  color: $color-accent-orange;
+  background-color: $color-primary;
+  border: 1px solid $color-neutral-gold;
+  padding: 2%;
   text-align: center;
-  margin: 30px 0;
-  line-height: 1.8;
+  max-width: 80%;
 }
