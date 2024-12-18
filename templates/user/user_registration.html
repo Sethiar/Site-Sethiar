@@ -1,94 +1,129 @@
 {% extends 'baseform.html.jinja2' %}
 
 {% block head_content %}
-    <meta name="description" content="Formulaire d'inscription au site entreprise SethiarWorks.">
-    <title>{% block title %}Formulaire d'inscription au site entreprise SethiarWorks{% endblock %}</title>
+<meta name="description" content="Formulaire d'inscription au site entreprise SethiarWorks.">
+<title>{% block title %}Formulaire d'inscription au site entreprise SethiarWorks{% endblock %}</title>
 {% endblock %}
 
 {% block body_content %}
-    <header>
-        <div id="annonce">
-            <p>Bienvenue aux nouveaux membres, Veuillez remplir ce formulaire afin de vous inscrire.</p>
-            <p>Vous pourrez alors, en toute liberté, poster un commentaire, mais aussi demander un chat vidéo avec le responsable du site.</p>
-            <p>Pour tout renseignement supplémentaire, vous pouvez consulter nos
+<div class="outer-frame">
+    <div class="inner-frame">
+        <div class="annonce">
+            <p>
+                Bienvenue aux nouveaux membres, Veuillez remplir ce formulaire afin de vous inscrire.
+            </p>
+            <p>
+                Vous pourrez alors, en toute liberté, poster un commentaire, mais aussi demander un chat vidéo avec le
+                responsable du site.
+            </p>
+            <p>
+                Pour tout renseignement supplémentaire, vous pouvez consulter nos
                 <b><a href="{{url_for('functional.politique')}}">conditions générales d'utilisation</a></b>
-                ou nos <b><a href="{{url_for('functional.mentions')}}">mentions légales</a></b>.</p>
+                ou nos <b><a href="{{url_for('functional.mentions')}}">mentions légales</a></b>.
+            </p>
         </div>
-    </header>
 
-    <form method="POST" action="{{ url_for('user.user_registration') }}" enctype="multipart/form-data">
-        <div class="imgcontainer">
-            <img src="../static/Images/images_accueil/logo.jpg" alt="Avatar" class="avatar">
-        </div>
-        <h3>Enregistrement Utilisateur</h3>
-        {{ form_usersaving.csrf_token }}
-        <div class="container">
-            <div>
-                {{ form_usersaving.pseudo.label }} {{ form_usersaving.pseudo() }}
-                {% if form_usersaving.pseudo.errors %}
-                <ul>
-                    {% for error in form_usersaving.pseudo.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
+        <form method="POST" action="{{ url_for('user.user_registration') }}" enctype="multipart/form-data">
+
+            <!-- Image du logo -->
+            <div class="imgcontainer-form">
+                <img src="{{ url_for('static', filename='Images/images_accueil/logo.jpg') }}" alt="Logo de SethiarWorks"
+                     class="avatar-form">
             </div>
-            <div class="space"></div>
-            <div>
-                {{ form_usersaving.email.label }} {{ form_usersaving.email() }}
-                {% if form_usersaving.email.errors %}
-                <ul>
-                    {% for error in form_usersaving.email.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
+
+            <!-- Titre du formulaire -->
+            <h3 class="h3-form">Enregistrement Utilisateur</h3>
+
+            <!-- Token CSRF pour la sécurité -->
+            {{ form_usersaving.csrf_token }}
+
+            <div class="space-form"></div>
+
+            <!-- Conteneur des champs du formulaire -->
+            <div class="form-container">
+
+                <!-- Champ pour le pseudo -->
+                <div class="form-group">
+                    {{ form_usersaving.pseudo.label }} {{ form_usersaving.pseudo() }}
+                    {% if form_usersaving.pseudo.errors %}
+                    <ul>
+                        {% for error in form_usersaving.pseudo.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Champ pour le mail -->
+                <div class="form-group">
+                    {{ form_usersaving.email.label }} {{ form_usersaving.email() }}
+                    {% if form_usersaving.email.errors %}
+                    <ul>
+                        {% for error in form_usersaving.email.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Champ pour le mot de passe -->
+                <div class="form-group">
+                    {{ form_usersaving.password.label }} {{ form_usersaving.password() }}
+                    <span class="toggle-password" onclick="togglePassword('password')" aria-controls="password">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                    {% if form_usersaving.password.errors %}
+                    <ul>
+                        {% for error in form_usersaving.password.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Champ pour la vérification du mot de passe -->
+                <div class="form-group">
+                    {{ form_usersaving.password2.label }} {{ form_usersaving.password2() }}
+                    <span class="toggle-password" onclick="togglePassword('password2')"><i
+                            class="fas fa-eye"></i></span>
+                    {% if form_usersaving.password2.errors %}
+
+                    <ul>{% for error in form_usersaving.password2.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Champ pour la date de naissance -->
+                <div class="form-group">
+                    {{ form_usersaving.date_naissance.label }} {{ form_usersaving.date_naissance() }}
+                    {% if form_usersaving.date_naissance.errors %}
+                    <ul>
+                        {% for error in form_usersaving.date_naissance.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Champ pour la photo de profil -->
+                <div class="form-group">
+                    <ul>
+                        {{ form_usersaving.profil_photo.label }}
+                        {{ form_usersaving.profil_photo }}
+                    </ul>
+                </div>
             </div>
-            <div class="space"></div>
-            <div class="password-container">
-                {{ form_usersaving.password.label }} {{ form_usersaving.password() }}
-                <span class="toggle-password" onclick="togglePassword('password')"><i class="fas fa-eye"></i></span>
-                {% if form_usersaving.password.errors %}
-                <ul>
-                    {% for error in form_usersaving.password.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
+            <div class="separation1"></div>
+            <div class="container-btn">
+                <button type="submit" class="validated-btn" aria-label="Valider l'inscription">Validation de la
+                    souscription
+                </button>
+                <a href="{{ url_for('landing_page') }}" class="cancelled-btn">Annulation et retour à l'accueil</a>
             </div>
-            <div class="password-container">
-                {{ form_usersaving.password2.label }} {{ form_usersaving.password2() }}
-                <span class="toggle-password" onclick="togglePassword('password2')"><i class="fas fa-eye"></i></span>
-                {% if form_usersaving.password2.errors %}
-                <ul>
-                    {% for error in form_usersaving.password2.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-            <div>
-                {{ form_usersaving.date_naissance.label }} {{ form_usersaving.date_naissance() }}
-                {% if form_usersaving.date_naissance.errors %}
-                <ul>
-                    {% for error in form_usersaving.date_naissance.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-            <div class="space"></div>
-            <div class="photo">
-                <ul>
-                    {{ form_usersaving.profil_photo.label }}
-                    {{ form_usersaving.profil_photo }}
-                </ul>
-            </div>
-        </div>
-        <div class="separation"></div>
-        <div class="container" style="background-color:black">
-            <button type="submit" class="validatedbtn" style="font-weight: normal;">Validation de la souscription</button>
-            <button type="button" class="cancelledbtn"><a href="{{ url_for('landing_page') }}" style="font-weight: normal;">Annulation de la souscription et retour à l'accueil</a></button>
-        </div>
-    </form>
+        </form>
+    </div>
+</div>
+
 {% endblock %}
