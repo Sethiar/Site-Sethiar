@@ -1,0 +1,72 @@
+// Importation des variables.
+@use 'variables' as *;
+
+/* layout CSS - base/layout.scss */
+
+/* Gère les conteneurs droit et gauche et les séparations et espacement. */
+
+
+// Base layout
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+.main-content {
+  margin-left: 30%;
+  width: 70%;
+  padding: 2rem;
+  overflow-y: auto;
+  position: relative;
+  top: -100vh;
+}
+
+/* Cadre principal (conteneur externe) */
+.outer-frame {
+  border: 4px solid $color-accent-darkorange; /* Couleur et taille de la bordure externe */
+  border-radius: 15px; /* Coins arrondis */
+  padding: 20px; /* Espacement interne */
+  background: $color-lightgrey; /* Couleur de fond du cadre externe */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre subtile */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation fluide */
+}
+
+/* Cadre interne */
+.inner-frame {
+  border: 2px solid $color-neutral-gold; /* Couleur et taille de la bordure interne */
+  border-radius: 10px; /* Coins arrondis */
+  padding: 15px; /* Espacement interne */
+  background: $color-primary; /* Couleur de fond du cadre interne */
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre interne */
+}
+
+/* Ajout d'effets interactifs au survol */
+.outer-frame:hover {
+  transform: scale(1.05); /* Légère mise en avant */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Ombre amplifiée */
+}
+
+.inner-frame:hover {
+  transform: scale(1.02); /* Légère mise en avant du cadre interne */
+  border-color: $color-accent-darkorange; /* Changement de couleur de bordure */
+}
+
+// Separations
+@mixin separator($width, $margin) {
+  width: $width;
+  margin: $margin;
+  border-bottom: 3px solid $color-neutral-gold;
+}
+
+.separation1 {
+  @include separator(90%, 0 auto);
+}
+
+.separation2 {
+  @include separator(80%, auto);
+}
+
+.space {
+  height: 10vh;
+}
+
