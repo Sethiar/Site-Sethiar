@@ -28,7 +28,7 @@ footer {
 
 /* Titres */
 footer h3 {
-  font-size: $font-size-xl;
+  font-size: $font-size-xxl;
   font-weight: bold;
   margin-bottom: 10%;
   text-decoration: underline;
@@ -42,41 +42,40 @@ footer ul {
 }
 
 footer ul li {
-  margin-bottom: 1%;
-  font-size: $font-size-lg;
+  margin-bottom: 1.5%;
+  font-size: $font-size-xl;
 }
 
 footer ul li a {
-  font-size: $font-size-lg;
+  font-size: $font-size-xl;
   text-decoration: none;
   color: $color-secondary;
   transition: color 0.3s ease, text-decoration 0.3s ease;
-}
-
-footer ul li a:hover {
-  color: $color-neutral-gold;
-  text-decoration: none;
+  &:hover {
+    color: $color-neutral-gold;
+    text-decoration: none;
+  }
 }
 
 footer ul li p {
-  font-size: $font-size-lg;
+  font-size: $font-size-xl;
   color: $color-secondary;
 }
 
 footer ul li p a {
-  font-size: $font-size-base;
+  font-size: $font-size-xl;
   text-decoration: none;
   color: $color-neutral-gold;
   transition: color 0.3s ease;
-}
 
-footer ul li p a:hover {
-  color: $color-accent-orange;
+  &:hover {
+    color: $color-accent-orange;
+  }
 }
 
 /* Texte simple */
 footer p {
-  margin-bottom: 10px;
+  margin-bottom: 1.5%;
   color: $color-accent-orange;
 }
 
@@ -86,8 +85,8 @@ footer p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: $font-size-lg;
-  padding: 15px;
+  font-size: $font-size-xl;
+  padding: 2%;
   color: $color-accent-darkorange;
 }
 

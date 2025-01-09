@@ -1,0 +1,124 @@
+// Importation des variables.
+@use '../base/variables' as *;
+
+/* pages css du composant carrousel */
+
+/* Images du carrousel */
+.product-pic {
+  border: 1px solid $color-accent-darkorange;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1); /* Zoom au survol */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.swiper-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 20px 0;
+}
+
+.swiper-slide {
+  text-align: center;
+  background: $color-secondary;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+  border-bottom: 2px solid $color-accent-darkorange;
+}
+
+.swiper-button-prev {
+  left: 2%;
+}
+
+.swiper-button-next {
+  right: 2%;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  color: $color-accent-darkorange;
+  top: 70%;
+  opacity: 1; /* Toujours visibles */
+  visibility: visible; /* Toujours affichées */
+  pointer-events: auto; /* Interactives */
+  transform: translateY(-50%); /* Centrage vertical parfait */
+}
+
+.swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled {
+  opacity: 0.5; /* Rendre moins visibles lorsqu'inactives */
+  pointer-events: none; /* Désactiver les clics lorsqu'inactives */
+}
+
+.swiper-pagination-bullet {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.swiper-pagination-bullet-active {
+  background-color: $color-accent-darkorange;
+}
+
+// Code CSS pour la modale
+.modal {
+  display: none; /* Masquer par défaut */
+  position: fixed;
+  top: 0;
+  left: 33%;
+  width: 70%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Fond semi-transparent */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding:2%;
+  max-width: 60vw;
+  background-color: $color-background-product;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1vh;
+  right: 1vw;
+  font-size: $font-size-xl;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 2%;
+}
+
+.modal h3 {
+  margin-top: 1%;
+  font-size: $font-size-xxl;
+}
+
+.modal p {
+  font-size: $font-size-xl;
+  margin-top: 1%;
+  line-height: 1.5;
+}

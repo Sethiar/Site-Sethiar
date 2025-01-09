@@ -2,8 +2,9 @@
 
 // Style concernant les animations du site entreprise SethiarWorks
 
-/* Configuration des sprites de l'animation*/
-.logo {
+/* Configuration des sprites de l'animation */
+/*  Conteneur globale du logo */
+#logo {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,8 +14,12 @@
   margin: auto;
 }
 
+/* Conteneur de l'animation */
 .logo-animation {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 550px;
   height: 569px;
   overflow: hidden;
@@ -30,6 +35,7 @@
   visibility: hidden;
   background-repeat: no-repeat;
   animation-fill-mode: forwards;
+  transition: opacity 0.5s ease-in-out;
 }
 
 /* Animation pour chaque sprite */

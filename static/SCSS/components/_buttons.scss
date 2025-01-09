@@ -6,7 +6,7 @@
 
 // Styles des boutons pour la page des formulaires
 /* Actions utilisateur avec les boutons */
-.btn-primary, .btn-primary-forum {
+.btn-primary, .btn-primary-forum, .btn-primary-registration {
   padding: 3% 7%;
   border-radius: 30px;
   font-size: $font-size-base;
@@ -15,17 +15,25 @@
   transition: background-color 0.3s ease;
   background-color: $color-accent-darkorange;
   color: $color-primary;
+
+  &:hover {
+    background-color: $color-primary;
+    border: 2px solid $color-neutral-gold;
+    color: $color-accent-darkorange;
+    transition: background-color 0.3s ease;
+  }
 }
 
-.btn-primary, .btn-primary-forum:hover {
-  background-color: $color-primary;
-  border: 2px solid $color-neutral-gold;
-  color: $color-accent-darkorange;
-  transition: background-color 0.3s ease;
+.btn-primary-registration {
+  display: block; /* Nécessaire pour appliquer margin auto */
+  margin: 0 auto; /* Centre horizontalement */
+  height: 100%; /* Prend la hauteur disponible du parent */
+  width: 60%; /* Prend 60% de la largeur */
 }
+
 
 .btn-secondary {
-  padding: 3% 5%;
+  padding: 1% 2%;
   border-radius: 30px;
   font-size: $font-size-lg;
   text-decoration: none;
@@ -33,32 +41,110 @@
   background-color: $color-lightgrey;
   transition: background-color 0.3s ease;
   color: $color-primary;
-}
+  position: absolute;
 
-.btn-secondary:hover {
-  background-color: $color-neutral-darkgrey;
-  color: $color-neutral-gold;
-  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: $color-neutral-darkgrey;
+    color: $color-neutral-gold;
+    transition: background-color 0.3s ease;
+  }
 }
 
 /* Bouton "voir" forum */
 .btn-secondary-forum {
   padding: 3% 5%;
   border-radius: 30px;
-  font-size: $font-size-lg;
+  font-size: $font-size-xl;
   text-decoration: none;
   transition: background-color 0.5s ease;
   background-color: $color-neutral-gold;
   transition: background-color 0.3s ease;
   color: $color-primary;
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-neutral-gold;
+    transition: background-color 0.3s ease;
+    border: 1px solid $color-neutral-gold;
+  }
 }
 
-.btn-secondary-forum:hover {
-  background-color: $color-primary;
-  color: $color-neutral-gold;
-  transition: background-color 0.3s ease;
-  border: 1px solid $color-neutral-gold;
+// Boutons de forum_subject
+/* Bouton "Répondre" de la section forum */
+.reply-button {
+  padding: 1% 2%;
+  border-radius: 30px;
+  font-size: $font-size-xl;
+  text-decoration: none;
+  transition: background-color 0.5s ease;
+  background-color: $color-neutral-gold;
+  color: $color-primary;
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-neutral-gold;
+    transition: background-color 0.3s ease;
+    border: 1px solid $color-neutral-gold;
+  }
 }
+
+/* Bouton "modifier un commentaire" de la section forum */
+.change-button {
+  padding: 1% 2%;
+  border-radius: 30px;
+  font-size: $font-size-xl;
+  text-decoration: none;
+  transition: background-color 0.5s ease;
+  background-color: $color-neutral-gold;
+  color: $color-primary;
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-neutral-gold;
+    transition: background-color 0.3s ease;
+    border: 1px solid $color-neutral-gold;
+  }
+}
+
+/* Styles spécifiques aux boutons de suppression */
+.delete-comment-form button {
+  padding: 1% 2%;
+  border-radius: 30px;
+  font-size: $font-size-xl;
+  text-decoration: none;
+  transition: background-color 0.5s ease;
+  background-color: $color-accent-darkorange;
+  color: $color-primary;
+
+  &:hover {
+    background-color: $color-accent-darkred;
+    color: $color-secondary;
+    transition: background-color 0.3s ease;
+    border: 1px solid $color-neutral-gold;
+  }
+}
+
+/* Bouton de retour du forum */
+.back-forum {
+  background-color: $color-accent-orange;
+  color: $color-primary;
+  padding: 2px 7px;
+  text-align: center;
+  font-style: italic;
+  font-size: $font-size-lg;
+  border-radius: 5px;
+  display: inline-block;
+  box-shadow: 2px 2px 10px rgba(255, 165, 0, 0.5);
+  cursor: pointer;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    text-decoration: none;
+    color: $color-primary;
+  }
+}
+
 
 // Style pour formulaires.
 /* Styles pour les boutons des formulaires */
@@ -76,24 +162,28 @@
 
 /* Bouton annulé */
 .cancelled-btn {
-  background-color: $color-accent-orange;
+  background-color: $color-neutral-gold;
   color: $color-primary;
   text-decoration: none;
 
   &:hover {
-    background-color: darken($color-accent-orange, 10%);
-    opacity: 0.9;
-    transform: scale(1.05);
+    background-color: $color-accent-darkred;
+    color: $color-secondary;
+    border: 1px solid $color-neutral-gold;
+    transition: background-color 0.3s ease;
+
   }
 }
 
 /* Bouton validé */
 .validated-btn {
-  background-color: $color-neutral-gold;
+  background-color: $color-accent-darkorange;
   color: $color-primary;
 
   &:hover {
-    background-color: $color-accent-darkorange;
+    background-color: $color-primary;
+    color: $color-neutral-gold;
+    border: 1px solid $color-neutral-gold;
     transform: scale(1.05);
   }
 }
@@ -106,11 +196,11 @@ nav button {
   border: 2px solid $color-neutral-gold;
   padding: 10px 20px;
   border-radius: 5px;
-}
 
-nav button:hover {
-  background-color: $color-neutral-gold;
-  border: 2px solid $color-accent-orange;
+  &:hover {
+    background-color: $color-neutral-gold;
+    border: 2px solid $color-accent-orange;
+  }
 }
 
 .button-container {
@@ -141,9 +231,9 @@ nav button:hover {
   height: 100%;
   text-align: center;
   line-height: 20px;
-}
 
-.button-container button:hover {
-  background-color: $color-accent-darkorange;
-  border: 2px solid $color-neutral-gold;
+  &:hover {
+    background-color: $color-accent-darkorange;
+    border: 2px solid $color-neutral-gold;
+  }
 }

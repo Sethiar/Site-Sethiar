@@ -36,7 +36,7 @@
 }
 
 .nav-links ul li a {
-  font-size: $font-size-xl;
+  font-size: $font-size-xxxl;
   color: $color-secondary;
   text-decoration: none;
   margin: 0;
@@ -49,11 +49,17 @@
 // Actions utilisateur
 .actions {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  width: 100%;
-  justify-content: flex-start;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.logged {
+  font-size: $font-size-xxl;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 3%;
 }
 
 .actions a {
@@ -88,29 +94,5 @@
 }
 
 
-// Responsive header
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
 
-  .nav-links {
-    display: none;
-  }
-
-  .nav-links.active {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(44, 62, 80, 0.95);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    z-index: 999;
-  }
-}
 

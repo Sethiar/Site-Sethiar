@@ -1,23 +1,9 @@
 // Importation des variables.
 @use '../base/variables' as *;
 
-// Styles pour image du forum
-
-/* Image forum principale */
-.forum-image-container {
-
-}
-
-.image-forum {
-
-}
-
-.image-forum img {
-
-}
 
 /* Style pour la carte page d'accueil */
-.SethiarCart-pic{
+.SethiarCart-pic {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,36 +30,34 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-// Styles pour images du forum.
 
-/* Style pour la section forum */
-.forum-pic {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap; /* Permet de passer en colonne sur petit écran */
+// Styles pour image du forum
+
+/* Conteneur de l'image du forum */
+.forum-image-container {
+  display: flex; /* Permet de centrer facilement */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  margin: 2%; /* Ajoute de l'espace autour du conteneur */
 }
 
-.forum-pic div {
-  flex: 1;
-  display: flex;
+/* Styles pour le cadre de l'image */
+.image-forum {
+  display: inline-block; /* Adapte la taille du conteneur à celle de l'image */
+  overflow: hidden; /* Évite que l'image dépasse du cadre si elle est trop grande */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation fluide pour le zoom et l'ombre */
 }
 
-.forum-pic-left img,
-.forum-pic-center img,
-.forum-pic-right img {
-  width: 100%;
-  max-width: 30vw;
+/* Effet au survol */
+.image-forum:hover {
+  transform: scale(1.1); /* Agrandit légèrement l'image */
 }
 
-.forum-pic-center img {
-  border-radius: 50%;
-  border: 2px solid gold;
-}
-
-.forum-pic-left img,
-.forum-pic-right img {
-  width: 100%;
-  max-width: 25vw;
-  border-radius: 25%;
+/* Image à l'intérieur */
+.image-forum img {
+  margin: 0 auto;
+  border-radius: 10px; /* Coins arrondis pour un aspect élégant */
+  display: block; /* Supprime les espaces blancs sous l'image */
+  max-width: 60%; /* Adapte la taille de l'image */
+  height: auto; /* Conserve le ratio de l'image */
 }

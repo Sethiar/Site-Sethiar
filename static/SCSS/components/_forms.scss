@@ -7,10 +7,9 @@
   color: $color-primary;
   border: 1px solid $color-accent-darkorange;
   font-size: $font-size-xxl;
-  padding: 20px; /* Ajout d'espacement interne */
+  padding: 2%; /* Ajout d'espacement interne */
   text-align: justify; /* Alignement justifié du texte */
   text-indent: 2em; /* Indentation de la première ligne */
-  display: flex; /* Flexbox pour centrer */
   justify-content: center; /* Centrage horizontal */
   align-items: center; /* Centrage vertical */
   height: auto; /* Hauteur adaptable au contenu */
@@ -28,9 +27,18 @@
   margin: 24px 0 12px 0;
 }
 
+/* Image avatar dans le formulaire */
 img.avatar-form {
   width: 45%;
   align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation fluide pour le zoom et l'ombre */
+
+}
+
+/* Effet de zoom au survol */
+img.avatar-form:hover {
+  transform: scale(1.1); /* Agrandit l'image à 110% de sa taille originale */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Ajoute une ombre au survol */
 }
 
 .space-form {
@@ -50,7 +58,7 @@ img.avatar-form {
 }
 
 /* Conteneur de l'image */
-form {
+.form-base {
   background-color: $color-primary;
   border: 2px solid $color-accent-orange;
   padding: 20px;
@@ -80,7 +88,7 @@ form {
       display: block;
       font-weight: bold;
       color: $color-secondary;
-      margin-bottom: 5px;
+      margin-bottom: 1.5%;
       background-color: transparent;
     }
 
@@ -88,21 +96,29 @@ form {
       width: 100%;
       padding: 12px 20px;
       margin: 8px 0;
+      border-radius: 12px;
       display: inline-block;
       box-sizing: border-box;
-      font-size: 15px;
+      font-size: $font-size-xl;
       background-color: lightgrey;
       color: $color-primary;
+
+      &:hover {
+        background-color: white;
+        border: 1px solid $color-accent-darkorange;
+      }
     }
   }
 
   .toggle-password {
     position: absolute;
+    top: 50%;
     right: 10px;
     margin-top: 7%;
     transform: translateY(-50%);
     cursor: pointer;
     color: $color-primary;
+    font-size: $font-size-xl;
   }
 }
 
