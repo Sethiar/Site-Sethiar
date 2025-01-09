@@ -2,47 +2,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoElement = document.getElementById('logo');
     const sprites = logoElement.querySelectorAll('.sprite');
     let currentSprite = 0;
+    const spriteDurations = [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500];
+    let animationTimeout;
 
-    const spriteDurations = [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500]; // Durée de chaque sprite
+    // Fonction masquant tous les sprites
+    function resetSprites() {
+        sprites.forEach((sprite) => {
+            sprite.style.visibility = 'hidden';
+            sprite.style.animation = 'none';
+        });
+    }
 
-    // Initialisation : masquer tous les sprites sauf le premier
-    sprites.forEach((sprite, index) => {
-        sprite.style.visibility = index === 0 ? 'visible' : 'hidden';
-        sprite.style.animation = 'none'; // Stoppe toute animation en cours
-    });
-
-    // Fonction pour démarrer l'animation d'un sprite
+    // Fonction démarrant un sprite
     function startAnimation(spriteIndex) {
         const sprite = sprites[spriteIndex];
-        sprite.style.visibility = 'visible'; // Affiche le sprite
-        sprite.style.animation = `animateLogo${spriteIndex + 1} ${spriteDurations[spriteIndex] / 1000}s steps(20, end) forwards`; // Lancer l'animation
+        // Affichage du sprite
+        sprite.style.visibility = 'visible';
+        sprite.style.animation = `animateLogo${spriteIndex + 1} ${spriteDurations[spriteIndex] / 1000}s steps(20, end) forwards`;
     }
 
-    // Fonction pour arrêter l'animation d'un sprite
+    // Fonction pour arrêter un sprite
     function stopAnimation(spriteIndex) {
         const sprite = sprites[spriteIndex];
-        sprite.style.animation = 'none'; // Stoppe l'animation immédiatement
-        sprite.style.visibility = 'hidden'; // Cache le sprite
+        // Masquage du sprite
+        sprite.style.visibility = 'hidden';
+        sprite.style.animation = 'none';
     }
 
-    // Fonction pour gérer la rotation des sprites
+    // Fonction pour changer de sprite
     function changeLogo() {
         // Arrête le sprite actuel
         stopAnimation(currentSprite);
 
-        // Passer au sprite suivant
-        currentSprite = (currentSprite + 1) % sprites.length;
+        // Passer au script suivant
+        currentSprite++;
 
-        // Démarre le sprite suivant
+        // Si dernière vignette n'est pas atteinte
+        if (currentSprite < sprites.length) {
+            // Démarrer sprite suivant
+            startAnimation(currentSprite);
+            // Planification du suivant
+            animationTimeout = setTimeout(changeLogo, spriteDurations[currentSprite]);
+        } else {
+        // Affichage de la dernière vignette
+        // Vérification du positionnement sur le dernier index
+        currentSprite = sprites.length - 1;
+        // Maintien de la dernière vignette visible
         startAnimation(currentSprite);
-
-        // Planifie le changement au sprite suivant après sa durée
-        setTimeout(changeLogo, spriteDurations[currentSprite]);
     }
+}
+    // Bouton "Rejouer"
+    document.getElementById('button-logo').addEventListener('click', () => {
+        clearTimeout(animationTimeout);
+        resetSprites();
+        currentSprite = 0;
+        startAnimation(currentSprite);
+        animationTimeout = setTimeout(changeLogo, spriteDurations[currentSprite]);
+    });
 
-    // Initialisation : démarrer le premier sprite
+    // Initialisation
+    resetSprites();
     startAnimation(currentSprite);
-
-    // Planifier le premier changement
-    setTimeout(changeLogo, spriteDurations[currentSprite]);
+    animationTimeout = setTimeout(changeLogo, spriteDurations[currentSprite]);
 });
