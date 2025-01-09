@@ -8,6 +8,8 @@ from PIL import Image
 from io import BytesIO
 from markupsafe import escape
 
+from datetime import datetime
+
 from app.user import user_bp
 
 from app.Models import db
@@ -17,6 +19,7 @@ from flask_login import login_required, current_user
 
 from app.forms.user_registration import UserRecording
 from app.forms.subject_forum import NewSubjectForumForm
+from app.forms.devisrequest import DevisRequestForm
 from app.forms.form_comment import ChangeCommentSubjectForm, SuppressCommentForm, \
     ReplySubjectForm, ChangeReplySubject, SuppressReplySubject
 
@@ -26,7 +29,10 @@ from app.Models.comment_subject import CommentSubject
 from app.Models.likes_comment_subject import CommentLikeSubject
 from app.Models.reply_subject import ReplySubject
 
-from app.mail.routes import mail_reply_forum_comment, mail_like_comment_subject
+from app.Models.devis_request import DevisRequest
+
+from app.mail.routes import mail_reply_forum_comment, mail_like_comment_subject, \
+    send_mail_validate_demand
 
 from app.extensions import allowed_file
 
@@ -137,9 +143,9 @@ def devis():
     Permet à un utilisateur de remplir un formulaire.
 
     Returns :
-        Formulaire pour renseigner un devis (devis.html)
+        Formulaire pour renseigner un devis (devis_form.html)
     """
-    return render_template("user/devis.html")
+    return render_template("user/devis_form.html")
 
 
 # Route permettant d'ajouter un sujet au forum une fois connecté.
@@ -480,4 +486,72 @@ def reply_form_subject(comment_id, user_pseudo):
 
     return render_template("User/reply_form_subject.html", formsubjectreply=formsubjectreply,
                            comment=comment, user=user)
+
+
+# Route permettant de renvoyer la demande de formulaire.
+@user_bp.route("/demande-de-devis-formulaire", methods=['GET', 'POST'])
+def user_devis():
+    """
+    Affiche le formulaire afin de remplir la demande de devis.
+
+    :return: le formulaire de la demande de devis.
+    """
+
+    # Création de l'instance du formulaire
+    form_devis = DevisRequestForm()
+
+    return render_template("User/devis_form.html", form_devis=form_devis)
+
+
+# Route permettant d'enregistrer la demande de devis.
+@user_bp.route("/demande-de-devis-envoi-formulaire", methods=['GET', 'POST'])
+def user_devis_demand():
+    """
+    Fonction qui va récupérer les données de la demande de devis et les enregistrer au sein de la base de données.
+
+    :return: Page de remerciement de la demande de devis ou retour à la page du formulaire en cas d'erreur.
+    """
+    # Création de l'instance du formulaire
+    form_devis = DevisRequestForm()
+
+    if form_devis.validate_on_submit():
+        # Création d'un nouvel objet Devis avec les données du formulaire
+        new_devis = DevisRequest(
+            nom=form_devis.nom.data,
+            prenom=form_devis.prenom.data,
+            telephone=form_devis.telephone.data,
+            email=form_devis.email.data,
+            project_type=form_devis.project_type.data,
+            demand_content=form_devis.demand_content.data,
+            created_at=datetime.utcnow()
+        )
+
+        try:
+            db.session.add(new_devis)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            flash("Une erreur est survenue lors de l'enregistrement. Veuillez réessayer.", "error")
+            return redirect(url_for('user_bp.user_devis_demand'))
+        else:
+            send_mail_validate_demand(email=devis.email, prenom=devis.prenom)
+            flash("Votre demande de devis a été envoyée avec succès !", "success")
+            return redirect(url_for('user.user_devis_thanks'))
+    else:
+        # Afficher les erreurs de validation du formulaire
+        for field, errors in form_devis.errors.items():
+            for error in errors:
+                flash(f"Erreur dans le champ {field}: {error}", "error")
+
+    # Si le formulaire est invalide ou qu'on arrive via GET
+    return render_template("User/devis_form.html", form=form_devis)
+
+
+# Route pour la page de remerciement
+@user_bp.route("/demande-de-devis-remerciement")
+def user_devis_thanks():
+    """
+    Page affichée après l'envoi réussi d'une demande de devis.
+    """
+    return render_template("User/devis_form_thanks.html")
 
