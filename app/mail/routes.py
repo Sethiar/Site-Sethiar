@@ -57,7 +57,8 @@ def send_confirmation_unsubscribe_email_user(email):
         return redirect(url_for('landing_page'))
 
     # Corps du message.
-    msg = Message("Confirmation de désinscription", sender=current_app.config['MAIL_DEFAULT_SENDER'], recipients=[email])
+    msg = Message("Confirmation de désinscription", sender=current_app.config['MAIL_DEFAULT_SENDER'],
+                  recipients=[email])
     msg.body = f"Bonjour {user.pseudo} \n" \
                "\n" \
                f"Merci de vous être inscrit sur le site de l'entreprise SethiarWorks. " \
@@ -299,7 +300,7 @@ def send_mail_validate_request(user, request, chat_link):
                f"Voici le lien de connexion: {chat_link}\n" \
                f"Nous vous demandons de cliquer sur ce lien quelques minutes " \
                f"avant le rendez-vous afin d'être prêt pour le chat vidéo.\n" \
-               "\n"\
+               "\n" \
                f"Cordialement, \n" \
                f"L'équipe du site de SethiarWorks."
     current_app.extensions['mail'].send(msg)
@@ -319,10 +320,90 @@ def send_mail_refusal_request(user):
     msg.body = f"Bonjour {user.pseudo}, \n" \
                "\n" \
                f"Titi est dans l'impossibilité de valider votre rendez-vous. \n" \
-               f"Afin de renouveler votre demande, nous vous prions de bien vouloir "\
-               f"refaire une demande de chat vidéo. \n"\
+               f"Afin de renouveler votre demande, nous vous prions de bien vouloir " \
+               f"refaire une demande de chat vidéo. \n" \
                "\n" \
                f"Cordialement, \n" \
                f"L'équipe du site de SethiarWorks."
     current_app.extensions['mail'].send(msg)
 
+
+# Méthode qui envoie un mail assurant que la demande a bien été reçue par l'équipe.
+def send_mail_validate_demand(email, prenom):
+    """
+    Fonction qui envoie un mail pour informer de la bonne réception de la demande de devis par l'administrateur.
+
+    :param user: utilisateur qui a envoyé la demande de devis.
+    :return:
+     """
+    msg = Message("Nous accusons bonne réception de votre devis.",
+                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
+                  recipients=[email])
+    msg.body = f"Bonjour {prenom}, \n" \
+               "\n" \
+               f"Nous avons bien reçu votre demande de devis et nous y répondrons dans moins d'une semaine. \n" \
+               f"Afin de pouvoir nous entretenir de manière plus efficace, je vous proposerai," \
+               f" lors de la validation de votre devis," \
+               f" un entretien téléphonique qui permettra de cerner plus concrètement votre projet." \
+               "\n" \
+               f" À la fin de notre échange, je serai alors apte à vous communiquer le temps nécessaire " \
+               f"à la réalisation de votre projet, ainsi que le budget qu'il nécessitera." \
+               "\n" \
+               f"Vous aurez alors une période de réflexion pour me donner votre réponse. Dans le cas où notre " \
+               f"partenariat vous intéresserait, " \
+               f"nous commencerons, dès votre accord, la rédaction du cahier des charges de votre projet et " \
+               f"vous recevrez notre contrat trois jours après votre acceptation." \
+               "\n" \
+               f"Cordialement, \n" \
+               f"L'équipe du site de SethiarWorks."
+    current_app.extensions['mail'].send(msg)
+
+
+# Fonction envoyant un mail valider la demande de devis.
+def mail_reply_devis_validate(email, prenom):
+    """
+    Fonction qui envoie un mail pour informer de la validation de la demande de devis par l'administrateur.
+
+    :param user: utilisateur qui a envoyé la demande de devis.
+    :return:
+    """
+    msg = Message("Validation de votre devis.",
+                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
+                  recipients=[email])
+    msg.body = f"Bonjour {prenom}, \n" \
+        "\n" \
+        f"Nous avons bien reçu votre demande de devis et nous y répondons favorablement. \n" \
+        f"Afin de pouvoir nous entretenir de manière plus efficace, je vous propose un entretien téléphonique " \
+        "\n" \
+        f"Pour cela il vous suffit de faire une demande de c. \n" \
+        "\n" \
+        f"Cordialement, \n" \
+        f"L'équipe du site de SethiarWorks."
+    current_app.extensions['mail'].send(msg)
+
+
+# Fonction envoyant un mail valider la demande de devis.
+def mail_reply_devis_reject(email, prenom):
+    """
+    Fonction qui envoie un mail pour informer du refus de la demande de devis par l'administrateur.
+
+    :param user: utilisateur qui a envoyé la demande de devis.
+    :return:
+    """
+    msg = Message("Refus de votre devis.",
+                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
+                  recipients=[email])
+    msg.body = f"Bonjour {prenom}, \n" \
+               "\n" \
+               f"Nous avons bien reçu votre demande de devis mais nous ne pouvons pas y répondre favorablement " \
+               f"pour le moment. \n" \
+               f"Nous vous remercions pour votre offre ainsi que pour votre confiance." \
+               "\n" \
+               f"Nous vous prions de nous excuser pour la gêne occasionnée et nous vous envoyons " \
+               f"la meilleure énergie possible afin que votre projet aboutisse." \
+               "\n" \
+               f"N'hésitez à nous recontacter si vous aviez un quelconque besoin dans les mois à venir. \n" \
+               "\n" \
+               f"Cordialement, \n" \
+               f"L'équipe du site de SethiarWorks."
+    current_app.extensions['mail'].send(msg)
