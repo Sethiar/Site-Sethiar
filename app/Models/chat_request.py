@@ -15,15 +15,15 @@ class ChatRequest(db.Model):
     Modèle de données représentant une demande de chat vidéo.
 
     Attributes :
-        id (int): Identifiant unique de la demande.
-        pseudo (str): Pseudo de l'utilisateur.
-        request_content (str): Contenu de la requête.
-        date_rdv (datetime): Date initiale proposée par l'utilisateur.
+        id (int): Identifiant unique de la demande de chat vidéo.
+        pseudo (str) : Pseudo de l'utilisateur.
+        request_content (str) : Contenu de la requête.
+        date_rdv (datetime) : Date initiale proposée par l'utilisateur.
         heure (time): Heure proposée par l'utilisateur.
         status (StatusEnum): Statut de la demande (en attente, approuvé, rejeté).
-        admin_choices (list): Stocke les choix de créneaux proposés par l'administrateur.
-        user_choice (datetime): Stocke le choix final de l'utilisateur.
-        created_at (datetime): Date et heure de création de la demande.
+        admin_choices (list) : Stocke les choix de créneaux proposés par l'administrateur.
+        user_choice (datetime) : Stocke le choix final de l'utilisateur.
+        created_at (datetime) : Date et heure de création de la demande.
     """
 
     __tablename__ = "chat_request"
@@ -58,6 +58,7 @@ class ChatRequest(db.Model):
                f"date_rdv={self.date_rdv}, heure={self.heure}, status={self.status}, "
                 f"admin_choices={self.admin_choices}, user_choice={self.user_choice}, created_at={self.created_at})")
 
+    # Fonction qui permet de valider un chat vidéo et ainsi de modifier le statut de la demande.
     def waiting_request_validate(self, new_status):
         """
         Validation de la demande de chat vidéo. Par défaut, le statut est 'en attente'.
@@ -69,8 +70,17 @@ class ChatRequest(db.Model):
             raise ValueError("Le statut doit être 'en attente', 'validée' ou 'refusée'.")
 
         self.status = new_status
-        db.session.commit()
+        try:
+            db.session.commit()
+        except Exception as e:
+            # Retour en arrière en cas d'erreur
+            db.session.rollback()
+            raise e
+        finally:
+            # Fermer la session proprement
+            db.session.close()
 
+    # Fonction qui permet de refuser un chat vidéo et ainsi de modifier le statut de la demande.
     def waiting_request_refusal(self, new_status):
         """
         Refus de la demande de chat vidéo. Par défaut, le statut est 'en attente'.
@@ -82,4 +92,12 @@ class ChatRequest(db.Model):
             raise ValueError("Le statut doit être 'en attente', 'validée' ou 'refusée'.")
 
         self.status = new_status
-        db.session.commit()
+        try:
+            db.session.commit()
+        except Exception as e:
+            # Retour en arrière en cas d'erreur
+            db.session.rollback()
+            raise e
+        finally:
+            # Fermer la session proprement
+            db.session.close()
