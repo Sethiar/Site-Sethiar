@@ -44,18 +44,6 @@ nav button a:hover {
   color: $color-secondary;
 }
 
-/* Styles propres au backend */
-h1 {
-  padding: 3%;
-  display: flex;
-  flex-direction: column;
-  width: 60vw;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid $color-neutral-darkgrey;
-  margin: 0 auto;
-}
-
 .space {
   height: 15vh;
   background-color: $color-primary;

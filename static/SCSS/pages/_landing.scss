@@ -3,20 +3,25 @@
 
 /* pages css - pages/home.scss */
 
-/* Styles pour la pages d'accueil.*/
-
 // Styles du contenu de la page d'accueil.
 
-/* Landing Page */
+/* Titre de la page d'accueil */
 .title-container-landing {
   display: flex;
   justify-content: center;
-  text-align: justify;
-  font-size: $font-size-xxxl;
+  font-size: $font-size-title;
   align-items: center;
+  margin: 0;
   height: 20vh;
-  border: 1px solid $color-accent-darkorange;
+  border: 2px solid $color-accent-darkorange;
+  border-radius: 8px;
+  text-align: center;
   padding: 2% 3%;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+
+  &:hover {
+  transform: scale(1.025);
+  }
 }
 
 /* Contenu centré avec dégradé */
@@ -29,7 +34,6 @@
   margin: 0 auto;
   padding: 1rem;
   position: relative;
-  background: linear-gradient(to bottom, $color-neutral-darkgrey, $color-footer);
 }
 
 .intro-landing {
@@ -54,9 +58,14 @@
 
   /* Style de base */
   border: 2px solid $color-accent-darkorange;
+  border-radius: 40px;
 
   /* Animation fluide */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: scale(1.02); /* Agrandir le conteneur */
+    border: 2px solid $color-neutral-gold;
+  }
 }
 
 /* Texte du slogan */
@@ -70,16 +79,10 @@
   transition: transform 0.3s ease, font-size 0.3s ease;
 }
 
-/* Survol synchronisé (conteneur et texte grandissent ensemble) */
-.slogan-container:hover {
-  transform: scale(1.1); /* Agrandir le conteneur */
-}
-
 .slogan-container:hover .slogan-text {
   font-size: $font-size-xxxl; /* Grossir légèrement le texte */
-  background: linear-gradient(to right, $color-neutral-gold, $color-accent-darkorange);
   -webkit-background-clip: text;
-  color: transparent;
+  color: $color-accent-darkorange;
 }
 
 // Animation concernant l'apparition des phrases de l'accueil.
@@ -103,7 +106,7 @@
     font-size: $font-size-xxxl;
     color: darkgrey;
     text-align: center;
-    margin: 30px 0;
+    margin: 3% 0;
     line-height: 1;
 }
 
@@ -130,8 +133,6 @@ p.animate {
   }
 }
 
-/* Médias Queries pour la Responsivité */
-
 /* Animation pour fade in avec croissance */
 @keyframes fadeInAndGrow {
   from {
@@ -144,32 +145,6 @@ p.animate {
   }
 }
 
-/* Conteneur pour les produits de la page d'accueil. */
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Grille principale */
-
-.product-card {
-  background-color: $color-background-product;
-  color: $color-text-product;
-  border-radius: 15px;
-  padding: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-  }
-}
 
 // Styles pour la page wait.
 .wait-container {

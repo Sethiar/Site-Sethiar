@@ -172,6 +172,48 @@
   }
 }
 
+/* Style de la page de contact */
+.contact-content {
+  display: flex;
+  justify-content: center; /* Centre le contenu horizontalement */
+  align-items: center; /* Aligne verticalement si nécessaire */
+  position: relative;
+  height: 100vh; /* Optionnel : pour s'assurer que le conteneur occupe toute la hauteur de la page */
+}
+
+/* Conteneur pour les images */
+.cart-sethiar {
+  display: flex; /* Active le mode flexbox */
+  justify-content: center; /* Centre les images horizontalement */
+  gap: 20px; /* Espace entre les images */
+}
+
+/* Style pour la carte page d'accueil */
+.SethiarCart-pic-contact {
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  border: 1px solid $color-accent-darkorange;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.SethiarCart-pic-contact img {
+  height: 50vh;
+  border: 1px solid $color-accent-darkorange;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+
+
+  &:hover {
+    transform: scale(1.1); /* Zoom au survol */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+}
 
 // Footer
 .politique-footer {
