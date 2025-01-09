@@ -12,6 +12,7 @@ $font-size-lg: 1.25rem;      // Taille grande (20px)
 $font-size-xl: 1.5rem;       // Taille extra-large (24px)
 $font-size-xxl: 2rem;        // Taille super large (32px)
 $font-size-xxxl: 3rem;       // Taille extra-super large (40px)
+$font-size-title: 4rem;      // Taille de caractères de titre (48px)
 
 
 // === Couleurs globales ===
@@ -45,8 +46,9 @@ $color-background-productcard-hover: #ff9c00;
 
 /* Accents */
 $color-accent-orange: #ffa500; // Orange
-$color-accent-red: #ff0000; // Rouge
+$color-accent-darkred: darkred; // Rouge foncé
 $color-accent-darkorange: #ff8c00; // Orange foncé
+
 
 
 /* Neutres */
