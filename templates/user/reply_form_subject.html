@@ -16,7 +16,7 @@
         <!-- Titre du formulaire -->
         <h2 class="h2-form">Voici le formulaire pour écrire une réponse aux sujets postés sur le forum. </h2>
 
-        <form method="POST"
+        <form method="POST" class="form-base"
               action="{{ url_for('user.comment_replies_subject', comment_subject_id=comment.id, user_pseudo=current_user.pseudo) }}">
             <!-- Image du logo -->
             <div class="imgcontainer-form">
