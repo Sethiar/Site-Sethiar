@@ -79,7 +79,7 @@ def forum_subject(subject_id):
         abort(404)
 
     # Récupération des commentaires associés à ce sujet.
-    comment_subject = CommentSubject.query.filter_by(subject_id=subject_id)
+    comment_subject = CommentSubject.query.filter_by(subject_id=subject_id).all()
 
     # Préparation des données de likes pour chaque commentaire.
     comment_likes_data = {}
