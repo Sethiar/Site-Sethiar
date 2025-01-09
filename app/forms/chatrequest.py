@@ -1,5 +1,5 @@
 """
-Code traiant les fonctionnalités du chat vidéo.
+Code traitant les fonctionnalités du chat vidéo.
 """
 from flask_wtf import FlaskForm
 
@@ -15,14 +15,14 @@ class ChatRequestForm(FlaskForm):
     """
     Formulaire permettant de demander un chat vidéo à l'administrateur.
 
-    Attributes:
-        request_content (TextAreaField): Champ pour le contenu de la demande.
-        pseudo (StringField): Champ pour le pseudo de l'utilisateur.
-        date_rdv (DateField): Champ pour sélectionner la date du chat vidéo.
+    Attributes :
+        request_content (TextAreaField) : Champ pour le contenu de la demande.
+        pseudo (StringField) : Champ pour le pseudo de l'utilisateur.
+        date_rdv (DateField) : Champ pour sélectionner la date du chat vidéo.
         heure (TimeField): Champ pour indiquer l'heure du chat vidéo.
         attachment (FileField): Champ pour joindre un document à la demande de chat.
         submit (SubmitField): Bouton pour soumettre le formulaire.
-        csrf_token (HiddenField): Champ caché pour la protection CSRF.
+        csrf_token (HiddenField) : Champ caché pour la protection CSRF.
 
     Example :
         form = ChatRequestForm()
