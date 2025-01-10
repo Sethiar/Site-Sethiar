@@ -36,6 +36,7 @@ h1.forum-title {
 .subjects-table th, .subjects-table td, .subjects-table tr {
   padding: 8px;
   font-size: $font-size-xl;
+  border-radius: 8px;
   border-top: 1px solid $color-accent-orange;
   border-bottom: 1px solid $color-accent-orange;
 }
@@ -51,8 +52,139 @@ h1.forum-title {
 
 .h2-politique {
   font-size: $font-size-xxl;
-
 }
 
+// Typography Responsive
+/* Pour les tablettes portrait */
+@media (max-width: 768px) {
+  .forum-title {
+    width: 80%;
+    font-size: $font-size-xxl;
+  }
+
+  .section-title {
+    font-size: $font-size-xl;
+  }
+
+  .subjects-table {
+    width: 100%;
+    margin-left: 0;
+    font-size: $font-size-lg;
+  }
+
+  .subjects-table th,
+  .subjects-table td,
+  .subjects-table tr {
+    padding: 0.6%;
+  }
+
+  .h1-politique {
+    width: 80%;
+    font-size: $font-size-xxl;
+  }
+
+  .h2-politique {
+    font-size: $font-size-xl;
+  }
+}
+
+/* Pour les tablettes paysage */
+@media (max-width: 1024px) {
+  .forum-title {
+    width: 70%;
+    font-size: $font-size-xxl;
+  }
+
+  .section-title {
+    font-size: $font-size-xl;
+  }
+
+  .subjects-table {
+    width: 90%;
+    margin-left: 5%;
+    font-size: $font-size-xl;
+  }
+
+  .subjects-table th,
+  .subjects-table td,
+  .subjects-table tr {
+    padding: 0.7%;
+  }
+
+  .h1-politique {
+    width: 70%;
+    font-size: $font-size-xxxl;
+  }
+
+  .h2-politique {
+    font-size: $font-size-xl;
+  }
+}
+
+/* Pour les téléphones portrait */
+@media (max-width: 480px) {
+  .forum-title {
+    width: 90%;
+    font-size: $font-size-xl;
+  }
+
+  .section-title {
+    font-size: $font-size-lg;
+  }
+
+  .subjects-table {
+    width: 100%;
+    margin-left: 0;
+    font-size: $font-size-base;
+  }
+
+  .subjects-table th,
+  .subjects-table td,
+  .subjects-table tr {
+    padding: 0.5%;
+  }
+
+  .h1-politique {
+    width: 90%;
+    font-size: $font-size-xl;
+  }
+
+  .h2-politique {
+    font-size: $font-size-lg;
+  }
+}
+
+/* Pour les téléphones paysage */
+@media (max-width: 600px) {
+  .forum-title {
+    width: 90%;
+    font-size: $font-size-xl;
+  }
+
+  .section-title {
+    font-size: $font-size-lg;
+  }
+
+  .subjects-table {
+    width: 100%;
+    margin-left: 0;
+    font-size: $font-size-base;
+  }
+
+  .subjects-table th,
+  .subjects-table td,
+  .subjects-table tr {
+    padding: 0.5%;
+  }
+
+  .h1-politique {
+    width: 90%;
+    font-size: $font-size-xl;
+  }
+
+  .h2-politique {
+    font-size: $font-size-lg;
+  }
+}
 
 

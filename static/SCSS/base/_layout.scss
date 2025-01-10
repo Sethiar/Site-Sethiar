@@ -1,7 +1,7 @@
 // Importation des variables.
 @use 'variables' as *;
 
-/* layout CSS - base/layout.scss */
+//layout CSS - base/layout.scss
 
 /* Gère les conteneurs droit et gauche et les séparations et espacement. */
 
@@ -19,7 +19,7 @@
   width: 70%;
   padding: 2rem;
   overflow-y: auto;
-  top: -100vh;
+  margin-top: -100vh;
   background-color: $color-primary;
 }
 
@@ -114,3 +114,90 @@
   height: 5vh;
 }
 
+/* Media Queries pour la Responsivité */
+
+/* Mobile - Portrait (max-width: 599px) */
+@media (max-width: 599px) {
+  .layout {
+    flex-direction: column; /* Afficher la mise en page en colonne */
+  }
+
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    top: 0;
+  }
+
+  .outer-frame, .inner-frame {
+    padding: 5%;
+    width: 100%;
+  }
+
+  .outer-frame-registration {
+    width: 80%;
+  }
+}
+
+/* Mobile - Paysage (min-width: 600px et max-width: 899px) */
+@media (min-width: 600px) and (max-width: 899px) {
+  .layout {
+    flex-direction: column; /* Afficher la mise en page en colonne */
+  }
+
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    top: 0;
+  }
+
+  .outer-frame, .inner-frame {
+    padding: 5%;
+    width: 100%;
+  }
+
+  .outer-frame-registration {
+    width: 70%;
+  }
+}
+
+/* Tablette - Portrait (min-width: 900px et max-width: 1199px) */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .layout {
+    flex-direction: row; /* Retour à une mise en page en ligne */
+  }
+
+  .main-content {
+    margin-left: 25%;
+    width: 75%;
+  }
+
+  .outer-frame, .inner-frame {
+    padding: 3%;
+    width: 100%;
+  }
+
+  .outer-frame-registration {
+    width: 60%;
+  }
+}
+
+/* Tablette - Paysage (min-width: 1200px et max-width: 1399px) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .layout {
+    flex-direction: row; /* Retour à une mise en page en ligne */
+  }
+
+  .main-content {
+    margin-left: 25%;
+    width: 75%;
+  }
+
+  .outer-frame, .inner-frame {
+    padding: 3%;
+    width: 100%;
+  }
+
+  .outer-frame-registration {
+    width: 50%;
+  }
+}

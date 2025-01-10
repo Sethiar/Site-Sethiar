@@ -1,5 +1,8 @@
-/* Reset CSS - base/base-reset.scss */
-/* Voilà ma réinitiamlisation et ma compilation.*/
+// Importation des variables.
+@use 'variables' as *;
+
+// Reset CSS - base/base-reset.scss
+
 /* Réinitialiser les marges, le padding et la box-sizing */
 html,
 body,
@@ -71,4 +74,44 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* Media Queries pour la Responsivité */
+
+/* Mobile - Portrait (max-width: 599px) */
+@media (max-width: 599px) {
+  html,
+  body {
+    font-size: $font-size-base;
+  }
+
+  /* Ajouter d'autres ajustements pour les mobiles ici si nécessaire */
+}
+
+/* Mobile - Paysage (min-width: 600px et max-width: 899px) */
+@media (min-width: 600px) and (max-width: 899px) {
+  html,
+  body {
+    font-size: $font-size-base;
+  }
+
+  /* Ajouter d'autres ajustements pour les mobiles paysage ici */
+}
+
+/* Tablette - Portrait (min-width: 900px et max-width: 1199px) */
+@media (min-width: 900px) and (max-width: 1199px) {
+  html,
+  body {
+    font-size: $font-size-base;
+  }
+
+  /* Ajouter d'autres ajustements pour les tablettes portrait ici */
+}
+
+/* Tablette - Paysage (min-width: 1200px et max-width: 1399px) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  html,
+  body {
+    font-size: $font-size-lg;
+  }
 }
