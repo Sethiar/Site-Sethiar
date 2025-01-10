@@ -192,7 +192,8 @@
 .SethiarCart-pic-contact {
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  aspect-ratio: 16 / 9; /* Proportions 16:9 */
+  width: 100%;
   border: 1px solid $color-accent-darkorange;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -201,11 +202,12 @@
 }
 
 .SethiarCart-pic-contact img {
-  height: 50vh;
+  width: 100%;
+  height: auto;;
+  object-fit: cover; /* Remplit l'espace sans déformation de l'image */
   border: 1px solid $color-accent-darkorange;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
   transition: transform 0.3s ease-in-out;
 
 
@@ -224,5 +226,113 @@
 
   p {
     font-style: italic;
+  }
+}
+
+/* Media Queries */
+
+/* Pour les écrans de 1200px et plus (tablettes et bureau) */
+@media (min-width: 1200px) {
+  .outer-frame-politique {
+    margin: 5%;
+    padding: 3%;
+  }
+
+  .politique-main {
+    padding: 4.5% 3%;
+  }
+
+  .politique-title {
+    font-size: $font-size-xxl;
+  }
+
+  .politique-content {
+    max-width: 75%;
+  }
+
+  .SethiarCart-pic-contact {
+    height: 45vh;
+  }
+}
+
+/* Pour les écrans de 768px à 1199px (tablettes) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .outer-frame-politique {
+    margin: 8%;
+    padding: 2.5%;
+  }
+
+  .politique-main {
+    padding: 4% 2.5%;
+  }
+
+  .politique-title {
+    font-size: $font-size-xxl;
+  }
+
+  .politique-content {
+    max-width: 85%;
+  }
+
+  .SethiarCart-pic-contact {
+    height: 40vh;
+  }
+}
+
+/* Pour les écrans de 480px à 767px (mobiles en paysage et petites tablettes) */
+@media (min-width: 480px) and (max-width: 767px) {
+  .outer-frame-politique {
+    margin: 12%;
+    padding: 2%;
+  }
+
+  .politique-main {
+    padding: 3% 1.5%;
+  }
+
+  .politique-title {
+    font-size: $font-size-xl;
+  }
+
+  .politique-content {
+    max-width: 90%;
+  }
+
+  .SethiarCart-pic-contact {
+    height: 35vh;
+  }
+}
+
+/* Pour les écrans de moins de 480px (mobiles) */
+@media (max-width: 479px) {
+  .outer-frame-politique {
+    margin: 10%;
+    padding: 1.5%;
+  }
+
+  .politique-main {
+    padding: 2% 1%;
+  }
+
+  .politique-title {
+    font-size: $font-size-xl;
+  }
+
+  .politique-content {
+    max-width: 100%;
+  }
+
+  .SethiarCart-pic-contact {
+    height: 30vh;
+  }
+
+  .cart-sethiar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .SethiarCart-pic-contact img {
+    width: 100%;
+    height: auto;
   }
 }

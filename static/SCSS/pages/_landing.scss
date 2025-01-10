@@ -155,3 +155,75 @@ p.animate {
   text-align: center;
   max-width: 80%;
 }
+
+/* Media Queries pour la réactivité */
+
+@media (max-width: 768px) {
+  /* Ajustements pour les tablettes en portrait et les petits écrans */
+  .title-container-landing {
+    font-size: $font-size-xxl;
+    height: 12vh;
+  }
+
+  .content-section-landing {
+    width: 90%;
+    padding: 0.5rem;
+  }
+
+  .intro-landing {
+    font-size: $font-size-xl;
+    margin: 2% 0;
+  }
+
+  .slogan-container {
+    width: 100%;
+    padding: 1%;
+  }
+
+  .slogan-text {
+    font-size: $font-size-xl;
+  }
+
+  .registration-sentence-landing {
+    font-size: $font-size-xl;
+  }
+
+  .wait-container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustements pour les smartphones */
+  .title-container-landing {
+    font-size: $font-size-xxl;
+    height: 10vh;
+  }
+
+  .content-section-landing {
+    width: 100%;
+    padding: 0.25rem;
+  }
+
+  .intro-landing {
+    font-size: $font-size-xl;
+    margin: 1% 0;
+  }
+
+  .slogan-container {
+    padding: 0.5%;
+  }
+
+  .slogan-text {
+    font-size: $font-size-xl;
+  }
+
+  .registration-sentence-landing {
+    font-size: $font-size-xl;
+  }
+
+  .wait-container {
+    max-width: 100%;
+    padding: 1rem;
+  }
+}

@@ -338,3 +338,104 @@ textarea:hover {
   padding: 0.8%;
   box-sizing: border-box;
 }
+
+// Media Queries pour rendre le design responsive
+
+@media only screen and (max-width: 1024px) {
+  .container-subject-forum h2 {
+    width: 85%;
+    font-size: $font-size-xl;
+  }
+
+  .profile-picture {
+    width: 40px;
+    height: 40px;
+  }
+
+  .comment {
+    font-size: $font-size-lg;
+  }
+
+  .btn-comment {
+    font-size: $font-size-lg;
+  }
+
+  textarea {
+    width: 90%;
+    height: 12vh;
+  }
+
+  .comment-avis h3 {
+    font-size: $font-size-lg;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container-subject-forum h2 {
+    width: 95%;
+    font-size: $font-size-lg;
+  }
+
+  .comment {
+    font-size: $font-size-base;
+  }
+
+  .btn-comment {
+    font-size: $font-size-base;
+  }
+
+  textarea {
+    width: 95%;
+    height: 10vh;
+  }
+
+  .comment-avis h3 {
+    font-size: $font-size-base;
+  }
+
+  .reply-profile-picture {
+    width: 35px;
+    height: 35px;
+  }
+
+  .reply-content {
+    font-size: $font-size-lg;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .container-subject-forum h2 {
+    width: 100%;
+    font-size: $font-size-lg;
+  }
+
+  .comment {
+    font-size: $font-size-base;
+  }
+
+  .btn-comment {
+    font-size: $font-size-base;
+  }
+
+  textarea {
+    width: 100%;
+    height: 8vh;
+  }
+
+  .comment-avis h3 {
+    font-size: $font-size-base;
+  }
+
+  .reply-profile-picture {
+    width: 30px;
+    height: 30px;
+  }
+
+  .reply-content {
+    font-size: $font-size-sm;
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+}
