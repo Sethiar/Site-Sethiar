@@ -1,6 +1,8 @@
 // Importation des variables.
 @use '../base/variables' as *;
 
+// Forms CSS - Components/forms.scss
+
 /* Style général des formulaires */
 
 .annonce {
@@ -139,4 +141,69 @@ img.avatar-form:hover {
   padding: 15px;
   margin-top: 20px;
   text-align: center;
+}
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .annonce {
+    max-width: 100%; /* Prend toute la largeur de l'écran */
+    padding: 5%; /* Espacement interne suffisant */
+    margin: 0; /* Pas de marges externes */
+  }
+
+  /* Enlever les styles qui forcent les marges et la largeur pour mobile */
+  .form-base {
+    max-width: 100%; /* Laisser le formulaire occuper toute la largeur */
+    margin: 0; /* Pas de marges externes */
+  }
+
+  .form-container {
+    gap: 8px; /* Espacement réduit pour les champs */
+  }
+
+  .form-group {
+    label {
+      font-size: $font-size-lg; /* Ajustement de la taille du texte */
+    }
+
+    input {
+      font-size: $font-size-lg; /* Ajuste la taille des champs */
+    }
+  }
+
+  .container-btn {
+    padding: 1.2%; /* Ajustement du padding du bouton */
+  }
+}
+
+/* Tablettes en paysage */
+@media (max-width: 1024px) {
+  .annonce {
+    max-width: 90%; /* Réduit légèrement la largeur par rapport aux tablettes en portrait */
+    padding: 4%;
+  }
+
+  .form-base {
+    max-width: 90vw; /* Ajuste la largeur pour ne pas trop prendre de place */
+    margin: 5% auto; /* Ajuste la marge */
+  }
+
+  .form-container {
+    gap: 10px; /* Espacement réduit entre les champs */
+  }
+
+  .form-group {
+    label {
+      font-size: $font-size-lg;
+    }
+
+    input {
+      font-size: $font-size-lg;
+    }
+  }
+
+  .container-btn {
+    padding: 1.4%;
+  }
 }

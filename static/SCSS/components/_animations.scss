@@ -2,6 +2,15 @@
 
 // Style concernant les animations du site entreprise SethiarWorks
 
+/* Configuration du bouton */
+#button-logo {
+  position: absolute;
+  bottom: 10%; /* Ajuste cette valeur pour placer le bouton où tu veux */
+  left: 50%;
+  transform: translateX(-50%); /* Centrer horizontalement */
+  z-index: 10; /* Assure-toi que le bouton soit au-dessus des autres éléments */
+}
+
 /* Configuration des sprites de l'animation */
 /*  Conteneur globale du logo */
 #logo {
@@ -80,4 +89,78 @@
 @keyframes animateLogo8 {
     from { background-position: 0 0; }
     to { background-position: -11000px 0; }
+}
+
+/* Animation Responsive */
+
+/* Pour les tablettes portrait */
+@media (max-width: 768px) {
+  body, #logo, .logo-animation {
+    position: relative; /* S'assure que le logo est positionné par rapport au body */
+  }
+  #logo, .logo-animation {
+    position: absolute;
+    top: 0; /* Positionné tout en haut */
+    left: 50%;
+    transform: translateX(-50%); /* Centré horizontalement */
+    width: 70%; /* Adaptation responsive */
+    max-width: 550px; /* Limite la taille maximale */
+    height: auto; /* Ajuste la hauteur proportionnellement */
+    margin: 0;
+    z-index: 10; /* Assure que le logo reste au-dessus d'autres éléments */
+  }
+}
+
+/* Pour les tablettes paysage */
+@media (max-width: 1024px) {
+  body, #logo, .logo-animation {
+    position: relative; /* S'assure que le logo est positionné par rapport au body */
+  }
+  #logo, .logo-animation {
+    position: absolute;
+    top: 0; /* Positionné tout en haut */
+    left: 50%;
+    transform: translateX(-50%); /* Centré horizontalement */
+    width: 70%; /* Adaptation responsive */
+    max-width: 550px; /* Limite la taille maximale */
+    height: auto; /* Ajuste la hauteur proportionnellement */
+    margin: 0;
+    z-index: 10; /* Assure que le logo reste au-dessus d'autres éléments */
+  }
+}
+
+/* Pour les téléphones portrait */
+@media (max-width: 480px) {
+  body, #logo, .logo-animation {
+    position: relative; /* S'assure que le logo est positionné par rapport au body */
+  }
+  #logo, .logo-animation {
+    position: absolute;
+    top: 0; /* Positionné tout en haut */
+    left: 50%;
+    transform: translateX(-50%); /* Centré horizontalement */
+    width: 80%; /* Adaptation responsive */
+    max-width: 400px; /* Limite la taille maximale */
+    height: auto; /* Ajuste la hauteur proportionnellement */
+    margin: 0;
+    z-index: 10; /* Assure que le logo reste au-dessus d'autres éléments */
+  }
+}
+
+/* Pour les téléphones paysage */
+@media (max-width: 600px) {
+  body, #logo, .logo-animation {
+    position: relative; /* S'assure que le logo est positionné par rapport au body */
+  }
+  #logo, .logo-animation {
+    position: absolute;
+    top: 0; /* Positionné tout en haut */
+    left: 50%;
+    transform: translateX(-50%); /* Centré horizontalement */
+    width: 80%; /* Adaptation responsive */
+    max-width: 400px; /* Limite la taille maximale */
+    height: auto; /* Ajuste la hauteur proportionnellement */
+    margin: 0;
+    z-index: 10; /* Assure que le logo reste au-dessus d'autres éléments */
+  }
 }

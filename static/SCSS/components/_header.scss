@@ -1,12 +1,12 @@
 // Importation de variables.scss
 @use '../base/variables' as *;
 
-
-// Style du Header.
+// Style du Header
 .header {
   position: fixed;
   top: 0;
-  bottom: 0; /* Réduit la largeur pour que les éléments soient visibles */
+  left: 0;
+  bottom: 0;
   width: 30%;
   background-color: rgba(44, 62, 80, 0.95);
   box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
@@ -18,13 +18,117 @@
   padding: 2rem 1rem;
 }
 
-.nav-container {
-  display: flex;
+// Menu hamburger
+.hamburger {
+  display: none;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4rem;
-  height: 100%;
+  gap: 0.4rem;
+  cursor: pointer;
+  z-index: 1001; /* Pour s'assurer que le hamburger est au-dessus du contenu */
+}
+
+.hamburger .line {
+  width: 2rem;
+  height: 0.2rem;
+  background-color: $color-secondary;
+}
+
+/* Tablettes portrait et moins */
+@media (max-width: 1024px) {
+  .header {
+    display: none; /* Cacher tout le header sur tablettes et moins */
+  }
+
+  .hamburger {
+    display: flex; /* Afficher le hamburger en portrait et paysage tablette */
+  }
+
+  .nav-container {
+    display: none; /* Par défaut, menu caché */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(44, 62, 80, 0.95);
+    padding: 2rem 1rem;
+    gap: 2rem;
+    flex-direction: column;
+  }
+
+  .hamburger.active + .nav-container {
+    display: flex; /* Afficher le menu lorsque hamburger est actif */
+  }
+}
+
+/* Téléphone portrait */
+@media (max-width: 768px) {
+  .header {
+    display: none; /* Cacher tout le header sur téléphone portrait */
+  }
+
+  .hamburger {
+    display: flex; /* Afficher le hamburger en portrait */
+  }
+
+  .nav-container {
+    display: none; /* Menu caché par défaut sur téléphone portrait */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(44, 62, 80, 0.95);
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+
+  .hamburger.active + .nav-container {
+    display: flex; /* Menu affiché lorsque hamburger est actif */
+  }
+}
+
+/* Téléphone paysage */
+@media (max-width: 600px) {
+  .header {
+    display: none; /* Cacher tout le header sur téléphone paysage */
+  }
+
+  .hamburger {
+    display: flex; /* Afficher le hamburger en paysage */
+  }
+
+  .nav-container {
+    display: none; /* Menu caché par défaut en paysage */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(44, 62, 80, 0.95);
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+
+  .hamburger.active + .nav-container {
+    display: flex; /* Menu affiché lorsque hamburger est actif */
+  }
+}
+
+/* Tablette paysage */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .header {
+    display: none; /* Cacher tout le header sur tablette paysage */
+  }
+
+  .hamburger {
+    display: flex; /* Afficher le hamburger en paysage tablette */
+  }
+
+  .nav-container {
+    display: none; /* Menu caché par défaut en paysage tablette */
+  }
+
+  .hamburger.active + .nav-container {
+    display: flex;
+  }
 }
 
 // Navigation
@@ -93,6 +197,10 @@
   background-color: $color-secondary;
 }
 
-
-
+/* Affichage du menu sur mobile/tablette lorsqu'il est activé */
+@media (max-width: 1024px) {
+  .hamburger.active + .nav-container {
+    display: flex; /* Afficher le menu lorsque hamburger est actif */
+  }
+}
 

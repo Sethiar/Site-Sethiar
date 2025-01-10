@@ -1,7 +1,6 @@
 // Importation des variables.
 @use '../base/variables' as *;
 
-
 /* Style pour la carte page d'accueil */
 .SethiarCart-pic {
   display: flex;
@@ -30,8 +29,33 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
+/* Media Queries pour les petits écrans */
+@media (max-width: 768px) {
+  /* Carte d'accueil */
+  .SethiarCart-pic {
+    height: 40vh; /* Réduit la hauteur sur les écrans plus petits */
+    margin: 1rem; /* Ajoute un peu de marge */
+  }
 
-// Styles pour image du forum
+  .SethiarCart-pic img {
+    width: 80%; /* Augmente la largeur de l'image pour une meilleure visibilité */
+  }
+}
+
+/* Media Queries pour les très petits écrans (téléphones) */
+@media (max-width: 480px) {
+  /* Carte d'accueil */
+  .SethiarCart-pic {
+    height: 35vh; /* Encore plus petite sur les téléphones */
+    margin: 0.5rem; /* Marge plus petite */
+  }
+
+  .SethiarCart-pic img {
+    width: 90%; /* Largeur presque pleine sur les téléphones */
+  }
+}
+
+/* Styles pour l'image du forum */
 
 /* Conteneur de l'image du forum */
 .forum-image-container {
@@ -60,4 +84,18 @@
   display: block; /* Supprime les espaces blancs sous l'image */
   max-width: 60%; /* Adapte la taille de l'image */
   height: auto; /* Conserve le ratio de l'image */
+}
+
+/* Media Queries pour les petits écrans */
+@media (max-width: 768px) {
+  .image-forum img {
+    max-width: 80%; /* Agrandit l'image pour les tablettes et petits écrans */
+  }
+}
+
+/* Media Queries pour les très petits écrans (téléphones) */
+@media (max-width: 480px) {
+  .image-forum img {
+    max-width: 90%; /* Agrandit encore l'image pour les téléphones */
+  }
 }

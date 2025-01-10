@@ -5,32 +5,41 @@
 /* Styles Footer Global */
 footer {
   background-color: $color-footer;
-  width: 70%;
-  height: 60vh;
-  margin-left: 30%;
+  width: 100%; /* Ajustement pour un footer responsive */
+  max-width: 1200px; /* Limite la largeur du footer pour les grands écrans */
+  margin: 0 auto; /* Centrage horizontal */
   color: $color-secondary;
-  padding: 30px 0;
+  padding: 3rem 0; /* Augmente le padding pour les petites résolutions */
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre le contenu */
+  justify-content: center;
 }
 
 /* Contenu principal du pied de page */
 .footer-content {
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Distribue l'espace entre les sections */
   gap: 2rem;
-  padding: 3rem;
+  padding: 2rem; /* Réduit le padding pour éviter trop d'espace sur mobile */
+  width: 100%; /* Prend toute la largeur disponible */
+  max-width: 1000px; /* Limite la largeur pour des grands écrans */
+  flex-wrap: wrap; /* Permet aux sections de passer à la ligne en cas de petite taille d'écran */
 }
 
+/* Chaque section du footer */
 .footer-section {
   flex: 1;
-  margin: 0 15px;
+  min-width: 200px; /* Garantit que chaque section ait une taille minimale */
+  margin: 0 1rem; /* Ajoute de l'espace entre les sections */
 }
 
-/* Titres */
+/* Titres des sections */
 footer h3 {
   font-size: $font-size-xxl;
   font-weight: bold;
-  margin-bottom: 10%;
+  margin-bottom: 1rem;
   text-decoration: underline;
   color: $color-accent-orange;
 }
@@ -42,7 +51,7 @@ footer ul {
 }
 
 footer ul li {
-  margin-bottom: 1.5%;
+  margin-bottom: 1rem; /* Espace plus important entre les éléments de liste */
   font-size: $font-size-xl;
 }
 
@@ -51,6 +60,7 @@ footer ul li a {
   text-decoration: none;
   color: $color-secondary;
   transition: color 0.3s ease, text-decoration 0.3s ease;
+
   &:hover {
     color: $color-neutral-gold;
     text-decoration: none;
@@ -90,3 +100,52 @@ footer p {
   color: $color-accent-darkorange;
 }
 
+/* Adaptation mobile */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column; /* Les sections s'affichent verticalement sur mobile */
+    padding: 1.5rem; /* Réduit le padding */
+  }
+
+  .footer-section {
+    width: 100%; /* Chaque section prend toute la largeur */
+    margin: 0 0 1.5rem 0; /* Ajoute un espace vertical entre les sections */
+  }
+
+  footer h3 {
+    font-size: $font-size-xl; /* Réduit la taille des titres pour les petits écrans */
+    margin-bottom: 1rem;
+  }
+
+  footer ul li {
+    font-size: $font-size-lg; /* Réduit la taille des items de liste */
+  }
+
+  footer p {
+    font-size: $font-size-lg; /* Réduit la taille du texte simple */
+  }
+}
+
+/* Adaptation très petit écran (téléphones) */
+@media (max-width: 480px) {
+  footer {
+    padding: 2rem 0;
+  }
+
+  .footer-content {
+    flex-direction: column; /* Les sections s'affichent verticalement */
+    padding: 1rem;
+  }
+
+  footer h3 {
+    font-size: $font-size-xl; /* Réduit encore la taille des titres */
+  }
+
+  footer ul li {
+    font-size: $font-size-lg; /* Réduit la taille des items de liste */
+  }
+
+  footer p {
+    font-size: $font-size-lg; /* Réduit la taille du texte simple */
+  }
+}
