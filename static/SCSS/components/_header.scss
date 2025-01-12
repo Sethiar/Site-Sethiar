@@ -1,6 +1,10 @@
 // Importation de variables.scss
 @use '../base/variables' as *;
 
+// Variables locales
+$header-bg: rgba(44, 62, 80, 0.95);
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
 // Style du Header
 .header {
   position: fixed;
@@ -8,146 +12,96 @@
   left: 0;
   bottom: 0;
   width: 30%;
-  background-color: rgba(44, 62, 80, 0.95);
+  background-color: $header-bg;
   box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  z-index: 1001;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 2rem 1rem;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 }
 
-// Menu hamburger
+// Style pour le hamburger
 .hamburger {
   display: none;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1002;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0.4rem;
   cursor: pointer;
-  z-index: 1001; /* Pour s'assurer que le hamburger est au-dessus du contenu */
-}
+  background: none;
+  border: none;
 
-.hamburger .line {
-  width: 2rem;
-  height: 0.2rem;
-  background-color: $color-secondary;
-}
-
-/* Tablettes portrait et moins */
-@media (max-width: 1024px) {
-  .header {
-    display: none; /* Cacher tout le header sur tablettes et moins */
+  .line {
+    width: 2rem;
+    height: 0.3rem;
+    background-color: $color-secondary;
+    transition: all 0.3s ease-in-out;
   }
 
-  .hamburger {
-    display: flex; /* Afficher le hamburger en portrait et paysage tablette */
-  }
-
-  .nav-container {
-    display: none; /* Par défaut, menu caché */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(44, 62, 80, 0.95);
-    padding: 2rem 1rem;
-    gap: 2rem;
-    flex-direction: column;
-  }
-
-  .hamburger.active + .nav-container {
-    display: flex; /* Afficher le menu lorsque hamburger est actif */
-  }
-}
-
-/* Téléphone portrait */
-@media (max-width: 768px) {
-  .header {
-    display: none; /* Cacher tout le header sur téléphone portrait */
-  }
-
-  .hamburger {
-    display: flex; /* Afficher le hamburger en portrait */
-  }
-
-  .nav-container {
-    display: none; /* Menu caché par défaut sur téléphone portrait */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(44, 62, 80, 0.95);
-    padding: 2rem 1rem;
-    gap: 2rem;
-  }
-
-  .hamburger.active + .nav-container {
-    display: flex; /* Menu affiché lorsque hamburger est actif */
-  }
-}
-
-/* Téléphone paysage */
-@media (max-width: 600px) {
-  .header {
-    display: none; /* Cacher tout le header sur téléphone paysage */
-  }
-
-  .hamburger {
-    display: flex; /* Afficher le hamburger en paysage */
-  }
-
-  .nav-container {
-    display: none; /* Menu caché par défaut en paysage */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(44, 62, 80, 0.95);
-    padding: 2rem 1rem;
-    gap: 2rem;
-  }
-
-  .hamburger.active + .nav-container {
-    display: flex; /* Menu affiché lorsque hamburger est actif */
-  }
-}
-
-/* Tablette paysage */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .header {
-    display: none; /* Cacher tout le header sur tablette paysage */
-  }
-
-  .hamburger {
-    display: flex; /* Afficher le hamburger en paysage tablette */
-  }
-
-  .nav-container {
-    display: none; /* Menu caché par défaut en paysage tablette */
-  }
-
-  .hamburger.active + .nav-container {
+  @media (max-width: 1024px) {
     display: flex;
   }
+}
+
+// Menu affiché avec le hamburger
+.hamburger.active + .header,
+.header.active {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 15%;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: $header-bg;
+  box-shadow: $box-shadow;
+  overflow-y: auto; // Permet le défilement si les liens débordent
+}
+
+.main-content {
+  transition: margin-top 0.3s ease; // Animation fluide lors du changement
+}
+
+// Conteneur de navigation
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  padding: 2rem 1rem;
+  gap: 2rem;
 }
 
 // Navigation
 .nav-links ul {
   list-style: none;
-  margin: 0;
+  margin: 0 auto; // Centre horizontalement
   padding: 0;
-  text-align: center;
-}
+  display: flex;
+  flex-direction: column; // Place les liens verticalement
+  justify-content: center; // Centre verticalement si le parent a une hauteur définie
+  align-items: center;
 
-.nav-links ul li a {
-  font-size: $font-size-xxxl;
-  color: $color-secondary;
-  text-decoration: none;
-  margin: 0;
-}
+  li a {
+    font-size: $font-size-xxxl;
+    color: $color-secondary;
+    text-decoration: none;
+    margin: 1rem 0;
 
-.nav-links ul li a:hover {
-  color: $color-neutral-gold;
+    &:hover {
+      color: $color-neutral-gold;
+    }
+  }
 }
 
 // Actions utilisateur
@@ -157,50 +111,26 @@
   align-items: center;
   text-align: center;
   gap: 1rem;
-}
 
-.logged {
-  font-size: $font-size-xxl;
-  font-weight: bold;
-  margin: 0;
-  margin-bottom: 3%;
-}
+  .logged {
+    font-size: $font-size-xxl;
+    font-weight: bold;
+  }
 
-.actions a {
-  text-align: center;
-  font-size: $font-size-lg;
-  color: $color-primary;
-  padding: 0.8rem 1rem;
-  border-radius: 5px;
-  background-color: $color-accent-darkorange;
-  text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
+  a {
+    text-align: center;
+    font-size: $font-size-lg;
+    color: $color-primary;
+    padding: 0.8rem 1rem;
+    border-radius: 5px;
+    background-color: $color-accent-darkorange;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 
-.actions a:hover {
-  background-color: $color-primary;
-  color: $color-neutral-gold;
-  transform: scale(1.05);
-}
-
-// Menu hamburger
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 0.4rem;
-  cursor: pointer;
-}
-
-.hamburger .line {
-  width: 2rem;
-  height: 0.2rem;
-  background-color: $color-secondary;
-}
-
-/* Affichage du menu sur mobile/tablette lorsqu'il est activé */
-@media (max-width: 1024px) {
-  .hamburger.active + .nav-container {
-    display: flex; /* Afficher le menu lorsque hamburger est actif */
+    &:hover {
+      background-color: $color-primary;
+      color: $color-neutral-gold;
+      transform: scale(1.05);
+    }
   }
 }
-

@@ -12,9 +12,14 @@
   font-weight: bold;
 }
 
+.btn-primary-forum {
+  display: flex;
+  margin: 0 auto;
+}
+
 .btn-primary, .btn-primary-forum, .btn-primary-registration {
   @extend %btn-common;
-  padding: 3% 7%;
+  padding: 2% 4%;
   font-size: $font-size-base;
   background-color: $color-accent-darkorange;
   color: $color-primary;
@@ -34,7 +39,7 @@
 
 .btn-secondary, .btn-secondary-forum, .reply-button, .change-button, .delete-comment-form button {
   @extend %btn-common;
-  padding: 1% 2%;
+  padding: 2% 3%;
   font-size: $font-size-lg;
   background-color: $color-lightgrey;
   color: $color-primary;

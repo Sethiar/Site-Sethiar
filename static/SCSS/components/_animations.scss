@@ -106,6 +106,10 @@
     width: 70%; /* Adaptation responsive */
     max-width: 550px; /* Limite la taille maximale */
     height: auto; /* Ajuste la hauteur proportionnellement */
+    background-image: url('/static/Images/images_accueil/logo.jpg'); /* Remplace par ton URL d'image */
+    background-size: contain; /* Redimensionne l'image en maintenant ses proportions */
+    background-position: center; /* Centré dans son conteneur */
+    background-repeat: no-repeat;
     margin: 0;
     z-index: 10; /* Assure que le logo reste au-dessus d'autres éléments */
   }
@@ -124,6 +128,10 @@
     width: 70%; /* Adaptation responsive */
     max-width: 550px; /* Limite la taille maximale */
     height: auto; /* Ajuste la hauteur proportionnellement */
+    background-image: url('/static/Images/images_accueil/logo.jpg'); /* Remplace par ton URL d'image */
+    background-size: contain; /* Redimensionne l'image en maintenant ses proportions */
+    background-position: center; /* Centré dans son conteneur */
+    background-repeat: no-repeat;
     margin: 0;
     z-index: 10; /* Assure que le logo reste au-dessus d'autres éléments */
   }
@@ -142,6 +150,10 @@
     width: 80%; /* Adaptation responsive */
     max-width: 400px; /* Limite la taille maximale */
     height: auto; /* Ajuste la hauteur proportionnellement */
+    background-image: url('/static/Images/images_accueil/logo.jpg'); /* Remplace par ton URL d'image */
+    background-size: contain; /* Redimensionne l'image en maintenant ses proportions */
+    background-position: center; /* Centré dans son conteneur */
+    background-repeat: no-repeat;
     margin: 0;
     z-index: 10; /* Assure que le logo reste au-dessus d'autres éléments */
   }
@@ -160,6 +172,10 @@
     width: 80%; /* Adaptation responsive */
     max-width: 400px; /* Limite la taille maximale */
     height: auto; /* Ajuste la hauteur proportionnellement */
+    background-image: url('/static/Images/images_accueil/logo.jpg'); /* Remplace par ton URL d'image */
+    background-size: contain; /* Redimensionne l'image en maintenant ses proportions */
+    background-position: center; /* Centré dans son conteneur */
+    background-repeat: no-repeat;
     margin: 0;
     z-index: 10; /* Assure que le logo reste au-dessus d'autres éléments */
   }
