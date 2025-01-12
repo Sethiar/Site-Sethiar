@@ -36,6 +36,8 @@ class UserConnection(FlaskForm):
 
     # Action de soumettre le formulaire.
     submit = SubmitField("Se connecter")
+
+    # Token de sécurité.
     csrf_token = HiddenField()
 
 

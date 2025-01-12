@@ -57,6 +57,7 @@ class ChatRequestForm(FlaskForm):
         render_kw={"placeholder": "12:00"}
     )
 
+    # Joindre un fichier.
     attachment = FileField(
         "Joindre un document",
         validators=[FileAllowed(['pdf', 'doc', 'docx'], 'Seuls les fichiers PDF ou Word sont autorisés.')]
@@ -65,6 +66,7 @@ class ChatRequestForm(FlaskForm):
     # Action de soumettre le formulaire.
     submit = SubmitField("Soumettre la demande")
 
+    # Token de sécurité.
     csrf_token = HiddenField()
 
 
@@ -73,12 +75,18 @@ class UserLink(FlaskForm):
     """
     Formulaire pour envoyer le lien à l'utilisateur.
     """
+
+    # Réception du lien pour le chat à envoyer à l'utilisateur.
     chat_link = StringField(
         "Chat-link",
         validators=[DataRequired()],
         render_kw={"placeholder": "Veuillez renseigner le lien copié."}
     )
 
-    csrf_token = HiddenField()
+    # Action de soumettre le formulaire.
     submit = SubmitField("Envoyer à l'utilisateur")
+
+    # Token de sécurité.
+    csrf_token = HiddenField()
+
 

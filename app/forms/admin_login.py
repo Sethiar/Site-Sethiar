@@ -45,6 +45,8 @@ class AdminConnection(FlaskForm):
 
     # Action de soumettre le formulaire.
     submit = SubmitField("Se connecter au backend")
+
+    # Token de sécurité.
     csrf_token = HiddenField()
 
 
@@ -117,6 +119,7 @@ class UserAdminSaving(FlaskForm):
     submit = SubmitField(
         "Souscrire aux conditions générales du blog.")
 
+    # Token de sécurité.
     csrf_token = HiddenField()
 
     # Fonction qui vérifie si le pseudo existe déjà.

@@ -20,7 +20,9 @@ class BanUserForm(FlaskForm):
 
     """
 
+    # Token de sécurité.
     csrf_token = HiddenField()
+
     # Action de soumettre le formulaire.
     submit = SubmitField('Bannir')
 
@@ -38,6 +40,8 @@ class UnBanUserForm(FlaskForm):
         form = UnBanUserForm()
     """
 
+    # Token de sécurité.
     csrf_token = HiddenField()
+
     # Action de soumettre le formulaire.
     submit = SubmitField('Débannir')

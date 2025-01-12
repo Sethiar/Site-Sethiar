@@ -39,6 +39,8 @@ class CommentSubjectForm(FlaskForm):
 
     # Action de soumettre le formulaire.
     submit = SubmitField("Soumettre le commentaire")
+
+    # Token de sécurité.
     csrf_token = HiddenField()
 
 
@@ -63,6 +65,8 @@ class ChangeCommentSubjectForm(FlaskForm):
 
     # Action de soumettre le commentaire.
     submit = SubmitField("Soumettre le commentaire")
+
+    # Token de sécurité.
     csrf_token = HiddenField()
 
 
@@ -77,6 +81,8 @@ class SuppressCommentForm(FlaskForm):
     """
     # Action de soumettre le commentaire.
     submit = SubmitField("Supprimer le commentaire")
+
+    # Token de sécurité.
     csrf_token = HiddenField()
 
 
@@ -124,6 +130,8 @@ class ReplySubjectForm(FlaskForm):
 
     # Action de soumettre le commentaire.
     submit = SubmitField("Soumettre la réponse")
+
+    # Token de sécurité.
     csrf_token = HiddenField()
 
 
@@ -147,6 +155,8 @@ class ChangeReplySubject(FlaskForm):
 
     # Action de soumettre le commentaire.
     submit = SubmitField("Soumettre la réponse")
+
+    # Token de sécurité.
     csrf_token = HiddenField()
 
 
@@ -160,6 +170,7 @@ class SuppressReplySubject(FlaskForm):
         submit (SubmitField): Bouton de soumission du formulaire.
     """
 
+    # Réponse à supprimer en fonction de son id.
     reply_id = HiddenField(
         "reply_id",
         validators=[DataRequired()]
@@ -181,7 +192,7 @@ class CommentLike(FlaskForm):
     Example:
         form = CommentLike()
     """
-
+    # Token de sécurité.
     csrf_token = HiddenField()
 
     # Action de soumettre le commentaire.

@@ -70,13 +70,14 @@ class UserRecording(FlaskForm):
     )
 
     # Action de soumettre le formulaire.
-    csrf_token = HiddenField()
     submit = SubmitField(
         "Souscrire aux conditions générales du site."
     )
 
-    # Fonction vérifiant la bonne créations du formulaire.
+    # Token de sécurité.
+    csrf_token = HiddenField()
 
+    # Fonction vérifiant la bonne création du formulaire.
     # Fonction qui vérifie si le pseudo existe déjà.
     def validate_pseudo(self, pseudo):
         """

@@ -46,5 +46,7 @@ class SuppressSubject(FlaskForm):
 
     # Action de soumettre le formulaire.
     submit = SubmitField('Supprimer')
+
+    # Token de sécurité.
     csrf_token = HiddenField()
 

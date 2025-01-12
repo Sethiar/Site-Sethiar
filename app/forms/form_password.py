@@ -30,6 +30,7 @@ class ForgetPassword(FlaskForm):
     # Action de soumettre le formulaire.
     submit = SubmitField('Réinitialiser le mot de passe.')
 
+    # Token de sécurité.
     csrf_token = HiddenField()
 
 
@@ -58,5 +59,6 @@ class RenamePassword(FlaskForm):
         render_kw={"placeholder": "Confirmation du nouveau mot de passe."}
     )
 
+    # Token de sécurité.
     csrf_token = HiddenField()
 
