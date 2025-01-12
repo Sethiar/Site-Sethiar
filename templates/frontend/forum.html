@@ -10,10 +10,7 @@
 {% endblock %}
 
 {% block main_content %}
-<!-- division de retour à la page d'accueil -->
-<div class="back-link">
-    <a class="back" href="{{ url_for('landing_page') }}">Retour au page d'accueil</a>
-</div>
+
 <!-- conteneur principal -->
 <div class="main-content">
 
@@ -22,7 +19,10 @@
 
         <!-- cadre intérieur -->
         <div class="inner-frame-politique">
-
+            <!-- division de retour à la page d'accueil -->
+            <div class="back-link">
+                <a class="back" href="{{ url_for('landing_page') }}">Retour à la page d'accueil</a>
+            </div>
             <!-- Image du logo -->
             <div class="imgcontainer-form">
                 <img src="{{ url_for('static', filename='Images/images_accueil/logo.jpg') }}" alt="Logo de SethiarWorks"
@@ -66,6 +66,7 @@
                     </button>
                 </form>
             </div>
+            <div class="space2"></div>
 
             <!-- Liste des sujets -->
             <div class="subjects-container">
@@ -113,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
     });
 });
+
 
 
 
