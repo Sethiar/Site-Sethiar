@@ -24,6 +24,11 @@
   }
 }
 
+/* Styles pour formulaire d'ajout de sujet */
+#addSubjectForm label {
+  font-size: $font-size-xl;
+}
+
 /* Centrer uniquement le texte de .subject-name et ajouter un espace */
 .subject-name {
   margin-left: 2%;
