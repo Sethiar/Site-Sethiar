@@ -483,6 +483,22 @@ def calendar():
                            rdv_data=rdv_data, formlink=formlink)
 
 
+# Route permettant d'afficher les devis reçus par l'entreprise SethiaXWorks.
+@admin_bp.route("/liste-devis", methods=['GET', 'POST'])
+def list_devis():
+    """
+    Fonction qui permet d'accéder à la liste de tous les devis reçus par le site de SethiarWorks.
+
+    Les informations fournies par le formulaire de devis sont affichées au sein d'un tableau.
+    Ces devis sont en attente de traitement. Lors de l'acceptation/refus d'un devis, un mail est envoyé à l'utilisateur
+    afin de l'informer de la décision prise.
+
+    Validation. Refus des devis.
+    Suppression des devis possible.
+    """
+    pass
+
+
 # Route permettant de joindre le formulaire pour enregistrer un utilisateur avec le rôle administrateur.
 @admin_bp.route("/créer-administrateur-utilisateur", methods=['GET', 'POST'])
 def create_admin_user_form():

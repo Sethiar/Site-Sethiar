@@ -134,7 +134,7 @@ def user_logout():
 
 
 # Route permettant à l'administrateur de joindre le formulaire de connexion.
-@auth_bp.route('formulaire-connexion-administrateur')
+@auth_bp.route('formulaire-connexion-administrateur', methods=['GET', 'POST'])
 def admin_connection():
     """
     Route permettant d'accéder au formulaire de connexion pour l'administrateur.
@@ -168,38 +168,41 @@ def login_admin():
     form_admin = AdminConnection()
 
     # Vérification si la méthode de la requête est POST, indiquant la soumission du formulaire.
-    if request.method == 'POST':
-        # Validation des donnees des formulaires.
-        if form_admin.validate_on_submit():
-            # Récupération des données soumises dans le formulaire.
-            pseudo = form_admin.pseudo.data
-            password = form_admin.password.data
-            role = form_admin.role.data
+    if request.method == 'POST' and form_admin.validate_on_submit():
+        # Récupération des données soumises dans le formulaire.
+        pseudo = form_admin.pseudo.data
+        password = form_admin.password.data
+        role = form_admin.role.data
 
-            # Recherche de l'administrateur correspondant au pseudo dans la table de données admin.
-            admin = Admin.query.filter_by(pseudo=pseudo).first()
+        # Recherche de l'administrateur correspondant au pseudo dans la table de données admin.
+        admin = Admin.query.filter_by(pseudo=pseudo).first()
 
-            if admin is None:
-                # Le pseudo n'existe pas.
-                current_app.logger.warning(f"Tentative de connexion échouée : pseudo {pseudo} incorrect.")
-                flash("Le pseudo est incorrect.", "login_admin")
-            elif not bcrypt.checkpw(password.encode('utf-8'), admin.password_hash):
-                # Password incorrect.
-                current_app.logger.warning(f"Tentative de connexion échouée : {pseudo} : mot de passe incorrect.")
-                flash("Le mot de passe est incorrect.", "login_admin")
-            elif role != admin.role:
-                # Rôle incorrect.
-                current_app.logger.warning(f"Tentative de connexion échouée pour {pseudo} : rôle {role} incorrect.")
-                flash("Le rôle est incorrect.", "login_admin")
-            else:
-                # Si tout est correct.
-                current_app.logger.info(f"L'administrateur {admin.pseudo} s'est bien connecté.")
-                login_user(admin)
-                session['pseudo'] = admin.pseudo
-                session["role"] = admin.role
-                return redirect(url_for("admin.backend"))
+        if admin is None:
+            # Le pseudo n'existe pas.
+            current_app.logger.warning(f"Tentative de connexion échouée : pseudo {pseudo} incorrect.")
+            flash("Le pseudo est incorrect.", "login_admin")
+            print("Le pseudo n'existe pas.")
+        elif not bcrypt.checkpw(password.encode('utf-8'), admin.password_hash):
+            # Password incorrect.
+            current_app.logger.warning(f"Tentative de connexion échouée pour {pseudo} : mot de passe incorrect.")
+            flash("Le mot de passe est incorrect.", "login_admin")
+            print("Le mot de passe n'existe pas.")
+        elif role != admin.role:
+            # Rôle incorrect.
+            current_app.logger.warning(f"Tentative de connexion échouée pour {pseudo} : rôle {role} incorrect.")
+            flash("Le rôle est incorrect.", "login_admin")
+            print("Le rôle n'existe pas.")
+        else:
+            # Si tout est correct.
+            current_app.logger.info(f"L'administrateur {admin.pseudo} s'est bien connecté.")
+            login_user(admin)
+            session['pseudo'] = admin.pseudo
+            print(admin.pseudo)
+            session["role"] = admin.role
+            print(admin.role)
+            return render_template("admin/backend.html")
 
-            return render_template("admin/admin_login.html", form_admin=form_admin)
+        return render_template("admin/admin_login.html", form_admin=form_admin)
 
 
 # Route permettant à l'administrateur de se déconnecter.
@@ -376,4 +379,3 @@ def user_banned(user_id):
         return "Utilisateur non trouvé", 404
 
     return render_template("functional/user_banned.html", user=user)
-

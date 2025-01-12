@@ -32,7 +32,7 @@ from app.Models.reply_subject import ReplySubject
 from app.Models.devis_request import DevisRequest
 
 from app.mail.routes import mail_reply_forum_comment, mail_like_comment_subject, \
-    send_mail_validate_demand
+    send_mail_validate_demand, send_mail_inform_demand, send_confirmation_email_admin
 
 from app.extensions import allowed_file
 
@@ -109,6 +109,7 @@ def user_registration():
             db.session.add(new_user)
             db.session.commit()
             flash('Inscription réussie ! Vous pouvez maintenant vous connecter.')
+            send_confirmation_email_admin()
             return redirect(url_for("mail.send_confirmation_email_user", email=email))
         except Exception as e:
             db.session.rollback()
@@ -532,10 +533,11 @@ def user_devis_demand():
         except Exception as e:
             db.session.rollback()
             flash("Une erreur est survenue lors de l'enregistrement. Veuillez réessayer.", "error")
-            return redirect(url_for('user_bp.user_devis_demand'))
+            return redirect(url_for('user.user_devis_demand'))
         else:
-            send_mail_validate_demand(email=devis.email, prenom=devis.prenom)
-            flash("Votre demande de devis a été envoyée avec succès !", "success")
+            send_mail_validate_demand(email=new_devis.email, prenom=new_devis.prenom)
+            send_mail_inform_demand()
+            flash("Votre demande de devis a été envoyée avec succès !!", "success")
             return redirect(url_for('user.user_devis_thanks'))
     else:
         # Afficher les erreurs de validation du formulaire

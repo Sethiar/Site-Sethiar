@@ -12,6 +12,7 @@ from app.Models.user import User
 from app.email_utils import send_email_in_background
 
 
+# Fonction qui envoie un mail à l'utilisateur afin de l'avertir du succès de son inscription.
 @mail_bp.route('envoi-pour-confirmer-inscription/<string:email>')
 def send_confirmation_email_user(email):
     """
@@ -26,8 +27,12 @@ def send_confirmation_email_user(email):
         return redirect(url_for('landing_page'))
 
     # Corps du message.
-    msg = Message("Confirmation d'inscription", sender=current_app.config['MAIL_DEFAULT_SENDER'], recipients=[email])
-    msg.body = f"Bonjour {user.pseudo} \n" \
+    msg = Message(
+        "Confirmation d'inscription",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[email]
+    )
+    msg.body = f"Bonjour {user.pseudo}, \n" \
                "\n" \
                f"Merci de vous être inscrit sur le site de l'entreprise SethiarWorks. " \
                f"Votre inscription a été confirmée avec succès.\n" \
@@ -40,6 +45,35 @@ def send_confirmation_email_user(email):
 
     current_app.extensions['mail'].send(msg)
     return redirect(url_for('landing_page'))
+
+
+# Fonction qui envoie un mail à l'administrateur afin de l'avertir d'une nouvelle inscription.
+@mail_bp.route('envoi-pour-confirmer-inscription/<string:email>')
+def send_confirmation_email_admin(email):
+    """
+    Fonction qui envoie un mail à l'administrateur afin de l'avertir
+    d'une nouvelle inscription au site de l'entreprise SethiarWorks.
+
+    :param email: Email de l'utilisateur nouvellement inscrit.
+    """
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        flash("Utilisateur non trouvé.", "Attention")
+        return redirect(url_for('landing_page'))
+
+    # Corps du message.
+    msg = Message(
+        "Confirmation d'inscription",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=['MAIL_DEFAULT_SENDER']
+    )
+    msg.body = f"Bonjour Nono, \n" \
+               f"Youpi !!! Une nouvelle inscription sur le site de l'entreprise SethiarWorks. " \
+               "\n" \
+               f"Cordialement, \n" \
+               f"L'équipe du site de SethiarWorks."
+
+    current_app.extensions['mail'].send(msg)
 
 
 # Méthode qui avertit l'utilisateur de son bannissement pendant 7 jours.
@@ -57,8 +91,11 @@ def send_confirmation_unsubscribe_email_user(email):
         return redirect(url_for('landing_page'))
 
     # Corps du message.
-    msg = Message("Confirmation de désinscription", sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[email])
+    msg = Message(
+        "Confirmation de désinscription",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[email]
+    )
     msg.body = f"Bonjour {user.pseudo} \n" \
                "\n" \
                f"Merci de vous être inscrit sur le site de l'entreprise SethiarWorks. " \
@@ -87,9 +124,11 @@ def mail_banned_user(email):
     """
     user = User.query.filter_by(email=email).first()
 
-    msg = Message("Bannissement",
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[email])
+    msg = Message(
+        "Bannissement",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[email]
+    )
     msg.body = f"Bonjour {user.pseudo},\n" \
                "\n" \
                f"Suite à la tenue des règles en vigueur sur le site de l'entreprise SethiarWorks, vous avez été banni " \
@@ -110,9 +149,11 @@ def mail_deban_user(email):
     :return: retour sur la page admin.
     """
     user = User.query.filter_by(email=email).first()
-    msg = Message("Fin de bannissement",
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[email])
+    msg = Message(
+        "Fin de bannissement",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[email]
+    )
     msg.body = f"Bonjour {user.pseudo}, \n" \
                "\n" \
                f"Nous vous informons que vous n'êtes plus banni du site de l'entreprise SethiarWorks. \n" \
@@ -134,14 +175,17 @@ def definitive_banned(email):
     :param email: email de l'utilisateur qui subit le bannissement.
     """
     user = User.query.filter_by(email=email).first()
-    msg = Message("Effacement des bases de données.",
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[email])
+    msg = Message(
+        "Effacement des bases de données.",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[email]
+    )
     msg.body = f"Bonjour {user.pseudo},\n" \
                "\n" \
                f"Comme nous vous l'avions indiqué dans un précédent mail, si vous étiez de nouveau sujet à un rappel " \
-               f"à l'ordre sur le respect des règles en vigueur sur notre site, vous seriez définitivement bloqué de " \
-               f"nos bases de données. Le fait que vous receviez ce mail signifie que vous avez été banni. \n" \
+               f"à l'ordre sur le respect des règles en vigueur sur notre site, " \
+               f"vous seriez définitivement bloqué-e de " \
+               f"nos bases de données. Le fait que vous receviez ce mail signifie que vous avez été banni-e. \n" \
                "\n" \
                f"Nous regrettons cette décision, mais nous ne pouvons tolérer ce manquement aux " \
                f"règles établies.\n" \
@@ -165,9 +209,11 @@ def reset_password_mail(email, reset_url):
     if not user:
         flash("Utilisateur non trouvé.", "attention")
         return redirect(url_for('landing_page'))
-    msg = Message('Réinitialisation de votre mot de passe',
-                  sender='noreply@yourapp.com',
-                  recipients=[email])
+    msg = Message(
+        "Réinitialisation de votre mot de passe",
+        sender='noreply@yourapp.com',
+        recipients=[email]
+    )
     msg.body = f'Bonjour {user.pseudo},\n' \
                "\n" \
                f' pour réinitialiser votre mot de passe, cliquez sur le lien suivant : {reset_url}' \
@@ -184,9 +230,11 @@ def password_reset_success_email(user):
 
     :param user: Instance de l'utilisateur.
     """
-    msg = Message('Confirmation de réinitialisation de mot de passe',
-                  sender='noreply@yourapp.com',
-                  recipients=[user.email])
+    msg = Message(
+        "Confirmation de réinitialisation de mot de passe",
+        sender='noreply@yourapp.com',
+        recipients=[user.email]
+    )
     msg.body = f"Bonjour {user.pseudo},\n" \
                "\n" \
                f"Votre mot de passe a été réinitialisé avec succès.\n" \
@@ -206,9 +254,11 @@ def mail_reply_forum_comment(email, subject_nom):
     """
     user = User.query.filter_by(email=email).first()
 
-    msg = Message("Quelqu'un a répondu à votre commentaire de la section forum.",
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[user.email])
+    msg = Message(
+        "Quelqu'un a répondu à votre commentaire de la section forum.",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[user.email]
+    )
     msg.body = f"Bonjour {user.pseudo},\n" \
                "\n" \
                f"Un utilisateur a répondu à votre commentaire de la section forum dont le sujet est {subject_nom}.\n" \
@@ -226,9 +276,11 @@ def mail_like_comment_subject(user, subject):
     :param user: utilisateur qui a posté le commentaire.
     :param subject: sujet dont le commentaire a été liké.
     """
-    msg = Message("Quelqu'un a aimé votre commentaire de la section forum.",
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[user.email])
+    msg = Message(
+        "Quelqu'un a aimé votre commentaire de la section forum.",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[user.email]
+    )
     msg.body = f"Bonjour {user.pseudo},\n" \
                "\n" \
                f"Un utilisateur a aimé votre commentaire de la section forum " \
@@ -247,9 +299,11 @@ def send_confirmation_request_reception(user):
     :param user: utilisateur qui a fait la requête de chat vidéo.
     :return:
     """
-    msg = Message("Confirmation de la demande de chat vidéo.",
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[user.email])
+    msg = Message(
+        "Confirmation de la demande de chat vidéo.",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[user.email]
+    )
     msg.body = f"Bonjour {user.pseudo} \n" \
                f"nous vous confirmons la bonne réception de votre demande \n" \
                f"et nous vous répondrons dans les plus brefs délais " \
@@ -268,9 +322,11 @@ def send_request_admin(user, request_content):
     :param user : utilisateur qui a envoyé la demande de chat.
     :param request_content : contenu de la requête de l'utilisateur.
     """
-    msg = Message("Demande de chat vidéo.",
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[current_app.config['MAIL_DEFAULT_SENDER']])
+    msg = Message(
+        "Demande de chat vidéo.",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=['sethiarworks@gmail.com']
+    )
     msg.body = f"Bonjour Sethiar, \n" \
                "\n" \
                f"{user.pseudo} souhaite avoir un chat vidéo avec vous.\n" \
@@ -290,13 +346,16 @@ def send_mail_validate_request(user, request, chat_link):
     :return:
     """
 
-    msg = Message("Validation de la requête de chat vidéo.",
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[user.email])
+    msg = Message(
+        "Validation de la requête de chat vidéo.",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[user.email]
+    )
     msg.body = f"Bonjour {user.pseudo}, \n" \
                "\n" \
-               f"Titi a accepté votre requête de chat vidéo.\n" \
+               f"L'équipe de SethiarWorks a accepté votre requête de chat vidéo.\n" \
                f"Le rendez-vous est prévu le {request.date_rdv} à {request.heure}.\n" \
+               "\n" \
                f"Voici le lien de connexion: {chat_link}\n" \
                f"Nous vous demandons de cliquer sur ce lien quelques minutes " \
                f"avant le rendez-vous afin d'être prêt pour le chat vidéo.\n" \
@@ -314,14 +373,20 @@ def send_mail_refusal_request(user):
     :param user: utilisateur qui a envoyé la demande de chat.
     :return:
     """
-    msg = Message("Refus de la requête de chat vidéo.",
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[user.email])
+    msg = Message(
+        "Refus de la requête de chat vidéo.",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[user.email]
+    )
     msg.body = f"Bonjour {user.pseudo}, \n" \
                "\n" \
-               f"Titi est dans l'impossibilité de valider votre rendez-vous. \n" \
+               f"L'équipe de SethiarWorks est dans l'impossibilité de valider votre rendez-vous. \n" \
                f"Afin de renouveler votre demande, nous vous prions de bien vouloir " \
-               f"refaire une demande de chat vidéo. \n" \
+               f"refaire une demande de chat vidéo, ou de bien vouloir nous contacter à cette adresse : \n" \
+               "\n" \
+               f"sethiarworks@gmail.com" \
+               "\n" \
+               f"Nous pourrons alors convenir d'une rendez-vous de manière plus précise." \
                "\n" \
                f"Cordialement, \n" \
                f"L'équipe du site de SethiarWorks."
@@ -333,12 +398,14 @@ def send_mail_validate_demand(email, prenom):
     """
     Fonction qui envoie un mail pour informer de la bonne réception de la demande de devis par l'administrateur.
 
-    :param user: utilisateur qui a envoyé la demande de devis.
-    :return:
-     """
-    msg = Message("Nous accusons bonne réception de votre devis.",
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[email])
+    :param email : email de l'utilisateur qui a envoyé la demande de devis.
+    :param prenom : prénom de l'utilisateur qui a fait la demande de devis.
+    """
+    msg = Message(
+        "Nous accusons bonne réception de votre demande de devis.",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[email]
+    )
     msg.body = f"Bonjour {prenom}, \n" \
                "\n" \
                f"Nous avons bien reçu votre demande de devis et nous y répondrons dans moins d'une semaine. \n" \
@@ -359,23 +426,46 @@ def send_mail_validate_demand(email, prenom):
     current_app.extensions['mail'].send(msg)
 
 
+# Méthode qui envoie un mail à l'administrateur l'informant d'une demande de devis.
+def send_mail_inform_demand():
+    """
+    Fonction qui envoie un mail à l'administrateur pour informer de la
+    bonne réception de la demande de devis par l'administrateur.
+    """
+    msg = Message(
+        "Sethiar, tu as un devis.",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=['sethiarworks@gmail.com']
+    )
+    msg.body = f"Bonjour Nono, \n" \
+               "\n" \
+               f"Nous avons reçu une demande de devis. \n" \
+               "\n" \
+               f"Veuillez vous connecter à votre backend afin de vous informer de la demande de devis." \
+               "\n" \
+               f"Cordialement, \n" \
+               f"L'équipe du site de SethiarWorks."
+    current_app.extensions['mail'].send(msg)
+
+
 # Fonction envoyant un mail valider la demande de devis.
 def mail_reply_devis_validate(email, prenom):
     """
     Fonction qui envoie un mail pour informer de la validation de la demande de devis par l'administrateur.
 
-    :param user: utilisateur qui a envoyé la demande de devis.
-    :return:
+    :param email : email de l'utilisateur qui a envoyé la demande de devis.
+    :param prenom : prénom de l'utilisateur qui a fait la demande de devis.
     """
-    msg = Message("Validation de votre devis.",
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[email])
+    msg = Message(
+        "Validation de votre devis.",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[email]
+    )
     msg.body = f"Bonjour {prenom}, \n" \
         "\n" \
         f"Nous avons bien reçu votre demande de devis et nous y répondons favorablement. \n" \
-        f"Afin de pouvoir nous entretenir de manière plus efficace, je vous propose un entretien téléphonique " \
-        "\n" \
-        f"Pour cela il vous suffit de faire une demande de c. \n" \
+        f"Afin de pouvoir nous entretenir de manière plus efficace, " \
+        f"je vous appellerai afin de fixer avec vous d'un entretien téléphonique. \n" \
         "\n" \
         f"Cordialement, \n" \
         f"L'équipe du site de SethiarWorks."
@@ -387,12 +477,14 @@ def mail_reply_devis_reject(email, prenom):
     """
     Fonction qui envoie un mail pour informer du refus de la demande de devis par l'administrateur.
 
-    :param user: utilisateur qui a envoyé la demande de devis.
-    :return:
+    :param email : email de l'utilisateur qui a envoyé la demande de devis.
+    :param prenom : prénom de l'utilisateur qui a fait la demande de devis.
     """
-    msg = Message("Refus de votre devis.",
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=[email])
+    msg = Message(
+        "Refus de votre devis.",
+        sender=current_app.config['MAIL_DEFAULT_SENDER'],
+        recipients=[email]
+    )
     msg.body = f"Bonjour {prenom}, \n" \
                "\n" \
                f"Nous avons bien reçu votre demande de devis mais nous ne pouvons pas y répondre favorablement " \
