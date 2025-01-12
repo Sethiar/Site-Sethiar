@@ -21,21 +21,29 @@ class AdminConnection(FlaskForm):
         submit (SubmitField) : Bouton de soumission du formulaire.
         csrf_token (HiddenField) : Jeton CSRF pour la sécurité des formulaires.
     """
+
+    # Champ pour le pseudo.
     pseudo = StringField(
         "Pseudo Administrateur",
         validators=[DataRequired()],
         render_kw={"placeholder": "Votre Pseudo"}
     )
+
+    # Champ pour le rôle.
     role = StringField(
         "Role",
         validators=[DataRequired()],
         render_kw={"placeholder": "Votre rôle"}
     )
+
+    # Champ pour le password.
     password = PasswordField(
         "Mot de passe administrateur",
         validators=[DataRequired()],
         render_kw={"placeholder": "Votre mot de passe"}
     )
+
+    # Action de soumettre le formulaire.
     submit = SubmitField("Se connecter au backend")
     csrf_token = HiddenField()
 
@@ -59,40 +67,53 @@ class UserAdminSaving(FlaskForm):
             form = UserAdminSaving()
         """
 
+    # Champ pour l'émail.
     email = EmailField(
         "Email",
         validators=[DataRequired(), Email()],
         render_kw={"placeholder": "Entrez votre email"}
     )
+
+    # Champ pour le pseudo.
     pseudo = StringField(
         "Pseudo",
         validators=[DataRequired(), Length(min=2, max=30)],
         render_kw={"placeholder": "Votre pseudo"}
     )
+
+    # Champ pour le rôle.
     role = StringField(
         "Rôle",
         validators=[DataRequired()],
         render_kw={"placeholder": "Votre rôle"}
     )
+
+    # Champ pour le password.
     password = PasswordField(
         "Mot de passe Utilisateur",
         validators=[DataRequired()],
         render_kw={"placeholder": "Votre mot de passe."})
 
+    # Champ pour la confirmation du password.
     password2 = PasswordField(
         "Confirmer le mot de passe",
         validators=[DataRequired(), EqualTo('password', message='Les mots de passe doivent correspondre.')],
         render_kw={"placeholder": "Confirmation du mot de passe."}
     )
+
+    # Champ pour la date de naissance.
     date_naissance = DateField(
         "Date de naissance",
         validators=[DataRequired()]
     )
+
+    # Champ pour la photo de profil.
     profil_photo = FileField(
         "Photo de profil souhaitée :",
         validators=[FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'], "Images only !!")]
     )
 
+    # Action de soumettre le formulaire.
     submit = SubmitField(
         "Souscrire aux conditions générales du blog.")
 
