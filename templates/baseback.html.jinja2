@@ -37,11 +37,12 @@
     </div>
 <div class="space"></div>
 <div class="button-container">
-    <button><a href="{{ url_for('admin.calendar') }}">Aller au calendrier des rendez-vous du chat vidéo</a></button>
-    <button><a href="{{ url_for('admin.users_list') }}">Aller à la liste des utilisateurs</a></button>
-    <button><a href="{{ url_for('admin.list_subject_forum') }}">Aller à la liste des sujets du forum</a></button>
-    <button><a href="{{ url_for('admin.list_comments_forum') }}">Aller sur la liste des commentaires aux sujets du forum</a></button>
-    <button><a href="{{ url_for('auth.logout_admin') }}">Se déconnecter du back end</a></button>
+    <a href="{{ url_for('admin.calendar') }}" class="btn-primary">Aller au calendrier des rendez-vous du chat vidéo</a>
+    <a href="{{ url_for('admin.list_devis') }}" class="btn-primary"> Aller à la liste des devis</a>
+    <a href="{{ url_for('admin.users_list') }}" class="btn-primary">Aller à la liste des utilisateurs</a>
+    <a href="{{ url_for('admin.list_subject_forum') }}" class="btn-primary">Aller à la liste des sujets du forum</a>
+    <a href="{{ url_for('admin.list_comments_forum') }}" class="btn-primary">Aller à la liste des commentaires aux sujets du forum</a>
+    <a href="{{ url_for('auth.logout_admin') }}" class="btn-primary">Se déconnecter du back end</a>
 </div>
 {% endblock %}
 

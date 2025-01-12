@@ -39,12 +39,6 @@
                 </ul>
             </nav>
         </div>
-        <!-- Menu hamburger pour mobile -->
-        <button class="hamburger" aria-label="Ouvrir le menu">
-            <span class="line"></span>
-            <span class="line"></span>
-            <span class="line"></span>
-        </button>
         <div class="space"></div>
 
         <!-- Actions utilisateur -->
@@ -63,8 +57,13 @@
                 <a href="{{ url_for('user.user_devis') }}" class="btn-primary">Demander un devis</a>
             </div>
         </div>
-
     </header>
+    <!-- Menu hamburger pour mobile -->
+    <button class="hamburger" aria-label="Ouvrir le menu">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+    </button>
 
     {% block header_content %}
     {% endblock %}
@@ -98,8 +97,8 @@
             <section class="footer-section">
                 <h3>Réseaux Sociaux</h3>
                 <ul>
-                    <li><a href="https://www.facebook.com/profile.php?id=100095257672419" target="_blank"><i
-                            class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href=https://fr.pinterest.com/alefetey123/ target="_blank"><i
+                            class="fab fa-pinterest"></i> Pinterest</a></li>
                     <li><a href="https://www.instagram.com/lefeteya/" target="_blank"><i class="fab fa-instagram"></i>
                         Instagram</a></li>
                     <li><a href="https://www.linkedin.com/in/arnaud-lefetey-aa8193267/" target="_blank"><i
@@ -114,15 +113,38 @@
 </footer>
 
 <script>
-  // Sélectionner le bouton hamburger et le conteneur du menu
+  document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.querySelector('.hamburger');
-  const navContainer = document.querySelector('.nav-container');
+  const header = document.querySelector('.header');
+  const mainContent = document.querySelector('.main-content'); // Contenu principal
 
-  // Ajouter un événement pour activer/désactiver le menu
-  hamburger.addEventListener('click', () => {
-    navContainer.classList.toggle('active');  // Affiche ou cache le menu
-    hamburger.classList.toggle('active');     // Change l'état du bouton hamburger
-  });
+  if (hamburger && header && mainContent) {
+    // S'assurer que la marge du contenu principal est correcte au chargement
+    if (header.classList.contains('active')) {
+      mainContent.style.marginTop = `${header.offsetHeight}px`;
+    } else {
+      mainContent.style.marginTop = '0';
+    }
+
+    // Ajouter un gestionnaire d'événement au clic sur le menu hamburger
+    hamburger.addEventListener('click', () => {
+      // Toggle les classes actives
+      hamburger.classList.toggle('active');
+      header.classList.toggle('active');
+
+      // Gère le décalage du contenu principal
+      if (header.classList.contains('active')) {
+        mainContent.style.marginTop = `${header.offsetHeight}px`;
+      } else {
+        mainContent.style.marginTop = '0';
+      }
+    });
+  } else {
+    console.error(
+      'Un ou plusieurs éléments nécessaires sont manquants : .hamburger, .header, ou .main-content.'
+    );
+  }
+});
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" defer></script>
