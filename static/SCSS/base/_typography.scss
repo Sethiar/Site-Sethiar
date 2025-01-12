@@ -54,6 +54,25 @@ h1.forum-title {
   font-size: $font-size-xxl;
 }
 
+.h1-devis {
+  font-size: $font-size-xxxl;
+  color: $color-accent-darkorange;
+  display: flex;
+  align-items: center; /* Centre verticalement */
+  justify-content: center; /* Centre horizontalement */
+  text-align: center; /* Optionnel, pour garantir que le texte est bien centré */
+}
+
+.h2-devis {
+  font-size: $font-size-xxl;
+  margin: 0 auto; /* Centrage horizontal du conteneur */
+  border: 1px solid $color-accent-darkorange;
+  display: flex;
+  align-items: center; /* Centre verticalement */
+  justify-content: center; /* Centre horizontalement */
+  text-align: center; /* Assure que le texte est bien centré */
+}
+
 // Typography Responsive
 /* Pour les tablettes portrait */
 @media (max-width: 768px) {
