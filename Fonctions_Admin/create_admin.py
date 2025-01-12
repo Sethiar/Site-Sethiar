@@ -23,7 +23,7 @@ parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
 sys.path.append(parent_dir)
 
 
-# Importer la fonction conn() depuis db_tititechnique.py
+# Importer la fonction conn() depuis db_sethiarworks.py
 from database_config.db_sethiarworks import conn
 
 # Si vous voulez changer votre identifiant et votre mot de passe, c'est ici.
