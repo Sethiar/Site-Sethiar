@@ -20,11 +20,16 @@ class ForgetPassword(FlaskForm):
         new_password (PasswordField) : Nouveau mot de passe.
         csrf_token (HiddenFields) : Jeton CSRF pour la sécurité du formulaire.
     """
+
     email = EmailField(
         "Email",
         validators=[DataRequired()],
-        render_kw={"placeholder": "Entrez votre email"})
+        render_kw={"placeholder": "Entrez votre email"}
+    )
+
+    # Action de soumettre le formulaire.
     submit = SubmitField('Réinitialiser le mot de passe.')
+
     csrf_token = HiddenField()
 
 
@@ -39,12 +44,19 @@ class RenamePassword(FlaskForm):
         csrf_token (HiddenFields) : Jeton CSRF pour la sécurité du formulaire.
     """
 
+    # Champ pour le nouveau password.
     new_password = PasswordField(
         "Nouveau mot de passe utilisateur",
         validators=[DataRequired()],
-        render_kw={"placeholder": "Nouveau mot de passe."})
+        render_kw={"placeholder": "Nouveau mot de passe."}
+    )
+
+    # Champ pour confirmer le password.
     confirm_password = PasswordField(
         "Confirmer le nouveau mot de passe",
         validators=[DataRequired(), EqualTo('new_password', message='Les mots de passe doivent correspondre.')],
-        render_kw={"placeholder": "Confirmation du nouveau mot de passe."})
+        render_kw={"placeholder": "Confirmation du nouveau mot de passe."}
+    )
+
     csrf_token = HiddenField()
+

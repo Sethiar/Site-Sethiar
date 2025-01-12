@@ -22,12 +22,21 @@ class CommentSubjectForm(FlaskForm):
     Example :
         form = CommentSubjectForm()
     """
+
     # Contenu du commentaire.
-    comment_content = TextAreaField("Contenu du commentaire", validators=[DataRequired()],
-                                    render_kw={"placeholder": "Saisie du commentaire"})
+    comment_content = TextAreaField(
+        "Contenu du commentaire",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Saisie du commentaire"}
+    )
+
     # Pseudo de l'utilisateur.
-    user_pseudo = StringField("Pseudo de l'utilisateur", validators=[DataRequired()],
-                              render_kw={"placeholder": "Votre pseudo"})
+    user_pseudo = StringField(
+        "Pseudo de l'utilisateur",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Votre pseudo"}
+    )
+
     # Action de soumettre le formulaire.
     submit = SubmitField("Soumettre le commentaire")
     csrf_token = HiddenField()
@@ -44,9 +53,14 @@ class ChangeCommentSubjectForm(FlaskForm):
         submit (SubmitField) : Bouton de soumission du formulaire.
         csrf_token (HiddenField) : Jeton CSRF pour la sécurité du formulaire.
     """
+
     # Contenu du commentaire.
-    comment_content = TextAreaField("Contenu du commentaire", validators=[DataRequired()],
-                                    render_kw={"placeholder": "Saisie du commentaire"})
+    comment_content = TextAreaField(
+        "Contenu du commentaire",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Saisie du commentaire"}
+    )
+
     # Action de soumettre le commentaire.
     submit = SubmitField("Soumettre le commentaire")
     csrf_token = HiddenField()
@@ -75,8 +89,13 @@ class SuppressCommentSubjectForm(FlaskForm):
         comment_id (HiddenField) : Champ caché pour l'ID du commentaire à supprimer.
         submit (SubmitField): Bouton de soumission du formulaire.
     """
+
     # ID du commentaire à supprimer.
-    comment_id = HiddenField('Comment_id', validators=[DataRequired()])
+    comment_id = HiddenField(
+        "Comment_id",
+        validators=[DataRequired()]
+    )
+
     # Action de soumettre le commentaire.
     submit = SubmitField('Supprimer')
 
@@ -92,11 +111,17 @@ class ReplySubjectForm(FlaskForm):
         submit (SubmitField) : Bouton de soumission du commentaire.
         csrf_token (HiddenField) : Jeton pour la sécurité du formulaire.
     """
+
     # Contenu de la réponse.
-    reply_content = TextAreaField("Réponse au commentaire", validators=[DataRequired()],
-                                  render_kw={"placeholder": "Votre réponse"})
+    reply_content = TextAreaField(
+        "Réponse au commentaire",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Votre réponse"}
+    )
+
     # Champ pour stocker l'ID du commentaire parent.
     comment_id = HiddenField("ID du commentaire")
+
     # Action de soumettre le commentaire.
     submit = SubmitField("Soumettre la réponse")
     csrf_token = HiddenField()
@@ -112,9 +137,14 @@ class ChangeReplySubject(FlaskForm):
         submit (SubmitField) : Bouton de soumission du commentaire.
         csrf_token (HiddenField) : Jeton CSRF pour la sécurité du formulaire.
     """
+
     # Contenu de la réponse.
-    reply_content = TextAreaField("Contenu de la réponse", validators=[DataRequired()],
-                                  render_kw={"placeholder": "Votre réponse"})
+    reply_content = TextAreaField(
+        "Contenu de la réponse",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Votre réponse"}
+    )
+
     # Action de soumettre le commentaire.
     submit = SubmitField("Soumettre la réponse")
     csrf_token = HiddenField()
@@ -129,7 +159,12 @@ class SuppressReplySubject(FlaskForm):
         reply_id (HiddenField) : Champ caché pour l'ID de la réponse à supprimer.
         submit (SubmitField): Bouton de soumission du formulaire.
     """
-    reply_id = HiddenField('reply_id', validators=[DataRequired()])
+
+    reply_id = HiddenField(
+        "reply_id",
+        validators=[DataRequired()]
+    )
+
     # Action de soumettre le commentaire.
     submit = SubmitField('Supprimer')
 
@@ -146,6 +181,8 @@ class CommentLike(FlaskForm):
     Example:
         form = CommentLike()
     """
+
     csrf_token = HiddenField()
+
     # Action de soumettre le commentaire.
     submit = SubmitField()

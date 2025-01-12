@@ -18,8 +18,11 @@ class NewSubjectForumForm(FlaskForm):
         form = NewSubjectForumForm()
     """
     # Nom du sujet.
-    nom = StringField("Nom du sujet", validators=[DataRequired()],
-                      render_kw={'placeholder': "Nouveau sujet"})
+    nom = StringField(
+        "Sujet",
+        validators=[DataRequired()],
+        render_kw={'placeholder': "Nouveau sujet"}
+    )
 
     # Action de soumettre le formulaire.
     submit = SubmitField("Ajouter le sujet")
@@ -35,7 +38,13 @@ class SuppressSubject(FlaskForm):
         subject_id (HiddenField) : Champ caché pour l'ID du sujet à supprimer.
         submit (SubmitField): Bouton de soumission du formulaire.
     """
-    subject_id = HiddenField('Subject_id', validators=[DataRequired()])
+    # Champ caché pour l'id du sujet.
+    subject_id = HiddenField(
+        'Subject_id',
+        validators=[DataRequired()]
+    )
+
+    # Action de soumettre le formulaire.
     submit = SubmitField('Supprimer')
     csrf_token = HiddenField()
 

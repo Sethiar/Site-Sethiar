@@ -21,12 +21,21 @@ class AdminConnection(FlaskForm):
         submit (SubmitField) : Bouton de soumission du formulaire.
         csrf_token (HiddenField) : Jeton CSRF pour la sécurité des formulaires.
     """
-    pseudo = StringField("Pseudo Administrateur", validators=[DataRequired()],
-                         render_kw={"placeholder": "Votre Pseudo"})
-    role = StringField('Role', validators=[DataRequired()],
-                       render_kw={"placeholder": "Votre rôle"})
-    password = PasswordField("Mot de passe administrateur", validators=[DataRequired()],
-                             render_kw={"placeholder": "Votre mot de passe"})
+    pseudo = StringField(
+        "Pseudo Administrateur",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Votre Pseudo"}
+    )
+    role = StringField(
+        "Role",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Votre rôle"}
+    )
+    password = PasswordField(
+        "Mot de passe administrateur",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Votre mot de passe"}
+    )
     submit = SubmitField("Se connecter au backend")
     csrf_token = HiddenField()
 
@@ -47,21 +56,24 @@ class UserAdminSaving(FlaskForm):
             csrf_token (HiddenField) : Jeton CSRF pour la sécurité du formulaire.
 
         Example:
-            form = UserSaving()
+            form = UserAdminSaving()
         """
 
     email = EmailField(
         "Email",
         validators=[DataRequired(), Email()],
-        render_kw={"placeholder": "Entrez votre email"})
+        render_kw={"placeholder": "Entrez votre email"}
+    )
     pseudo = StringField(
         "Pseudo",
         validators=[DataRequired(), Length(min=2, max=30)],
-        render_kw={"placeholder": "Votre pseudo"})
+        render_kw={"placeholder": "Votre pseudo"}
+    )
     role = StringField(
         "Rôle",
         validators=[DataRequired()],
-        render_kw={"placeholder": "Votre rôle"})
+        render_kw={"placeholder": "Votre rôle"}
+    )
     password = PasswordField(
         "Mot de passe Utilisateur",
         validators=[DataRequired()],
@@ -74,9 +86,12 @@ class UserAdminSaving(FlaskForm):
     )
     date_naissance = DateField(
         "Date de naissance",
-        validators=[DataRequired()])
-    profil_photo = FileField("Photo de profil souhaitée :",
-                             validators=[FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'], "Images only !!")])
+        validators=[DataRequired()]
+    )
+    profil_photo = FileField(
+        "Photo de profil souhaitée :",
+        validators=[FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'], "Images only !!")]
+    )
 
     submit = SubmitField(
         "Souscrire aux conditions générales du blog.")

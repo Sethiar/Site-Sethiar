@@ -29,25 +29,39 @@ class ChatRequestForm(FlaskForm):
     """
 
     # Le contenu de la demande.
-    request_content = TextAreaField("Contenu de la demande", validators=[DataRequired()],
-                                    render_kw={"placeholder": "Veuillez préciser le motif de "
-                                                              "votre demande pour le chat vidéo."})
+    request_content = TextAreaField(
+        "Contenu de la demande",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Veuillez préciser le motif de votre demande pour le chat vidéo."}
+    )
 
     # Le pseudo de l'utilisateur.
-    pseudo = StringField("Pseudo de l'utilisateur", validators=[DataRequired()],
-                         render_kw={"placeholder": "Votre pseudo."})
+    pseudo = StringField(
+        "Pseudo de l'utilisateur",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Votre pseudo."}
+    )
 
     # La date du chat vidéo.
-    date_rdv = DateField("Veuillez sélectionner la date souhaitée", validators=[DataRequired()],
-                         render_kw={"placeholder": "Date souhaitée pour le chat vidéo :"})
+    date_rdv = DateField(
+        "Veuillez sélectionner la date souhaitée",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Date souhaitée pour le chat vidéo :"}
+    )
 
     # L'heure souhaitée.
-    heure = TimeField("Heure souhaitée", format='%H:%M', validators=[DataRequired()],
-                      render_kw={"placeholder": "12:00"})
+    heure = TimeField(
+        "Heure souhaitée",
+        format='%H:%M',
+        validators=[DataRequired()],
+        render_kw={"placeholder": "12:00"}
+    )
 
-    attachment = FileField("Joindre un document", validators=[
-        FileAllowed(['pdf', 'doc', 'docx'], 'Seuls les fichiers PDF ou Word sont autorisés.')
-    ])
+    attachment = FileField(
+        "Joindre un document",
+        validators=[FileAllowed(['pdf', 'doc', 'docx'], 'Seuls les fichiers PDF ou Word sont autorisés.')]
+    )
+
     # Action de soumettre le formulaire.
     submit = SubmitField("Soumettre la demande")
 
@@ -59,8 +73,12 @@ class UserLink(FlaskForm):
     """
     Formulaire pour envoyer le lien à l'utilisateur.
     """
-    chat_link = StringField('Chat-link', validators=[DataRequired()],
-                            render_kw={"placeholder": "Veuillez renseigner le lien copié."})
+    chat_link = StringField(
+        "Chat-link",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Veuillez renseigner le lien copié."}
+    )
+
     csrf_token = HiddenField()
     submit = SubmitField("Envoyer à l'utilisateur")
 

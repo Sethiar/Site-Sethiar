@@ -19,10 +19,22 @@ class UserConnection(FlaskForm):
         submit (SubmitField) : Bouton de soumission du commentaire.
         csrf_token (HiddenField) : Jeton CSRF pour la sécurité des formulaires.
     """
-    pseudo = StringField("Pseudo Utilisateur", validators=[DataRequired()],
-                         render_kw={"placeholder": "Votre Pseudo"})
-    password = PasswordField("Mot de passe utilisateur", validators=[DataRequired()],
-                             render_kw={"placeholder": "Votre mot de passe"})
+
+    # Champ pour le pseudo.
+    pseudo = StringField(
+        "Pseudo Utilisateur",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Votre Pseudo"}
+    )
+
+    # Champ pour le password.
+    password = PasswordField(
+        "Mot de passe utilisateur",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Votre mot de passe"}
+    )
+
+    # Action de soumettre le formulaire.
     submit = SubmitField("Se connecter")
     csrf_token = HiddenField()
 

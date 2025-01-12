@@ -18,7 +18,8 @@ class BanUserForm(FlaskForm):
     Example:
         form = BanUserForm()
 
-        """
+    """
+
     csrf_token = HiddenField()
     # Action de soumettre le formulaire.
     submit = SubmitField('Bannir')
@@ -36,6 +37,7 @@ class UnBanUserForm(FlaskForm):
     Example:
         form = UnBanUserForm()
     """
+
     csrf_token = HiddenField()
     # Action de soumettre le formulaire.
     submit = SubmitField('Débannir')

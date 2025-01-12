@@ -28,30 +28,48 @@ class UserRecording(FlaskForm):
         Exemple :
             form = UserRecording()
     """
+
+    # Champ pour le pseudo.
     pseudo = StringField(
-        "Pseudo", validators=[DataRequired(), Length(min=2, max=30)],
+        "Pseudo",
+        validators=[DataRequired(), Length(min=2, max=30)],
         render_kw={"placeholder": "Entrez votre pseudo"}
     )
+
+    # Champ pour l'email.
     email = EmailField(
-        "Email", validators=[DataRequired(), Email()],
+        "Email",
+        validators=[DataRequired(), Email()],
         render_kw={"placeholder": "Entrez votre Email"}
     )
+
+    # Champ pour le password.
     password = PasswordField(
-        "Password", validators=[DataRequired()],
+        "Password",
+        validators=[DataRequired()],
         render_kw={"placeholder": "Mot de passe utilisateur"}
     )
+
+    # Champ pour confirmer le password.
     password2 = PasswordField(
         "Confirmer password",
         validators=[DataRequired(), EqualTo('password', message="Les mots de passe doivent correspondre")],
         render_kw={"placeholder": "Confirmation du mot de passe."}
     )
+
+    # Champ pour la date de naissance.
     date_naissance = DateField(
         "Date de naissance",
         validators=[DataRequired()]
     )
-    profil_photo = FileField("Photo de profil souhaitée :",
-                             validators=[FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'], "Images seulement !!")]
-                             )
+
+    # Champ pour la photo de profil.
+    profil_photo = FileField(
+        "Photo de profil souhaitée :",
+         validators=[FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'], "Images seulement !!")]
+    )
+
+    # Action de soumettre le formulaire.
     csrf_token = HiddenField()
     submit = SubmitField(
         "Souscrire aux conditions générales du site."
@@ -62,7 +80,7 @@ class UserRecording(FlaskForm):
     # Fonction qui vérifie si le pseudo existe déjà.
     def validate_pseudo(self, pseudo):
         """
-        Valide le pseudo choisi si il n'existe pas déjà dans la table de données User.
+        Valide le pseudo choisi s'il n'existe pas déjà dans la table de données User.
 
         Args :
             pseudo (StringField): Pseudo à vérifier.
