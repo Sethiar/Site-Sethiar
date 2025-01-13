@@ -21,6 +21,8 @@ from app.Models.user import User
 from app.Models.subject_forum import SubjectForum
 from app.Models.chat_request import ChatRequest
 
+from app.Models.devis_request import DevisRequest
+
 from app.Models.comment_subject import CommentSubject
 
 from app.forms.form_comment import SuppressCommentSubjectForm
@@ -29,6 +31,7 @@ from app.forms.user_banning import BanUserForm, UnBanUserForm
 from app.forms.subject_forum import SuppressSubject, NewSubjectForumForm
 from app.forms.admin_login import UserAdminSaving
 from app.forms.chatrequest import ChatRequestForm, UserLink
+from app.forms.devisrequest import DevisRequestForm
 
 
 from app.mail.routes import mail_banned_user, mail_deban_user
@@ -496,7 +499,12 @@ def list_devis():
     Validation. Refus des devis.
     Suppression des devis possible.
     """
-    pass
+    # Instanciation du formulaire.
+    formdevis = DevisRequestForm()
+    # Récupération des devis
+    list_user_devis = DevisRequest.query.all()
+
+    return render_template("admin/demand_devis.html", list_user_devis=list_user_devis, formdevis=formdevis)
 
 
 # Route permettant de joindre le formulaire pour enregistrer un utilisateur avec le rôle administrateur.
