@@ -11,13 +11,14 @@
 {% block body_content %}
 <div class="outer-frame">
     <div class="inner-frame">
-        <form method="POST" action="{{ url_for('auth.admin_connection') }}">
+        <form method="POST" action="{{ url_for('auth.login_admin') }}" class="form-base"
+              enctype="multipart/form-data">
+
             <!-- Image du logo -->
             <div class="imgcontainer-form">
                 <img src="{{ url_for('static', filename='Images/images_accueil/logo.jpg') }}" alt="Logo de SethiarWorks"
                      class="avatar-form">
             </div>
-            <div class="space"></div>
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
             {% for category, message in messages %}
@@ -30,17 +31,14 @@
             {% endif %}
             {% endwith %}
 
+            <!-- Titre du formulaire -->
+            <h3 class="h3-form">Authentification Administrateur</h3>
+
+            <!-- Token CSRF pour la sécurité -->
+            {{ form_admin.csrf_token }}
+
             <!-- Conteneur des champs du formulaire -->
             <div class="form-container">
-
-                <!-- Titre du formulaire -->
-                <h3 class="h3-form">Authentification Administrateur</h3>
-
-                <!-- Token CSRF pour la sécurité -->
-                {{ form_admin.csrf_token }}
-
-                <div class="space-form"></div>
-
                 <!-- Champ pour le pseudo -->
                 <div class="form-group">
                     {{ form_admin.pseudo.label }} {{ form_admin.pseudo() }}
