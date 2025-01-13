@@ -140,7 +140,7 @@ img {
 /* Gère les conteneurs droit et gauche et les séparations et espacement. */
 .layout {
   display: flex;
-  height: 100vh;
+  height: 0;
 }
 
 /* Conteneur principal */
@@ -242,6 +242,7 @@ img {
 @media (max-width: 599px) {
   .layout {
     flex-direction: column; /* Afficher la mise en page en colonne */
+    height: 10vh;
   }
   .main-content {
     margin-left: 0;
@@ -260,6 +261,7 @@ img {
 @media (min-width: 600px) and (max-width: 899px) {
   .layout {
     flex-direction: column; /* Afficher la mise en page en colonne */
+    height: 30vh;
   }
   .main-content {
     margin-left: 0;
@@ -278,6 +280,7 @@ img {
 @media (min-width: 900px) and (max-width: 1199px) {
   .layout {
     flex-direction: row; /* Retour à une mise en page en ligne */
+    height: 25vh;
   }
   .main-content {
     margin-left: 25%;
