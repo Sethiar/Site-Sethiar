@@ -62,6 +62,9 @@ def create_app():
     from app.chat import chat_bp
     app.register_blueprint(chat_bp, url_prefix='/chat')
 
+    from app.devis import devis_bp
+    app.register_blueprint(devis_bp, url_prefix='/devis')
+
     from app.functional import functional_bp
     app.register_blueprint(functional_bp, url_prefix='/functional')
 
