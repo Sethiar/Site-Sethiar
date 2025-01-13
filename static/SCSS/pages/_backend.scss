@@ -2,126 +2,142 @@
 @use '../base/variables' as *;
 
 
-/* Backend CSS - pages/backend.scss */
+// Backend CSS - pages/backend.scss
 
-/* Style pour la page d'accueil du back-end */
+/* Style pour la page d'accueil du baseback.html.jinja2 */
 html, body {
-    margin: 0;
-    padding: 0;
-    background-color: $color-primary;
-    color: $color-secondary;
-    font-size: $font-size-sm;
+  margin: 0;
+  padding: 0;
+  background-color: $color-primary;
+  color: $color-secondary;
+  font-size: $font-size-base;
 }
 
-header {
+.header-backend {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 2%;
 }
 
-nav {
+.nav-backend{
   margin-top: 5%;
   display: flex;
   align-items: center;
   gap: 3vw;
+
+  &:hover {
+    color: $color-secondary;
+  }
 }
 
-/* Styles propres au backend */
-nav button {
-  background-color: $color-accent-orange;
+// Style global du backend.
+.h1-backend {
+  font-size: $font-size-xxxl;
+  color: $color-accent-darkorange;
+  text-align: center;
+}
+
+.annonce-back p {
+  font-size: $font-size-xxl;
   color: $color-primary;
-  border: 2px solid $color-neutral-gold;
-  padding: 10px 20px;
-  border-radius: 5px;
-}
-
-nav button:hover {
-  background-color: $color-neutral-gold;
-  border: 2px solid $color-accent-orange;
-}
-
-nav button a:hover {
-  color: $color-secondary;
-}
-
-.space {
-  height: 15vh;
-  background-color: $color-primary;
-}
-
-.intro {
-  border: 1px solid $color-neutral-gold;
-  background-color: $color-accent-orange;
-  width: 30vw;
-  height: 10vw;
+  background-color: $color-lightgrey;
+  border: 1px solid $color-accent-darkorange;
+  border-radius: 12px;
+  width: 70%;
+  display: block;
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
 }
 
-.intro p {
-  font-size: 18px;
-  background-color: $color-accent-orange;
-  color: $color-primary;
-  padding: 3%;
-  justify-content: center;
-  text-align: center;
-  font-weight: bold;
+.h4-backend{
+  margin-left: 10%;
 }
 
-// Style pour les pages du backend.
-h5 {
+.h5-backend {
   padding-left: 5vw;
   text-decoration: underline;
-  font-size: $font-size-xl;
+  font-size: $font-size-lg;
+  color: $color-neutral-gold;
 }
 
+// Style de la page calendar.html
+.table {
+  font-size: $font-size-base;
+  border: 1px solid $color-lightgrey;
+  width: 90%;
+  margin: 0 auto;
+  padding: 2%;
+}
+
+th {
+  color: $color-accent-darkorange;
+  border: 1px solid $color-lightgrey;
+  padding: 2%;
+}
+
+tr {
+  color: $color-secondary;
+  padding: 1%;
+  border: 1px solid $color-lightgrey;
+}
+
+td {
+  margin-right: 1%;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+  border: 1px solid $color-lightgrey;
+  padding: 2%;
+}
+
+.actions-buttons {
+  margin-right: 1rem;
+}
+
+.btn-suppression, .btn-valide {
+  width: 10vw;
+  border: 1px solid $color-accent-darkorange;
+  background-color: $color-neutral-gold;
+
+  &:hover {
+    border: 1px solid $color-neutral-gold;
+    background-color: $color-accent-darkorange;
+  }
+}
+
+// Page de la liste des utilisateurs.
+/* Sélection de tous les utilisateurs */
 .select-all-users {
   color: $color-neutral-gold;
-  transition: color 0.3s, transform 0.3s;
-}
-
-.select-all-users:hover {
   font-size: $font-size-lg;
-  color: $color-accent-orange;
+  transition: color 0.3s, transform 0.3s;
+
+  &:hover {
+    font-size: $font-size-xl;
+    color: $color-accent-darkorange;
+  }
 }
 
+/* Présentation des premières lettres des pseudos des utilisateurs */
 .lettre-navigation {
   padding-left: 20vw;
   display: flex-column;
 }
 
+/* Sélection des lettres */
 .lettre a {
   color: $color-accent-darkorange;
   margin-right: 4vw;
   transition: color 0.3s, transform 0.3s;
+
+  &:hover {
+    color: $color-neutral-gold;
+    transform: scale(1.1);
+    text-decoration: underline;
+  }
 }
 
-.lettre a:hover {
-  color: $color-neutral-gold;
-  transform: scale(1.1);
-  text-decoration: underline;
-}
-
-.table {
-  font-size: $font-size-base;
-  width: 100%;
-}
-
-th {
-  color: $color-accent-darkorange;
-}
-
-tr {
-  color: $color-secondary;
-}
-
-.table th, .table td {
-  vertical-align: middle;
-  padding: 10px;
-}
 
 .col-user {
   width: 15vw;
@@ -160,30 +176,9 @@ tr {
   border: 1px solid $color-secondary;
 }
 
-.btn-suppression {
-  width: 10vw;
-  border: 1px solid $color-accent-darkorange;
-  background-color: $color-neutral-gold;
-}
-
-.btn-suppression:hover {
- border: 1px solid $color-neutral-gold;
-  background-color: $color-accent-darkorange;
-}
-
-.btn-valide {
-  width: 10vw;
-  border: 1px solid $color-accent-darkorange;
-  background-color: $color-neutral-gold;
-}
-
-.btn-valide:hover {
- border: 1px solid $color-neutral-gold;
-  background-color: $color-accent-darkorange;
-}
 
 
-.categorie {
+.container-category {
   margin: 0 auto;
   text-align: center;
   border : 1px solid $color-accent-orange;
@@ -193,12 +188,6 @@ tr {
 
 .label {
   width: 40%;
-}
-
-.separation {
-  margin: 0 auto;
-  border-bottom: 1px solid $color-neutral-gold;
-  margin: 3% 20% 3%  20%;
 }
 
 #subject {
@@ -216,9 +205,7 @@ tr {
   border-bottom: 1px solid $color-accent-orange;
 }
 
-h4{
-  margin-left: 10%;
-}
+
 
 .button-subject {
   color: $color-primary;
