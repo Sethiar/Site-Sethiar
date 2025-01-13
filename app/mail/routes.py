@@ -448,7 +448,7 @@ def send_mail_inform_demand():
     current_app.extensions['mail'].send(msg)
 
 
-# Fonction envoyant un mail valider la demande de devis.
+# Fonction envoyant un mail validant la demande de devis.
 def mail_reply_devis_validate(email, prenom):
     """
     Fonction qui envoie un mail pour informer de la validation de la demande de devis par l'administrateur.
@@ -472,7 +472,7 @@ def mail_reply_devis_validate(email, prenom):
     current_app.extensions['mail'].send(msg)
 
 
-# Fonction envoyant un mail valider la demande de devis.
+# Fonction envoyant un mail refusant la demande de devis.
 def mail_reply_devis_reject(email, prenom):
     """
     Fonction qui envoie un mail pour informer du refus de la demande de devis par l'administrateur.
