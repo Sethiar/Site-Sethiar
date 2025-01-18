@@ -69,7 +69,5 @@ def landing_page():
         'frontend/accueil.html')
 
 
-# Code lançant l'application.
-if __name__ == '__main__':
-    app.run(debug=True)
+
 
